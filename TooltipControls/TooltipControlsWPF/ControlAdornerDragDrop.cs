@@ -2,8 +2,10 @@
 // <copyright file="ControlAdornerDragDrop.cs" company="ORC">
 //   MS-PL
 // </copyright>
+// <summary>
+//   A class that makes ControlAdorner moveable.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Orc.Toolkit.TooltipControls
 {
     using System.Windows;
@@ -11,16 +13,57 @@ namespace Orc.Toolkit.TooltipControls
 
     using Orc.Toolkit.TooltipControls.Helpers;
 
+    /// <summary>
+    /// A class that makes ControlAdorner moveable.
+    /// </summary>
     public class ControlAdornerDragDrop
     {
+        #region Fields
+
+        /// <summary>
+        /// The adorner.
+        /// </summary>
         private ControlAdorner adorner;
-        private double mouseX, mouseY;
+
+        /// <summary>
+        /// The mouse captured.
+        /// </summary>
         private bool mouseCaptured;
 
+        /// <summary>
+        /// The mouse x.
+        /// </summary>
+        private double mouseX;
+
+        /// <summary>
+        /// The mouse y.
+        /// </summary>
+        private double mouseY;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="ControlAdornerDragDrop"/> class from being created.
+        /// </summary>
         private ControlAdornerDragDrop()
         {
         }
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The attach.
+        /// </summary>
+        /// <param name="adorner">
+        /// The adorner.
+        /// </param>
+        /// <returns>
+        /// The <see cref="ControlAdornerDragDrop"/>.
+        /// </returns>
         public static ControlAdornerDragDrop Attach(ControlAdorner adorner)
         {
             if (adorner == null || adorner.Child == null)
@@ -35,6 +78,12 @@ namespace Orc.Toolkit.TooltipControls
             return dd;
         }
 
+        /// <summary>
+        /// The detach.
+        /// </summary>
+        /// <param name="dd">
+        /// The dd.
+        /// </param>
         public static void Detach(ControlAdornerDragDrop dd)
         {
             if (dd == null || dd.adorner == null || dd.adorner.Child == null)
@@ -47,6 +96,53 @@ namespace Orc.Toolkit.TooltipControls
             dd.adorner.Child.MouseMove -= dd.MouseMove;
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The mouse left button down.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.adorner.Child.CaptureMouse();
+            this.mouseCaptured = true;
+            this.mouseY = e.GetPosition(null).Y;
+            this.mouseX = e.GetPosition(null).X;
+        }
+
+        /// <summary>
+        /// The mouse left button up.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            this.adorner.Child.ReleaseMouseCapture();
+            this.mouseCaptured = false;
+            this.mouseY = 0;
+            this.mouseX = 0;
+        }
+
+        /// <summary>
+        /// The mouse move.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
         private void MouseMove(object sender, MouseEventArgs e)
         {
             if (!this.mouseCaptured)
@@ -60,8 +156,8 @@ namespace Orc.Toolkit.TooltipControls
                 return;
             }
 
-            var deltaY = e.GetPosition(null).Y - this.mouseY;
-            var deltaX = e.GetPosition(null).X - this.mouseX;
+            double deltaY = e.GetPosition(null).Y - this.mouseY;
+            double deltaX = e.GetPosition(null).X - this.mouseX;
 
             var offset = new Point(this.adorner.Offset.X + deltaX, this.adorner.Offset.Y + deltaY);
 
@@ -76,18 +172,18 @@ namespace Orc.Toolkit.TooltipControls
                 offset.X = -this.adorner.ChildPosition.X;
             }
 
-            var windowSize = ScreenUtils.GetWindowSize();
+            Size windowSize = ScreenUtils.GetWindowSize();
 
-            var maxY = windowSize.Height - frameworkElement.ActualHeight;
+            double maxY = windowSize.Height - frameworkElement.ActualHeight;
             if (this.adorner.ChildPosition.Y + offset.Y > maxY)
             {
                 offset.Y = maxY - this.adorner.ChildPosition.Y;
             }
 
-            var maxX = windowSize.Width - frameworkElement.ActualWidth;
+            double maxX = windowSize.Width - frameworkElement.ActualWidth;
             if (this.adorner.ChildPosition.X + offset.X > maxX)
             {
-                offset.X = maxX - this.adorner.ChildPosition.X; 
+                offset.X = maxX - this.adorner.ChildPosition.X;
             }
 
             this.adorner.Offset = offset;
@@ -96,20 +192,6 @@ namespace Orc.Toolkit.TooltipControls
             this.mouseX = e.GetPosition(null).X;
         }
 
-        private void MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            this.adorner.Child.ReleaseMouseCapture();
-            this.mouseCaptured = false;
-            this.mouseY = 0;
-            this.mouseX = 0;
-        }
-
-        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.adorner.Child.CaptureMouse();
-            this.mouseCaptured = true;
-            this.mouseY = e.GetPosition(null).Y;
-            this.mouseX = e.GetPosition(null).X;
-        }
+        #endregion
     }
 }

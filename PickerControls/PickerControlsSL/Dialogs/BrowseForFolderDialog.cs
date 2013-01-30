@@ -2,8 +2,10 @@
 // <copyright file="BrowseForFolderDialog.cs" company="ORC">
 //   MS-PL
 // </copyright>
+// <summary>
+//   Represents a common dialog box (Win32::SHBrowseForFolder()) that allows a user to select a folder.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Orc.Toolkit.PickerControls.Dialogs
 {
     using System;
@@ -12,34 +14,244 @@ namespace Orc.Toolkit.PickerControls.Dialogs
     using System.Windows;
 
     /// <summary>
-    /// Represents a common dialog box (Win32::SHBrowseForFolder()) that allows a user to select a folder.
+    ///     Represents a common dialog box (Win32::SHBrowseForFolder()) that allows a user to select a folder.
     /// </summary>
     public class BrowseForFolderDialog
     {
+        #region Fields
+
         /// <summary>
-        /// The browse info.
+        ///     The browse info.
         /// </summary>
         private BROWSEINFOW browseInfo;
 
-        #region Public Constructors
+        #endregion
+
+        #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BrowseForFolderDialog"/> class. 
-        /// Constructs a BrowseForFolderDialog with default BrowseInfoFlags set to BIF_NEWDIALOGSTYLE.
+        ///     Initializes a new instance of the <see cref="BrowseForFolderDialog" /> class.
+        ///     Constructs a BrowseForFolderDialog with default BrowseInfoFlags set to BIF_NEWDIALOGSTYLE.
         /// </summary>
         public BrowseForFolderDialog()
         {
-            BrowseInfo = new BROWSEINFOW
-                             {
-                                 hwndOwner = IntPtr.Zero,
-                                 pidlRoot = IntPtr.Zero,
-                                 pszDisplayName = new string(' ', 260),
-                                 lpszTitle = "Select a folder:",
-                                 ulFlags = BrowseInfoFlags.BIF_NEWDIALOGSTYLE,
-                                 lpfn = this.BrowseEventHandler,
-                                 lParam = IntPtr.Zero,
-                                 iImage = -1
-                             };
+            this.BrowseInfo = new BROWSEINFOW
+                                  {
+                                      hwndOwner = IntPtr.Zero, 
+                                      pidlRoot = IntPtr.Zero, 
+                                      pszDisplayName = new string(' ', 260), 
+                                      lpszTitle = "Select a folder:", 
+                                      ulFlags = BrowseInfoFlags.BIF_NEWDIALOGSTYLE, 
+                                      lpfn = this.BrowseEventHandler, 
+                                      lParam = IntPtr.Zero, 
+                                      iImage = -1
+                                  };
+        }
+
+        #endregion
+
+        #region Delegates
+
+        /// <summary>
+        ///     The browse callback proc.
+        /// </summary>
+        /// <param name="hwnd">
+        ///     The hwnd.
+        /// </param>
+        /// <param name="uMsg">
+        ///     The u msg.
+        /// </param>
+        /// <param name="lParam">
+        ///     The l param.
+        /// </param>
+        /// <param name="lpData">
+        ///     The lp data.
+        /// </param>
+        /// <returns>
+        ///     The return value of the callback
+        /// </returns>
+        public delegate int BrowseCallbackProc(IntPtr hwnd, MessageFromBrowser uMsg, IntPtr lParam, IntPtr lpData);
+
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        ///     The browse info flags.
+        /// </summary>
+        [Flags]
+        public enum BrowseInfoFlags : uint
+        {
+            /// <summary>
+            ///     No specified BIF_xxx flags.
+            /// </summary>
+            BIF_None = 0x0000, 
+
+            /// <summary>
+            ///     Only return file system directories. If the user selects folders that are not part of the file system, the OK button is grayed.
+            /// </summary>
+            BIF_RETURNONLYFSDIRS = 0x0001, // For finding a folder to start document searching
+
+            /// <summary>
+            ///     Do not include network folders below the domain level in the dialog box's tree view control.
+            /// </summary>
+            BIF_DONTGOBELOWDOMAIN = 0x0002, // For starting the Find Computer
+
+            /// <summary>
+            ///     Include a status area in the dialog box.
+            /// </summary>
+            BIF_STATUSTEXT = 0x0004, // Top of the dialog has 2 lines of text for BROWSEINFO.lpszTitle and one line if
+            // this flag is set.  Passing the message BFFM_SETSTATUSTEXTA to the hwnd can set the
+            // rest of the text.  This is not used with BIF_USENEWUI and BROWSEINFO.lpszTitle gets
+            // all three lines of text.
+
+            /// <summary>
+            ///     Only return file system ancestors. An ancestor is a subfolder that is beneath the root folder in the namespace hierarchy.
+            /// </summary>
+            BIF_RETURNFSANCESTORS = 0x0008, 
+
+            /// <summary>
+            ///     Include an edit control in the browse dialog box that allows the user to type the name of an item.
+            /// </summary>
+            BIF_EDITBOX = 0x0010, // Add an editbox to the dialog
+
+            /// <summary>
+            ///     If the user types an invalid name into the edit box, the browse dialog box will call the application's BrowseCallbackProc with the BFFM_VALIDATEFAILED message.
+            /// </summary>
+            BIF_VALIDATE = 0x0020, // insist on valid result (or CANCEL)
+
+            /// <summary>
+            ///     Use the new user interface. Setting this flag provides the user with a larger dialog box that can be resized.
+            /// </summary>
+            BIF_NEWDIALOGSTYLE = 0x0040, // Use the new dialog layout with the ability to resize
+            // Caller needs to call OleInitialize() before using this API
+
+            /// <summary>
+            ///     Use the new user interface, including an edit box. This flag is equivalent to BIF_EDITBOX | BIF_NEWDIALOGSTYLE.
+            /// </summary>
+            BIF_USENEWUI = BIF_NEWDIALOGSTYLE | BIF_EDITBOX, 
+
+            /// <summary>
+            ///     The browse dialog box can display URLs. The BIF_USENEWUI and BIF_BROWSEINCLUDEFILES flags must also be set.
+            /// </summary>
+            BIF_BROWSEINCLUDEURLS = 0x0080, // Allow URLs to be displayed or entered. (Requires BIF_USENEWUI)
+
+            /// <summary>
+            ///     Add a UA hint to the dialog, in place of the edit box. May not be combined with BIF_EDITBOX
+            ///     When combined with BIF_NEWDIALOGSTYLE, adds a usage hint to the dialog box in place of the edit box.
+            /// </summary>
+            BIF_UAHINT = 0x0100, 
+
+            /// <summary>
+            ///     Do not include the New Folder button in the browse dialog box.
+            /// </summary>
+            BIF_NONEWFOLDERBUTTON = 0x0200, 
+
+            /// <summary>
+            ///     When the selected item is a shortcut, return the PIDL of the shortcut itself rather than its target.
+            /// </summary>
+            BIF_NOTRANSLATETARGETS = 0x0400, // don't traverse target as shortcut
+
+            /// <summary>
+            ///     Only return computers. If the user selects anything other than a computer, the OK button is grayed.
+            /// </summary>
+            BIF_BROWSEFORCOMPUTER = 0x1000, // Browsing for Computers.
+
+            /// <summary>
+            ///     Only allow the selection of printers. If the user selects anything other than a printer, the OK button is grayed.
+            /// </summary>
+            BIF_BROWSEFORPRINTER = 0x2000, // Browsing for Printers
+
+            /// <summary>
+            ///     The browse dialog box will display files as well as folders.
+            /// </summary>
+            BIF_BROWSEINCLUDEFILES = 0x4000, // Browsing for Everything
+
+            /// <summary>
+            ///     The browse dialog box can display shareable resources on remote systems.
+            /// </summary>
+            BIF_SHAREABLE = 0x8000 // sharable resources displayed (remote shares, requires BIF_USENEWUI)
+        }
+
+        // message from browser
+
+        /// <summary>
+        ///     The message from browser.
+        /// </summary>
+        public enum MessageFromBrowser : uint
+        {
+            /// <summary>
+            ///     The dialog box has finished initializing.
+            /// </summary>
+            BFFM_INITIALIZED = 1, 
+
+            /// <summary>
+            ///     The selection has changed in the dialog box.
+            /// </summary>
+            BFFM_SELCHANGED = 2, 
+
+            /// <summary>
+            ///     (ANSI) The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
+            /// </summary>
+            BFFM_VALIDATEFAILEDA = 3, 
+
+            /// <summary>
+            ///     (Unicode) The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
+            /// </summary>
+            BFFM_VALIDATEFAILEDW = 4, 
+
+            /// <summary>
+            ///     An IUnknown interface is available to the dialog box.
+            /// </summary>
+            BFFM_IUNKNOWN = 5
+        }
+
+        // messages to browser
+
+        /// <summary>
+        ///     The message to browser.
+        /// </summary>
+        public enum MessageToBrowser : uint
+        {
+            /// <summary>
+            ///     Win32 API macro - start of user defined window message range.
+            /// </summary>
+            WM_USER = 0x0400, 
+
+            /// <summary>
+            ///     (ANSI) Sets the status text. Set lpData to point to a null-terminated string with the desired text.
+            /// </summary>
+            BFFM_SETSTATUSTEXTA = WM_USER + 100, 
+
+            /// <summary>
+            ///     Enables or disables the dialog box's OK button.  lParam - To enable, set to a nonzero value. To disable, set to zero.
+            /// </summary>
+            BFFM_ENABLEOK = WM_USER + 101, 
+
+            /// <summary>
+            ///     (ANSI) Specifies the path of a folder to select.
+            /// </summary>
+            BFFM_SETSELECTIONA = WM_USER + 102, 
+
+            /// <summary>
+            ///     (Unicode) Specifies the path of a folder to select.
+            /// </summary>
+            BFFM_SETSELECTIONW = WM_USER + 103, 
+
+            /// <summary>
+            ///     (Unicode) Sets the status text. Set lpData to point to a null-terminated string with the desired text.
+            /// </summary>
+            BFFM_SETSTATUSTEXTW = WM_USER + 104, 
+
+            /// <summary>
+            ///     Sets the text that is displayed on the dialog box's OK button.
+            /// </summary>
+            BFFM_SETOKTEXT = WM_USER + 105, // Unicode only
+
+            /// <summary>
+            ///     Specifies the path of a folder to expand in the Browse dialog box.
+            /// </summary>
+            BFFM_SETEXPANDED = WM_USER + 106 // Unicode only
         }
 
         #endregion
@@ -47,451 +259,100 @@ namespace Orc.Toolkit.PickerControls.Dialogs
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the current and or final selected folder path.
+        ///     Gets or sets the Win32::SHBrowseForFolder() BROWSEINFO structure used to create the dialog in ShowDialog().
         /// </summary>
-        public string SelectedFolder { get; protected set; }
-
-        /// <summary>
-        /// Gets or sets the string that is displayed above the tree view control in the dialog box (must set BEFORE calling ShowDialog()). 
-        /// </summary>
-        public string Title
+        public BROWSEINFOW BrowseInfo
         {
-            get { return BrowseInfo.lpszTitle; }
-            set { BrowseInfo.lpszTitle = value; }
+            get
+            {
+                return this.browseInfo;
+            }
+
+            protected set
+            {
+                this.browseInfo = value;
+            }
         }
 
         /// <summary>
-        /// Gets or sets the initially selected folder path.
+        ///     Gets or sets the ulFlags field of the Win32::SHBrowseForFolder() structure used to create the dialog in ShowDialog().
         /// </summary>
-        public string InitialFolder { get; set; }
+        public BrowseInfoFlags BrowserDialogFlags
+        {
+            get
+            {
+                return this.BrowseInfo.ulFlags;
+            }
+
+            set
+            {
+                this.BrowseInfo.ulFlags = value;
+            }
+        }
 
         /// <summary>
-        /// Gets or sets the initially selected and expanded folder path.  Overrides SelectedFolder.
+        ///     Gets or sets the initially selected and expanded folder path.  Overrides SelectedFolder.
         /// </summary>
         public string InitialExpandedFolder { get; set; }
 
         /// <summary>
-        /// Gets or sets the text for the dialog's OK button.
+        ///     Gets or sets the initially selected folder path.
+        /// </summary>
+        public string InitialFolder { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the text for the dialog's OK button.
         /// </summary>
         public string OkButtonText { get; set; }
 
         /// <summary>
-        /// Gets or sets the Win32::SHBrowseForFolder() BROWSEINFO structure used to create the dialog in ShowDialog().
+        ///     Gets or sets the current and or final selected folder path.
         /// </summary>
-        public BROWSEINFOW BrowseInfo
-        {
-            get { return browseInfo; }
-            protected set { browseInfo = value; }
-        }
+        public string SelectedFolder { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the ulFlags field of the Win32::SHBrowseForFolder() structure used to create the dialog in ShowDialog().
+        ///     Gets or sets the string that is displayed above the tree view control in the dialog box (must set BEFORE calling ShowDialog()).
         /// </summary>
-        public BrowseInfoFlags BrowserDialogFlags
+        public string Title
         {
-            get { return BrowseInfo.ulFlags; }
-            set { BrowseInfo.ulFlags = value; }
-        }
-
-        #endregion
-
-        #region Public ShowDialog() Overloads
-
-        /// <summary>
-        /// Shows the dialog (Win32::SHBrowseForFolder()).
-        /// </summary>
-        /// <returns>
-        /// The <see cref="bool?"/>.
-        /// </returns>
-        public bool? ShowDialog()
-        {
-            return PInvokeSHBrowseForFolder(null);
-        }
-
-        /// <summary>
-        /// Shows the dialog (Win32::SHBrowseForFolder()) with its hwndOwner set to the handle of 'owner'.
-        /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool?"/>.
-        /// </returns>
-        public bool? ShowDialog(Window owner)
-        {
-            return PInvokeSHBrowseForFolder(owner);
-        }
-
-        #endregion
-
-        #region PInvoke Stuff
-
-        #region Delegates
-
-        /// <summary>
-        /// The browse callback proc.
-        /// </summary>
-        /// <param name="hwnd">
-        /// The hwnd.
-        /// </param>
-        /// <param name="uMsg">
-        /// The u msg.
-        /// </param>
-        /// <param name="lParam">
-        /// The l param.
-        /// </param>
-        /// <param name="lpData">
-        /// The lp data.
-        /// </param>
-        /// <returns>
-        /// The return value of the callback
-        /// </returns>
-        public delegate int BrowseCallbackProc(IntPtr hwnd, MessageFromBrowser uMsg, IntPtr lParam, IntPtr lpData);
-
-        #endregion
-
-        #region BrowseInfoFlags enum
-
-        /// <summary>
-        /// The browse info flags.
-        /// </summary>
-        [Flags]
-        public enum BrowseInfoFlags : uint
-        {
-            /// <summary>
-            /// No specified BIF_xxx flags.
-            /// </summary>
-            BIF_None = 0x0000, 
-
-            /// <summary>
-            /// Only return file system directories. If the user selects folders that are not part of the file system, the OK button is grayed.
-            /// </summary>
-            BIF_RETURNONLYFSDIRS = 0x0001, // For finding a folder to start document searching
-            
-            /// <summary>
-            /// Do not include network folders below the domain level in the dialog box's tree view control.
-            /// </summary>
-            BIF_DONTGOBELOWDOMAIN = 0x0002, // For starting the Find Computer
-            
-            /// <summary>
-            /// Include a status area in the dialog box. 
-            /// </summary>
-            BIF_STATUSTEXT = 0x0004, // Top of the dialog has 2 lines of text for BROWSEINFO.lpszTitle and one line if
-            // this flag is set.  Passing the message BFFM_SETSTATUSTEXTA to the hwnd can set the
-            // rest of the text.  This is not used with BIF_USENEWUI and BROWSEINFO.lpszTitle gets
-            // all three lines of text.
-            
-            /// <summary>
-            /// Only return file system ancestors. An ancestor is a subfolder that is beneath the root folder in the namespace hierarchy.
-            /// </summary>
-            BIF_RETURNFSANCESTORS = 0x0008, 
-
-            /// <summary>
-            /// Include an edit control in the browse dialog box that allows the user to type the name of an item.
-            /// </summary>
-            BIF_EDITBOX = 0x0010, // Add an editbox to the dialog
-            
-            /// <summary>
-            /// If the user types an invalid name into the edit box, the browse dialog box will call the application's BrowseCallbackProc with the BFFM_VALIDATEFAILED message. 
-            /// </summary>
-            BIF_VALIDATE = 0x0020, // insist on valid result (or CANCEL)
-            
-            /// <summary>
-            /// Use the new user interface. Setting this flag provides the user with a larger dialog box that can be resized.
-            /// </summary>
-            BIF_NEWDIALOGSTYLE = 0x0040, // Use the new dialog layout with the ability to resize
-            // Caller needs to call OleInitialize() before using this API
-            
-            /// <summary>
-            /// Use the new user interface, including an edit box. This flag is equivalent to BIF_EDITBOX | BIF_NEWDIALOGSTYLE. 
-            /// </summary>
-            BIF_USENEWUI = BIF_NEWDIALOGSTYLE | BIF_EDITBOX, 
-
-            /// <summary>
-            /// The browse dialog box can display URLs. The BIF_USENEWUI and BIF_BROWSEINCLUDEFILES flags must also be set. 
-            /// </summary>
-            BIF_BROWSEINCLUDEURLS = 0x0080, // Allow URLs to be displayed or entered. (Requires BIF_USENEWUI)
-            
-            /// <summary>
-            /// Add a UA hint to the dialog, in place of the edit box. May not be combined with BIF_EDITBOX
-            /// When combined with BIF_NEWDIALOGSTYLE, adds a usage hint to the dialog box in place of the edit box.
-            /// </summary>
-            BIF_UAHINT = 0x0100, 
-
-            /// <summary>
-            /// Do not include the New Folder button in the browse dialog box.
-            /// </summary>
-            BIF_NONEWFOLDERBUTTON = 0x0200, 
-
-            /// <summary>
-            /// When the selected item is a shortcut, return the PIDL of the shortcut itself rather than its target.
-            /// </summary>
-            BIF_NOTRANSLATETARGETS = 0x0400, // don't traverse target as shortcut
-            
-            /// <summary>
-            /// Only return computers. If the user selects anything other than a computer, the OK button is grayed.
-            /// </summary>
-            BIF_BROWSEFORCOMPUTER = 0x1000, // Browsing for Computers.
-            
-            /// <summary>
-            /// Only allow the selection of printers. If the user selects anything other than a printer, the OK button is grayed. 
-            /// </summary>
-            BIF_BROWSEFORPRINTER = 0x2000, // Browsing for Printers
-            
-            /// <summary>
-            /// The browse dialog box will display files as well as folders.
-            /// </summary>
-            BIF_BROWSEINCLUDEFILES = 0x4000, // Browsing for Everything
-            
-            /// <summary>
-            /// The browse dialog box can display shareable resources on remote systems. 
-            /// </summary>
-            BIF_SHAREABLE = 0x8000 // sharable resources displayed (remote shares, requires BIF_USENEWUI)
-        }
-
-        #endregion
-
-        // message from browser
-        #region MessageFromBrowser enum
-
-        /// <summary>
-        /// The message from browser.
-        /// </summary>
-        public enum MessageFromBrowser : uint
-        {
-            /// <summary>
-            /// The dialog box has finished initializing.
-            /// </summary>
-            BFFM_INITIALIZED = 1, 
-
-            /// <summary>
-            /// The selection has changed in the dialog box.
-            /// </summary>
-            BFFM_SELCHANGED = 2, 
-
-            /// <summary>
-            /// (ANSI) The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
-            /// </summary>
-            BFFM_VALIDATEFAILEDA = 3, 
-
-            /// <summary>
-            /// (Unicode) The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
-            /// </summary>
-            BFFM_VALIDATEFAILEDW = 4, 
-
-            /// <summary>
-            /// An IUnknown interface is available to the dialog box.
-            /// </summary>
-            BFFM_IUNKNOWN = 5
-        }
-
-        #endregion
-
-        // messages to browser
-        #region MessageToBrowser enum
-
-        /// <summary>
-        /// The message to browser.
-        /// </summary>
-        public enum MessageToBrowser : uint
-        {
-            /// <summary>
-            /// Win32 API macro - start of user defined window message range.
-            /// </summary>
-            WM_USER = 0x0400, 
-
-            /// <summary>
-            /// (ANSI) Sets the status text. Set lpData to point to a null-terminated string with the desired text. 
-            /// </summary>
-            BFFM_SETSTATUSTEXTA = WM_USER + 100, 
-
-            /// <summary>
-            /// Enables or disables the dialog box's OK button.  lParam - To enable, set to a nonzero value. To disable, set to zero.
-            /// </summary>
-            BFFM_ENABLEOK = WM_USER + 101, 
-
-            /// <summary>
-            /// (ANSI) Specifies the path of a folder to select. 
-            /// </summary>
-            BFFM_SETSELECTIONA = WM_USER + 102, 
-
-            /// <summary>
-            /// (Unicode) Specifies the path of a folder to select. 
-            /// </summary>
-            BFFM_SETSELECTIONW = WM_USER + 103, 
-
-            /// <summary>
-            /// (Unicode) Sets the status text. Set lpData to point to a null-terminated string with the desired text. 
-            /// </summary>
-            BFFM_SETSTATUSTEXTW = WM_USER + 104, 
-
-            /// <summary>
-            /// Sets the text that is displayed on the dialog box's OK button.
-            /// </summary>
-            BFFM_SETOKTEXT = WM_USER + 105, // Unicode only
-            
-            /// <summary>
-            /// Specifies the path of a folder to expand in the Browse dialog box. 
-            /// </summary>
-            BFFM_SETEXPANDED = WM_USER + 106 // Unicode only
-        }
-
-        #endregion
-
-        /// <summary>
-        /// The p invoke sh browse for folder.
-        /// </summary>
-        /// <param name="owner">
-        /// The owner.
-        /// </param>
-        /// <returns>
-        /// True if the user selected a folder.
-        /// </returns>
-        private bool? PInvokeSHBrowseForFolder(Window owner)
-        {
-            if (null != owner)
+            get
             {
-                BrowseInfo.hwndOwner = this.FindHwnd(owner);
+                return this.BrowseInfo.lpszTitle;
             }
 
-            IntPtr pidl = SHBrowseForFolderW(browseInfo);
-            
-            if (IntPtr.Zero != pidl)
+            set
             {
-                var pathsb = new StringBuilder(260);
-                if (SHGetPathFromIDList(pidl, pathsb))
-                {
-                    SelectedFolder = pathsb.ToString();
-                    CoTaskMemFree(pidl);
-                    return true;
-                }
+                this.BrowseInfo.lpszTitle = value;
             }
-
-            return false;
         }
 
-        /// <summary>
-        /// The browse event handler.
-        /// </summary>
-        /// <param name="hwnd">
-        /// The hwnd.
-        /// </param>
-        /// <param name="uMsg">
-        /// The uMsg.
-        /// </param>
-        /// <param name="lParam">
-        /// The lParam.
-        /// </param>
-        /// <param name="lpData">
-        /// The lpData.
-        /// </param>
-        /// <returns>
-        /// The value 0
-        /// </returns>
-        [AllowReversePInvokeCalls]
-        private int BrowseEventHandler(IntPtr hwnd, MessageFromBrowser uMsg, IntPtr lParam, IntPtr lpData)
-        {
-            switch (uMsg)
-            {
-                case MessageFromBrowser.BFFM_INITIALIZED:
-                    {
-                        // The dialog box has finished initializing.
-                        // lParam   Not used, value is NULL.
-                        if (!string.IsNullOrEmpty(InitialExpandedFolder))
-                        {
-                            SendMessageW(hwnd, MessageToBrowser.BFFM_SETEXPANDED, new IntPtr(1), InitialExpandedFolder);
-                        }
-                        else if (!string.IsNullOrEmpty(InitialFolder))
-                        {
-                            SendMessageW(hwnd, MessageToBrowser.BFFM_SETSELECTIONW, new IntPtr(1), InitialFolder);
-                        }
+        #endregion
 
-                        if (!string.IsNullOrEmpty(OkButtonText))
-                        {
-                            SendMessageW(hwnd, MessageToBrowser.BFFM_SETOKTEXT, new IntPtr(1), OkButtonText);
-                        }
-
-                        break;
-                    }
-
-                case MessageFromBrowser.BFFM_SELCHANGED:
-                    {
-                        // The selection has changed in the dialog box.
-                        // lParam   A pointer to an item identifier list (PIDL) identifying the newly selected item.
-                        var pathsb = new StringBuilder(260);
-                        if (SHGetPathFromIDList(lParam, pathsb))
-                        {
-                            SelectedFolder = pathsb.ToString();
-                        }
-
-                        break;
-                    }
-
-                case MessageFromBrowser.BFFM_VALIDATEFAILEDA:
-                    {
-// ANSI
-                        // The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
-                        // lParam   A pointer to a string containing the invalid name. An application can use this data in an error dialog informing the user that the name was not valid.
-                        // Return zero to dismiss the dialog or nonzero to keep the dialog displayed
-                        break;
-                    }
-
-                case MessageFromBrowser.BFFM_VALIDATEFAILEDW:
-                    {
-// Unicode
-                        // The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
-                        // lParam   A pointer to a string containing the invalid name. An application can use this data in an error dialog informing the user that the name was not valid.
-                        // Return zero to dismiss the dialog or nonzero to keep the dialog displayed
-                        break;
-                    }
-
-                case MessageFromBrowser.BFFM_IUNKNOWN:
-                    {
-                        // An IUnknown interface is available to the dialog box.
-                        // lParam   A pointer to an IUnknown interface.
-                        break;
-                    }
-            }
-
-            return 0;
-        }
-
-        private IntPtr FindHwnd(Window window)
-        {
-            var oldTitle = window.Title;
-            var id = oldTitle + "(" + Guid.NewGuid().ToString() + ")";
-            window.Title = id;
-            var hwnd = FindWindowByCaption(IntPtr.Zero, id);
-            window.Title = oldTitle;
-            return hwnd;
-        }
+        #region Public Methods and Operators
 
         /// <summary>
-        /// The sh browse for folder w.
+        /// The co task mem free.
         /// </summary>
-        /// <param name="bi">
-        /// The bi.
+        /// <param name="pv">
+        /// The pv.
         /// </param>
-        /// <returns>
-        /// A pointer that specifies the location of the selected folder relative to the root of the namespace
-        /// </returns>
-        [DllImport("shell32.dll")]
-        private static extern IntPtr SHBrowseForFolderW([MarshalAs(UnmanagedType.LPStruct), In, Out] BROWSEINFOW bi);
+        [DllImport("ole32.dll")]
+        public static extern void CoTaskMemFree(IntPtr pv);
 
         /// <summary>
-        /// The sh get path from id list.
+        /// The find window by caption.
         /// </summary>
-        /// <param name="pidl">
-        /// The pidl.
+        /// <param name="ZeroOnly">
+        /// The zero only.
         /// </param>
-        /// <param name="path">
-        /// The path.
+        /// <param name="lpCaption">
+        /// The lp caption.
         /// </param>
         /// <returns>
-        /// True if successful.
+        /// The <see cref="IntPtr"/>.
         /// </returns>
-        [DllImport("shell32.dll")]
-        private static extern bool SHGetPathFromIDList(IntPtr pidl, StringBuilder path);
+        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+        public static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpCaption);
 
         /// <summary>
         /// The send message w.
@@ -530,63 +391,253 @@ namespace Orc.Toolkit.PickerControls.Dialogs
         /// The str.
         /// </param>
         /// <returns>
+        /// The <see cref="IntPtr"/>.
         /// </returns>
         [DllImport("user32.dll")]
-        public static extern IntPtr SendMessageW(IntPtr hWnd, MessageToBrowser msg, IntPtr wParam, [MarshalAs(UnmanagedType.LPWStr)] string str);
-
-        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
-        public static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpCaption);
-
-        [DllImport("ole32.dll")]
-        public static extern void CoTaskMemFree(IntPtr pv);
+        public static extern IntPtr SendMessageW(
+            IntPtr hWnd, MessageToBrowser msg, IntPtr wParam, [MarshalAs(UnmanagedType.LPWStr)] string str);
 
         /// <summary>
-        /// The browseinfow.
+        ///     Shows the dialog (Win32::SHBrowseForFolder()).
+        /// </summary>
+        /// <returns>
+        ///     The <see cref="bool?" />.
+        /// </returns>
+        public bool? ShowDialog()
+        {
+            return this.PInvokeSHBrowseForFolder(null);
+        }
+
+        /// <summary>
+        /// Shows the dialog (Win32::SHBrowseForFolder()) with its hwndOwner set to the handle of 'owner'.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool?"/>.
+        /// </returns>
+        public bool? ShowDialog(Window owner)
+        {
+            return this.PInvokeSHBrowseForFolder(owner);
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The sh browse for folder w.
+        /// </summary>
+        /// <param name="bi">
+        /// The bi.
+        /// </param>
+        /// <returns>
+        /// A pointer that specifies the location of the selected folder relative to the root of the namespace
+        /// </returns>
+        [DllImport("shell32.dll")]
+        private static extern IntPtr SHBrowseForFolderW([MarshalAs(UnmanagedType.LPStruct)] [In] [Out] BROWSEINFOW bi);
+
+        /// <summary>
+        /// The sh get path from id list.
+        /// </summary>
+        /// <param name="pidl">
+        /// The pidl.
+        /// </param>
+        /// <param name="path">
+        /// The path.
+        /// </param>
+        /// <returns>
+        /// True if successful.
+        /// </returns>
+        [DllImport("shell32.dll")]
+        private static extern bool SHGetPathFromIDList(IntPtr pidl, StringBuilder path);
+
+        /// <summary>
+        /// The browse event handler.
+        /// </summary>
+        /// <param name="hwnd">
+        /// The hwnd.
+        /// </param>
+        /// <param name="uMsg">
+        /// The uMsg.
+        /// </param>
+        /// <param name="lParam">
+        /// The lParam.
+        /// </param>
+        /// <param name="lpData">
+        /// The lpData.
+        /// </param>
+        /// <returns>
+        /// The value 0
+        /// </returns>
+        [AllowReversePInvokeCalls]
+        private int BrowseEventHandler(IntPtr hwnd, MessageFromBrowser uMsg, IntPtr lParam, IntPtr lpData)
+        {
+            switch (uMsg)
+            {
+                case MessageFromBrowser.BFFM_INITIALIZED:
+                    {
+                        // The dialog box has finished initializing.
+                        // lParam   Not used, value is NULL.
+                        if (!string.IsNullOrEmpty(this.InitialExpandedFolder))
+                        {
+                            SendMessageW(
+                                hwnd, MessageToBrowser.BFFM_SETEXPANDED, new IntPtr(1), this.InitialExpandedFolder);
+                        }
+                        else if (!string.IsNullOrEmpty(this.InitialFolder))
+                        {
+                            SendMessageW(hwnd, MessageToBrowser.BFFM_SETSELECTIONW, new IntPtr(1), this.InitialFolder);
+                        }
+
+                        if (!string.IsNullOrEmpty(this.OkButtonText))
+                        {
+                            SendMessageW(hwnd, MessageToBrowser.BFFM_SETOKTEXT, new IntPtr(1), this.OkButtonText);
+                        }
+
+                        break;
+                    }
+
+                case MessageFromBrowser.BFFM_SELCHANGED:
+                    {
+                        // The selection has changed in the dialog box.
+                        // lParam   A pointer to an item identifier list (PIDL) identifying the newly selected item.
+                        var pathsb = new StringBuilder(260);
+                        if (SHGetPathFromIDList(lParam, pathsb))
+                        {
+                            this.SelectedFolder = pathsb.ToString();
+                        }
+
+                        break;
+                    }
+
+                case MessageFromBrowser.BFFM_VALIDATEFAILEDA:
+                    {
+                        // ANSI
+                        // The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
+                        // lParam   A pointer to a string containing the invalid name. An application can use this data in an error dialog informing the user that the name was not valid.
+                        // Return zero to dismiss the dialog or nonzero to keep the dialog displayed
+                        break;
+                    }
+
+                case MessageFromBrowser.BFFM_VALIDATEFAILEDW:
+                    {
+                        // Unicode
+                        // The user typed an invalid name into the dialog's edit box. A nonexistent folder is considered an invalid name.
+                        // lParam   A pointer to a string containing the invalid name. An application can use this data in an error dialog informing the user that the name was not valid.
+                        // Return zero to dismiss the dialog or nonzero to keep the dialog displayed
+                        break;
+                    }
+
+                case MessageFromBrowser.BFFM_IUNKNOWN:
+                    {
+                        // An IUnknown interface is available to the dialog box.
+                        // lParam   A pointer to an IUnknown interface.
+                        break;
+                    }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// The find hwnd.
+        /// </summary>
+        /// <param name="window">
+        /// The window.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IntPtr"/>.
+        /// </returns>
+        private IntPtr FindHwnd(Window window)
+        {
+            string oldTitle = window.Title;
+            string id = oldTitle + "(" + Guid.NewGuid().ToString() + ")";
+            window.Title = id;
+            IntPtr hwnd = FindWindowByCaption(IntPtr.Zero, id);
+            window.Title = oldTitle;
+            return hwnd;
+        }
+
+        /// <summary>
+        /// The p invoke sh browse for folder.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner.
+        /// </param>
+        /// <returns>
+        /// True if the user selected a folder.
+        /// </returns>
+        private bool? PInvokeSHBrowseForFolder(Window owner)
+        {
+            if (null != owner)
+            {
+                this.BrowseInfo.hwndOwner = this.FindHwnd(owner);
+            }
+
+            IntPtr pidl = SHBrowseForFolderW(this.browseInfo);
+
+            if (IntPtr.Zero != pidl)
+            {
+                var pathsb = new StringBuilder(260);
+                if (SHGetPathFromIDList(pidl, pathsb))
+                {
+                    this.SelectedFolder = pathsb.ToString();
+                    CoTaskMemFree(pidl);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        /// <summary>
+        ///     The browseinfow.
         /// </summary>
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         public class BROWSEINFOW
         {
             /// <summary>
-            /// A handle to the owner window for the dialog box.
+            ///     A handle to the owner window for the dialog box.
             /// </summary>
             public IntPtr hwndOwner;
 
             /// <summary>
-            /// A pointer to an item identifier list (PIDL) specifying the location of the root folder from which to start browsing. 
+            ///     A pointer to an item identifier list (PIDL) specifying the location of the root folder from which to start browsing.
             /// </summary>
             public IntPtr pidlRoot; // PCIDLIST_ABSOLUTE
 
             /// <summary>
-            /// The address of a buffer to receive the display name of the folder selected by the user. The size of this buffer is assumed to be MAX_PATH characters.
+            ///     The address of a buffer to receive the display name of the folder selected by the user. The size of this buffer is assumed to be MAX_PATH characters.
             /// </summary>
             public string pszDisplayName; // Output parameter! (length must be >= MAX_PATH)
 
             /// <summary>
-            /// The address of a null-terminated string that is displayed above the tree view control in the dialog box. 
+            ///     The address of a null-terminated string that is displayed above the tree view control in the dialog box.
             /// </summary>
             public string lpszTitle;
 
             /// <summary>
-            /// Flags specifying the options for the dialog box. 
+            ///     Flags specifying the options for the dialog box.
             /// </summary>
             public BrowseInfoFlags ulFlags;
 
             /// <summary>
-            /// A BrowseCallbackProc delegate that the dialog box calls when an event occurs.
+            ///     A BrowseCallbackProc delegate that the dialog box calls when an event occurs.
             /// </summary>
             public BrowseCallbackProc lpfn;
 
             /// <summary>
-            /// An application-defined value that the dialog box passes to the BrowseCallbackProc delegate, if one is specified.
+            ///     An application-defined value that the dialog box passes to the BrowseCallbackProc delegate, if one is specified.
             /// </summary>
             public IntPtr lParam;
 
             /// <summary>
-            /// A variable to receive the image associated with the selected folder. The image is specified as an index to the system image list.
+            ///     A variable to receive the image associated with the selected folder. The image is specified as an index to the system image list.
             /// </summary>
             public int iImage; // Output parameter!
         }
-
-        #endregion
     }
 }

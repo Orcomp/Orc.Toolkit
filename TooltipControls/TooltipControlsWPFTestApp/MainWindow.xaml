@@ -1,71 +1,74 @@
 ﻿<Window x:Class="Orc.Toolkit.TooltipControlsWPFTestApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:pt="clr-namespace:Orc.Toolkit.TooltipControls;assembly=Orc.Toolkit.TooltipControls"
+        xmlns:pt="clr-namespace:Orc.Toolkit.TooltipControls;assembly=Orc.Toolkit.TooltipControls"
         Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
-    <Grid Background="White">
+	<Grid Background="White">
 		<Grid.Resources>
 			<Style TargetType="TextBlock">
-				<Setter Property="Margin" Value="30,30"/>
+				<Setter Property="Margin" Value="30,30" />
 			</Style>
 			<Style TargetType="TextBox">
-				<Setter Property="Margin" Value="30,30"/>
+				<Setter Property="Margin" Value="30,30" />
 			</Style>
 		</Grid.Resources>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition MinWidth="200" Width="Auto"/>
-			<ColumnDefinition MaxWidth="400" Width="*"/>
+			<ColumnDefinition MinWidth="200" Width="Auto" />
+			<ColumnDefinition MaxWidth="400" Width="*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<TextBlock x:Name="lblFirstName" Text="Frst Name"/>
-		<TextBox Grid.Column="1" x:Name="txtFirstName" 
-				 pt:PinnableTooltipService.Tooltip="Please enter your first name" />
+		<TextBlock x:Name="lblFirstName" Text="Frst Name" />
+		<TextBox Grid.Column="1" x:Name="txtFirstName"
+		         pt:PinnableTooltipService.Tooltip="Please enter your first name" />
 
-		<TextBlock Grid.Row="1" x:Name="lblLastName" Text="Last Name"/>
-		<TextBox Grid.Row="1" Grid.Column="1" x:Name="txtLastName" 
-				 pt:PinnableTooltipService.Placement="Right" 
-				 pt:PinnableTooltipService.ShowDuration="10000" >
+		<TextBlock Grid.Row="1" x:Name="lblLastName" Text="Last Name" />
+		<TextBox Grid.Row="1" Grid.Column="1" x:Name="txtLastName"
+		         pt:PinnableTooltipService.Placement="Right"
+		         pt:PinnableTooltipService.ShowDuration="10000">
 			<pt:PinnableTooltipService.Tooltip>
 				<pt:PinnableTooltip>Please enter your last name</pt:PinnableTooltip>
 			</pt:PinnableTooltipService.Tooltip>
 		</TextBox>
 
-		<TextBlock Grid.Row="2" x:Name="lblCountry" Text="Country"/>
-		<TextBox Grid.Row="2" Grid.Column="1" x:Name="txtCountry" 
-				 pt:PinnableTooltipService.Tooltip="Please enter your country"
-				 pt:PinnableTooltipService.Placement="Top"
-				 pt:PinnableTooltipService.PlacementTarget="{Binding ElementName=lblCountry}"/>
+		<TextBlock Grid.Row="2" x:Name="lblCountry" Text="Country" />
+		<TextBox Grid.Row="2" Grid.Column="1" x:Name="txtCountry"
+		         pt:PinnableTooltipService.Tooltip="Please enter your country"
+		         pt:PinnableTooltipService.Placement="Top"
+		         pt:PinnableTooltipService.PlacementTarget="{Binding ElementName=lblCountry}" />
 
 		<TextBlock Grid.Row="3" x:Name="lblAddress" Text="Address"></TextBlock>
-		<TextBox Grid.Row="3" Grid.Column="1" x:Name="txtAddress" 
-				 pt:PinnableTooltipService.Tooltip="Please enter your address"
-				 pt:PinnableTooltipService.InitialShowDelay="2000" 
-				 pt:PinnableTooltipService.ShowDuration="10000"/>
+		<TextBox Grid.Row="3" Grid.Column="1" x:Name="txtAddress"
+		         pt:PinnableTooltipService.Tooltip="Please enter your address"
+		         pt:PinnableTooltipService.InitialShowDelay="2000"
+		         pt:PinnableTooltipService.ShowDuration="10000" />
 
-		<TextBlock Grid.Row="4" x:Name="lblComments" Text="Comments"/>
-		<TextBox Grid.Row="4" Grid.Column="1" x:Name="txtComments" >
+		<TextBlock Grid.Row="4" x:Name="lblComments" Text="Comments" />
+		<TextBox Grid.Row="4" Grid.Column="1" x:Name="txtComments">
 			<pt:PinnableTooltipService.Tooltip>
 				<pt:PinnableTooltip IsPinned="True" VerticalOffset="20" HorizontalOffset="40">
 					<StackPanel Background="Honeydew" Height="200" Width="200">
-						<StackPanel Background="BurlyWood" Height="30" Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-							<Image VerticalAlignment="Top"  Width="30" Height="30" Source="Images/samp.png" Name="image1" />
-							<TextBlock FontFamily="Aharoni" FontSize="24" FontWeight="Bold" Foreground="Black" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="143">
-                            <Run FontFamily="Andalus" FontSize="18" FontWeight="Normal" Text="Hello! Fancy Tip"/>
+						<StackPanel Background="BurlyWood" Height="30" Width="200" Orientation="Horizontal" HorizontalAlignment="Left"
+						            VerticalAlignment="Top">
+							<Image VerticalAlignment="Top" Width="30" Height="30" Source="Images/samp.png" Name="image1" />
+							<TextBlock FontFamily="Aharoni" FontSize="24" FontWeight="Bold" Foreground="Black" TextWrapping="Wrap"
+							           VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="143">
+								<Run FontFamily="Andalus" FontSize="18" FontWeight="Normal" Text="Hello! Fancy Tip" />
 							</TextBlock>
 						</StackPanel>
 
-						<StackPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
-							<TextBlock TextWrapping="Wrap" Foreground="#FFF9F4F4" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Width="181" Height="98">
-                          <Run FontFamily="Verdana" FontSize="11" FontWeight="Normal" Foreground="#FF151514"
-                               Text="Format your tip the way you want and put any image, text or other controls on it.
-                               Also, you can add more controls in this tip the way you want to format it."/>
+						<StackPanel Width="200" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+							<TextBlock TextWrapping="Wrap" Foreground="#FFF9F4F4" TextAlignment="Center" HorizontalAlignment="Right"
+							           VerticalAlignment="Top" Width="181" Height="98">
+								<Run FontFamily="Verdana" FontSize="11" FontWeight="Normal" Foreground="#FF151514"
+								     Text="Format your tip the way you want and put any image, text or other controls on it.
+                               Also, you can add more controls in this tip the way you want to format it." />
 							</TextBlock>
 						</StackPanel>
 					</StackPanel>

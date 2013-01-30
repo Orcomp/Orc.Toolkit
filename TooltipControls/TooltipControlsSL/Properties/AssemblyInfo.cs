@@ -2,6 +2,9 @@
 // <copyright file="AssemblyInfo.cs" company="ORC">
 //   MS-PL
 // </copyright>
+// <summary>
+//   AssemblyInfo.cs
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Reflection;
@@ -28,12 +31,10 @@ using System.Runtime.InteropServices;
 [assembly: Guid("d25c25cc-b92b-4ea5-9345-813ae1fb2173")]
 
 // Version information for an assembly consists of the following four values:
-//
 //      Major Version
 //      Minor Version 
 //      Build Number
 //      Revision
-//
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]

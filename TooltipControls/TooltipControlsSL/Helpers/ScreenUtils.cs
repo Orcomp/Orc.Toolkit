@@ -2,18 +2,30 @@
 // <copyright file="ScreenUtils.cs" company="ORC">
 //   MS-PL
 // </copyright>
+// <summary>
+//   The screen utilities.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Orc.Toolkit.TooltipControls.Helpers
 {
     using System.Windows;
+    
 #if (!SILVERLIGHT)
     using System.Windows.Interop;
     using System.Windows.Media;
 #endif
 
+    /// <summary>
+    /// The screen utilities.
+    /// </summary>
     public static class ScreenUtils
     {
+        /// <summary>
+        /// The get window size.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Size"/>.
+        /// </returns>
         public static Size GetWindowSize()
         {
 #if (SILVERLIGHT)
@@ -24,14 +36,33 @@ namespace Orc.Toolkit.TooltipControls.Helpers
             }
 #else
             {
-                return BrowserInteropHelper.IsBrowserHosted ?
-                    (BrowserInteropHelper.HostScript != null ? new Size(BrowserInteropHelper.HostScript.innerWidth, BrowserInteropHelper.HostScript.innerHeight) : new Size()) :
-                    new Size(Application.Current.MainWindow.ActualWidth, Application.Current.MainWindow.ActualHeight);
+                return BrowserInteropHelper.IsBrowserHosted
+                           ? (BrowserInteropHelper.HostScript != null
+                                  ? new Size(
+                                        BrowserInteropHelper.HostScript.innerWidth, 
+                                        BrowserInteropHelper.HostScript.innerHeight)
+                                  : new Size())
+                           : new Size(
+                                 Application.Current.MainWindow.ActualWidth, Application.Current.MainWindow.ActualHeight);
             }
+
 #endif
         }
 
 #if (!SILVERLIGHT)
+
+        /// <summary>
+        /// The is parent of.
+        /// </summary>
+        /// <param name="parent">
+        /// The parent.
+        /// </param>
+        /// <param name="child">
+        /// The child.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public static bool IsParentOf(DependencyObject parent, DependencyObject child)
         {
             if (parent == null || child == null)
@@ -62,6 +93,7 @@ namespace Orc.Toolkit.TooltipControls.Helpers
 
             return false;
         }
+
 #endif
     }
 }

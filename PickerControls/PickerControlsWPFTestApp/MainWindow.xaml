@@ -1,12 +1,12 @@
 ﻿<Window x:Class="Orc.Toolkit.PickerControlsWPFTestApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:PickerControls="clr-namespace:Orc.Toolkit.PickerControls;assembly=Orc.Toolkit.PickerControls" 
+        xmlns:PickerControls="clr-namespace:Orc.Toolkit.PickerControls;assembly=Orc.Toolkit.PickerControls"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<StackPanel Orientation="Vertical">
 			<PickerControls:FolderPicker x:Name="pickFolder" />
