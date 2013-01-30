@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PickerControls", "PickerControls", "{EC6AD731-1B8D-4265-9C2A-0EF718D22A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.PickerControlsSL", "PickerControls\PickerControlsSL\Orc.Toolkit.PickerControlsSL.csproj", "{C560FC7A-5201-4102-BED9-5C18ED6C0476}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.PickerControlsSLTestApp", "PickerControls\PickerControlsSLTestApp\Orc.Toolkit.PickerControlsSLTestApp.csproj", "{6C7953EB-AFA1-47EA-B63D-8524AE0A0535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.PickerControlsSLTestApp.Web", "PickerControls\PickerControlsSLTestApp.Web\Orc.Toolkit.PickerControlsSLTestApp.Web.csproj", "{DE58EECA-8221-44C7-8C76-7799B35C4991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.PickerControlsWPF", "PickerControls\PickerControlsWPF\Orc.Toolkit.PickerControlsWPF.csproj", "{3CBAAEFB-BED0-4C7D-89A0-879ED34D406F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.PickerControlsWPFTestApp", "PickerControls\PickerControlsWPFTestApp\Orc.Toolkit.PickerControlsWPFTestApp.csproj", "{A2B0939B-F94C-462A-94EF-7F1BC05FC705}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TooltipControls", "TooltipControls", "{7E46B62D-B011-4ED2-BB36-3C50D3706136}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.TooltipControlsSL", "TooltipControls\TooltipControlsSL\Orc.Toolkit.TooltipControlsSL.csproj", "{D25C25CC-B92B-4EA5-9345-813AE1FB2173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.TooltipControlsSLTestApp", "TooltipControls\TooltipControlsSLTestApp\Orc.Toolkit.TooltipControlsSLTestApp.csproj", "{E89BA2B2-930B-4180-AF0B-8DEBE1A31B55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.TooltipControlsSLTestApp.Web", "TooltipControls\TooltipControlsSLTestApp.Web\Orc.Toolkit.TooltipControlsSLTestApp.Web.csproj", "{27607DD3-95E1-4475-A203-F0AD46DC60F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.TooltipControlsWPF", "TooltipControls\TooltipControlsWPF\Orc.Toolkit.TooltipControlsWPF.csproj", "{A501BE89-83CE-497B-8BE6-F2EDA99F1E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.TooltipControlsWPFTestApp", "TooltipControls\TooltipControlsWPFTestApp\Orc.Toolkit.TooltipControlsWPFTestApp.csproj", "{3B22474C-91AD-4627-BC0A-E7351D53C9B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{285AA48F-B1F5-4FAD-AE45-775454F39E6E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C560FC7A-5201-4102-BED9-5C18ED6C0476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C560FC7A-5201-4102-BED9-5C18ED6C0476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C560FC7A-5201-4102-BED9-5C18ED6C0476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C560FC7A-5201-4102-BED9-5C18ED6C0476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7953EB-AFA1-47EA-B63D-8524AE0A0535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7953EB-AFA1-47EA-B63D-8524AE0A0535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7953EB-AFA1-47EA-B63D-8524AE0A0535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7953EB-AFA1-47EA-B63D-8524AE0A0535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE58EECA-8221-44C7-8C76-7799B35C4991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE58EECA-8221-44C7-8C76-7799B35C4991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE58EECA-8221-44C7-8C76-7799B35C4991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE58EECA-8221-44C7-8C76-7799B35C4991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CBAAEFB-BED0-4C7D-89A0-879ED34D406F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CBAAEFB-BED0-4C7D-89A0-879ED34D406F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CBAAEFB-BED0-4C7D-89A0-879ED34D406F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CBAAEFB-BED0-4C7D-89A0-879ED34D406F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B0939B-F94C-462A-94EF-7F1BC05FC705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B0939B-F94C-462A-94EF-7F1BC05FC705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B0939B-F94C-462A-94EF-7F1BC05FC705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B0939B-F94C-462A-94EF-7F1BC05FC705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25C25CC-B92B-4EA5-9345-813AE1FB2173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25C25CC-B92B-4EA5-9345-813AE1FB2173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25C25CC-B92B-4EA5-9345-813AE1FB2173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25C25CC-B92B-4EA5-9345-813AE1FB2173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89BA2B2-930B-4180-AF0B-8DEBE1A31B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89BA2B2-930B-4180-AF0B-8DEBE1A31B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89BA2B2-930B-4180-AF0B-8DEBE1A31B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89BA2B2-930B-4180-AF0B-8DEBE1A31B55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27607DD3-95E1-4475-A203-F0AD46DC60F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27607DD3-95E1-4475-A203-F0AD46DC60F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27607DD3-95E1-4475-A203-F0AD46DC60F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27607DD3-95E1-4475-A203-F0AD46DC60F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A501BE89-83CE-497B-8BE6-F2EDA99F1E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A501BE89-83CE-497B-8BE6-F2EDA99F1E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A501BE89-83CE-497B-8BE6-F2EDA99F1E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A501BE89-83CE-497B-8BE6-F2EDA99F1E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B22474C-91AD-4627-BC0A-E7351D53C9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B22474C-91AD-4627-BC0A-E7351D53C9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B22474C-91AD-4627-BC0A-E7351D53C9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B22474C-91AD-4627-BC0A-E7351D53C9B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C560FC7A-5201-4102-BED9-5C18ED6C0476} = {EC6AD731-1B8D-4265-9C2A-0EF718D22A3E}
+		{6C7953EB-AFA1-47EA-B63D-8524AE0A0535} = {EC6AD731-1B8D-4265-9C2A-0EF718D22A3E}
+		{DE58EECA-8221-44C7-8C76-7799B35C4991} = {EC6AD731-1B8D-4265-9C2A-0EF718D22A3E}
+		{3CBAAEFB-BED0-4C7D-89A0-879ED34D406F} = {EC6AD731-1B8D-4265-9C2A-0EF718D22A3E}
+		{A2B0939B-F94C-462A-94EF-7F1BC05FC705} = {EC6AD731-1B8D-4265-9C2A-0EF718D22A3E}
+		{D25C25CC-B92B-4EA5-9345-813AE1FB2173} = {7E46B62D-B011-4ED2-BB36-3C50D3706136}
+		{E89BA2B2-930B-4180-AF0B-8DEBE1A31B55} = {7E46B62D-B011-4ED2-BB36-3C50D3706136}
+		{27607DD3-95E1-4475-A203-F0AD46DC60F2} = {7E46B62D-B011-4ED2-BB36-3C50D3706136}
+		{A501BE89-83CE-497B-8BE6-F2EDA99F1E58} = {7E46B62D-B011-4ED2-BB36-3C50D3706136}
+		{3B22474C-91AD-4627-BC0A-E7351D53C9B9} = {7E46B62D-B011-4ED2-BB36-3C50D3706136}
+	EndGlobalSection
+EndGlobal

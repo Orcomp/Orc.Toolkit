@@ -1,0 +1,24 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Orc.Toolkit.PickerControls">
+
+
+    <Style TargetType="local:FolderPicker">
+		<Setter Property="MinWidth" Value="30" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:FolderPicker">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<TextBox Text="{Binding Folder,RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+						<Button Grid.Column="1" MinWidth="40" Content="..." Command="{Binding BrowseCommand,RelativeSource={RelativeSource TemplatedParent}}" Margin="4 0 0 0" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>
