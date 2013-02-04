@@ -1,0 +1,98 @@
+﻿<navigation:Page x:Class="Orc.Toolkit.Demo.Views.Statusbar"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:orctk="clr-namespace:Orc.Toolkit;assembly=Orc.Toolkit"
+                 mc:Ignorable="d"
+                 xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+                 d:DesignWidth="640" d:DesignHeight="480"
+                 Title="Statusbar Page">
+
+	<navigation:Page.Resources>
+		<ItemsPanelTemplate x:Key="gridPanelTemplate">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="auto" />
+				</Grid.ColumnDefinitions>
+			</Grid>
+		</ItemsPanelTemplate>
+	</navigation:Page.Resources>
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="23" />
+		</Grid.RowDefinitions>
+
+		<Canvas Grid.Row="0" x:Name="cnv" MouseMove="cnv_MouseMove_1" Background="#fff">
+			<TextBlock Margin="10" Width="300" TextWrapping="Wrap">
+				<Run>
+					SliderPlusMinus acts like standart slider. That gives the programmer to use it in many ways. Using as a zoom control is a matter of programming logic to use to set a variable 'ZOOM' depending on the slider value and display in a text label the Zoom percetage instead the Slider.Value.
+				</Run>
+				<LineBreak /><LineBreak />
+				<Run>
+					ResizeGrip is always visible
+				</Run>
+			</TextBlock>
+		</Canvas>
+
+		<orctk:StatusBar Grid.Row="1" IsEnabled="True" x:Name="sb" ItemsPanel="{StaticResource gridPanelTemplate}">
+			<orctk:StatusBarItem Margin="2 0" Grid.Column="0">
+				<TextBlock Text="Label" VerticalAlignment="Center" />
+			</orctk:StatusBarItem>
+			<orctk:Separator Grid.Column="1" />
+			<orctk:StatusBarItem IsEnabled="False" Margin="2 0" Grid.Column="2">
+				<TextBlock Text="Disabled label" VerticalAlignment="Center" />
+			</orctk:StatusBarItem>
+			<orctk:Separator Grid.Column="3" />
+			<orctk:StatusBarItem Width="60" Margin="2 0" Grid.Column="4">
+				<TextBlock x:Name="pointPosition" Text="Point" VerticalAlignment="Center" />
+			</orctk:StatusBarItem>
+			<orctk:Separator Grid.Column="5" />
+			<orctk:StatusBarItem Grid.Column="6">
+				<ComboBox Width="60" Style="{StaticResource SBComboBoxStyle}">
+					<ComboBoxItem Content="item 1" IsSelected="True" />
+					<ComboBoxItem Content="item 2" />
+					<ComboBoxItem Content="item 3" />
+					<ComboBoxItem Content="item 4" />
+					<ComboBoxItem Content="item 5" />
+					<ComboBoxItem Content="item 6" />
+					<ComboBoxItem Content="item 7" />
+					<ComboBoxItem Content="item 8" />
+				</ComboBox>
+			</orctk:StatusBarItem>
+
+			<StackPanel Orientation="Horizontal" Grid.Column="8">
+				<orctk:StatusBarItem>
+					<ToggleButton Style="{StaticResource SBToggleButtonStyle}" Content="A" IsChecked="True" />
+				</orctk:StatusBarItem>
+				<orctk:StatusBarItem>
+					<ToggleButton Style="{StaticResource SBToggleButtonStyle}" Content="B" />
+				</orctk:StatusBarItem>
+				<orctk:StatusBarItem>
+					<orctk:Separator />
+				</orctk:StatusBarItem>
+				<orctk:StatusBarItem Margin="2 0" Width="30">
+					<TextBlock Text="{Binding Value, ElementName=slider, StringFormat=\{0:0\}}" VerticalAlignment="Center" />
+				</orctk:StatusBarItem>
+				<orctk:StatusBarItem Margin="2 0 12 0">
+					<orctk:SliderPlusMinus x:Name="slider" Style="{StaticResource SBSliderPlusMinusStyle}" Margin="4 0" Minimum="-50"
+					                       Maximum="50" SmallChange="5"
+					                       LargeChange="10" Value="20" />
+				</orctk:StatusBarItem>
+			</StackPanel>
+		</orctk:StatusBar>
+	</Grid>
+</navigation:Page>

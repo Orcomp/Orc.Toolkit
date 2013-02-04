@@ -1,0 +1,426 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:orctk="clr-namespace:Orc.Toolkit;assembly=Orc.Toolkit">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Brushes.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+
+	<Style TargetType="{x:Type orctk:SliderPlusMinus}">
+		<Setter Property="Foreground" Value="{StaticResource Brush_Foreground}" />
+		<Setter Property="Height" Value="16" />
+		<Setter Property="MinWidth" Value="100" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type orctk:SliderPlusMinus}">
+					<Grid>
+						<Grid.Resources>
+							<ResourceDictionary>
+								<Style TargetType="{x:Type RepeatButton}">
+									<Setter Property="Background">
+										<Setter.Value>
+											<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+												<GradientStop Offset="0" Color="{StaticResource Color_ButtonFill_Light}" />
+												<GradientStop Offset="0.5" Color="{StaticResource Color_ButtonFill_Middle}" />
+												<GradientStop Offset="1" Color="{StaticResource Color_ButtonFill_Dark}" />
+											</LinearGradientBrush>
+										</Setter.Value>
+									</Setter>
+									<Setter Property="BorderBrush">
+										<Setter.Value>
+											<SolidColorBrush Color="{StaticResource Color_ButtonBorder}" />
+										</Setter.Value>
+									</Setter>
+									<Setter Property="BorderThickness" Value="1" />
+									<Setter Property="HorizontalContentAlignment" Value="Center" />
+									<Setter Property="VerticalContentAlignment" Value="Center" />
+									<Setter Property="SnapsToDevicePixels" Value="True" />
+									<Setter Property="Template">
+										<Setter.Value>
+											<ControlTemplate TargetType="{x:Type RepeatButton}">
+												<Grid>
+													<VisualStateManager.VisualStateGroups>
+														<VisualStateGroup x:Name="CommonStates">
+															<VisualState x:Name="Normal" />
+															<VisualState x:Name="MouseOver">
+																<Storyboard>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderNormal"
+																	                               Storyboard.TargetProperty="Visibility">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderOuterLight"
+																	                               Storyboard.TargetProperty="Visibility">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderInner"
+																	                               Storyboard.TargetProperty="Visibility">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+																	</ObjectAnimationUsingKeyFrames>
+																</Storyboard>
+															</VisualState>
+															<VisualState x:Name="Pressed">
+																<Storyboard>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderOuterDark"
+																	                               Storyboard.TargetProperty="Visibility">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+																	</ObjectAnimationUsingKeyFrames>
+																</Storyboard>
+															</VisualState>
+															<VisualState x:Name="Disabled">
+
+															</VisualState>
+														</VisualStateGroup>
+													</VisualStateManager.VisualStateGroups>
+
+													<Ellipse x:Name="BorderNormal" Stroke="{TemplateBinding BorderBrush}"
+													         StrokeThickness="{TemplateBinding BorderThickness}"
+													         Stretch="Uniform" Fill="{TemplateBinding Background}" />
+
+													<Ellipse x:Name="BorderOuter" StrokeThickness="1" Visibility="Collapsed" Stretch="Uniform">
+														<Ellipse.Stroke>
+															<SolidColorBrush Color="#ecc753" />
+														</Ellipse.Stroke>
+														<Ellipse.Fill>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#ffe575" />
+																		<GradientStop Color="#ffef7b" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Fill>
+													</Ellipse>
+
+													<Ellipse x:Name="BorderOuterChecked" StrokeThickness="1" Visibility="Collapsed" Stretch="Uniform">
+														<Ellipse.Stroke>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#c28a30" />
+																		<GradientStop Color="#c2a44d" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Stroke>
+														<Ellipse.Fill>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#ffe575" />
+																		<GradientStop Color="#ffef7b" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Fill>
+													</Ellipse>
+
+													<Ellipse x:Name="BorderOuterDark" StrokeThickness="1" Visibility="Collapsed" Stretch="Uniform">
+														<Ellipse.Stroke>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#c2762b" />
+																		<GradientStop Color="#c29e47" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Stroke>
+														<Ellipse.Fill>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#f6c867" />
+																		<GradientStop Color="#fad77a" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Fill>
+													</Ellipse>
+
+													<Ellipse x:Name="BorderOuterLight" StrokeThickness="1" Visibility="Collapsed" Stretch="Uniform">
+														<Ellipse.Stroke>
+															<SolidColorBrush Color="#edc756" />
+														</Ellipse.Stroke>
+														<Ellipse.Fill>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#ffe575" />
+																		<GradientStop Color="#ffef7b" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Fill>
+													</Ellipse>
+
+													<Ellipse x:Name="BorderInner" Margin="1" StrokeThickness="1" Visibility="Collapsed" Stretch="Uniform">
+														<Ellipse.Stroke>
+															<SolidColorBrush Color="#fcf8e7" />
+														</Ellipse.Stroke>
+														<Ellipse.Fill>
+															<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																<LinearGradientBrush.GradientStops>
+																	<GradientStopCollection>
+																		<GradientStop Color="#f9eab0" />
+																		<GradientStop Color="#f7de85" Offset="0.5" />
+																		<GradientStop Color="#f7f3d9" Offset="1.0" />
+																	</GradientStopCollection>
+																</LinearGradientBrush.GradientStops>
+															</LinearGradientBrush>
+														</Ellipse.Fill>
+													</Ellipse>
+
+													<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+													                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+												</Grid>
+											</ControlTemplate>
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</ResourceDictionary>
+						</Grid.Resources>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="auto" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="auto" />
+						</Grid.ColumnDefinitions>
+
+						<RepeatButton x:Name="PART_MinusButton" Width="16" Height="16" Grid.Column="0"
+						              VerticalContentAlignment="Center" HorizontalAlignment="Center">
+							<RepeatButton.Content>
+								<Path x:Name="minus" Data="M0,0 H8" StrokeThickness="2">
+									<Path.Stroke>
+										<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+											<GradientStop Offset="0" Color="{StaticResource Color_Foreground_Light}" />
+											<GradientStop Offset="1" Color="{StaticResource Color_Foreground_Dark}" />
+										</LinearGradientBrush>
+									</Path.Stroke>
+								</Path>
+							</RepeatButton.Content>
+						</RepeatButton>
+						<Grid Grid.Column="1">
+							<StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+								<Path VerticalAlignment="Center" HorizontalAlignment="Stretch"
+								      Stretch="Uniform" StrokeThickness="1" Data="M0,0 L100,0">
+									<Path.Stroke>
+										<SolidColorBrush Color="{StaticResource Color_Slider_Line_Dark}" />
+									</Path.Stroke>
+								</Path>
+								<Path HorizontalAlignment="Stretch" VerticalAlignment="Center"
+								      Stretch="Uniform" StrokeThickness="1" Data="M0,0 L100,0">
+									<Path.Stroke>
+										<SolidColorBrush Color="{StaticResource Color_Slider_Line_Light}" />
+									</Path.Stroke>
+								</Path>
+							</StackPanel>
+
+							<!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Height="8">
+                                <Path VerticalAlignment="Stretch" HorizontalAlignment="Center" 
+                                  Stretch="Uniform" StrokeThickness="1" Data="M0,0 L0,6">
+                                    <Path.Stroke>
+                                        <SolidColorBrush Color="{StaticResource Color_Slider_Line_Dark}"/>
+                                    </Path.Stroke>
+                                </Path>
+                                <Path HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                                  Stretch="Uniform" StrokeThickness="1" Data="M0,0 L0,6">
+                                    <Path.Stroke>
+                                        <SolidColorBrush Color="{StaticResource Color_Slider_Line_Light}"/>
+                                    </Path.Stroke>
+                                </Path>
+                            </StackPanel>-->
+
+							<Track x:Name="PART_Track" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+								<Track.Resources>
+									<ResourceDictionary>
+										<Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
+											<Setter Property="SnapsToDevicePixels" Value="true" />
+											<Setter Property="OverridesDefaultStyle" Value="true" />
+											<Setter Property="IsTabStop" Value="false" />
+											<Setter Property="Focusable" Value="false" />
+											<Setter Property="Template">
+												<Setter.Value>
+													<ControlTemplate TargetType="{x:Type RepeatButton}">
+														<Border Background="Transparent" />
+													</ControlTemplate>
+												</Setter.Value>
+											</Setter>
+										</Style>
+									</ResourceDictionary>
+								</Track.Resources>
+								<Track.DecreaseRepeatButton>
+									<RepeatButton Command="{x:Static Slider.DecreaseLarge}"
+									              Style="{StaticResource SliderButtonStyle}" />
+								</Track.DecreaseRepeatButton>
+								<Track.IncreaseRepeatButton>
+									<RepeatButton Command="{x:Static Slider.IncreaseLarge}"
+									              Style="{StaticResource SliderButtonStyle}" />
+								</Track.IncreaseRepeatButton>
+								<Track.Thumb>
+									<Thumb x:Name="Thumb" VerticalAlignment="Center">
+										<Thumb.Style>
+											<Style TargetType="{x:Type Thumb}">
+												<Setter Property="SnapsToDevicePixels" Value="False" />
+												<Setter Property="OverridesDefaultStyle" Value="True" />
+												<Setter Property="IsTabStop" Value="false" />
+												<Setter Property="Focusable" Value="false" />
+												<Setter Property="Template">
+													<Setter.Value>
+														<ControlTemplate TargetType="{x:Type Thumb}">
+															<Grid>
+																<VisualStateManager.VisualStateGroups>
+																	<VisualStateGroup x:Name="CommonStates">
+																		<VisualState x:Name="Normal" />
+																		<VisualState x:Name="MouseOver">
+																			<Storyboard>
+																				<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderNormal"
+																				                               Storyboard.TargetProperty="Visibility">
+																					<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+																				</ObjectAnimationUsingKeyFrames>
+																				<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderOuterLight"
+																				                               Storyboard.TargetProperty="Visibility">
+																					<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+																				</ObjectAnimationUsingKeyFrames>
+																				<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderInner"
+																				                               Storyboard.TargetProperty="Visibility">
+																					<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+																				</ObjectAnimationUsingKeyFrames>
+																			</Storyboard>
+																		</VisualState>
+																		<VisualState x:Name="Pressed">
+																			<Storyboard>
+																				<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderOuterDark"
+																				                               Storyboard.TargetProperty="Visibility">
+																					<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+																				</ObjectAnimationUsingKeyFrames>
+																			</Storyboard>
+																		</VisualState>
+																		<VisualState x:Name="Disabled">
+
+																		</VisualState>
+																	</VisualStateGroup>
+																</VisualStateManager.VisualStateGroups>
+
+																<Path Data="M0,0 H9 V9 L4.5,13 L0,9 z" x:Name="BorderNormal" StrokeThickness="1" Stretch="Uniform">
+																	<Path.Stroke>
+																		<SolidColorBrush Color="{StaticResource Color_Slider_Border}" />
+																	</Path.Stroke>
+																	<Path.Fill>
+																		<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+																			<GradientStop Offset="0.4" Color="{StaticResource Color_Slider_Fill_Light}" />
+																			<GradientStop Offset="0.85" Color="{StaticResource Color_Slider_Fill_Dark}" />
+																			<GradientStop Offset="1" Color="{StaticResource Color_Slider_Fill_Dark1}" />
+																		</LinearGradientBrush>
+																	</Path.Fill>
+																</Path>
+																<Path x:Name="BorderOuter" Data="M0,0 H9 V9 L4.5,13 L0,9 z" StrokeThickness="1" Visibility="Collapsed"
+																      Stretch="Uniform">
+																	<Path.Stroke>
+																		<SolidColorBrush Color="#ecc753" />
+																	</Path.Stroke>
+																	<Path.Fill>
+																		<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																			<LinearGradientBrush.GradientStops>
+																				<GradientStopCollection>
+																					<GradientStop Color="#ffe575" />
+																					<GradientStop Color="#ffef7b" Offset="1.0" />
+																				</GradientStopCollection>
+																			</LinearGradientBrush.GradientStops>
+																		</LinearGradientBrush>
+																	</Path.Fill>
+																</Path>
+
+																<Path x:Name="BorderOuterDark" Data="M0,0 H9 V9 L4.5,13 L0,9 z" StrokeThickness="1"
+																      Visibility="Collapsed" Stretch="Uniform">
+																	<Path.Stroke>
+																		<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																			<LinearGradientBrush.GradientStops>
+																				<GradientStopCollection>
+																					<GradientStop Color="#c2762b" />
+																					<GradientStop Color="#c29e47" Offset="1.0" />
+																				</GradientStopCollection>
+																			</LinearGradientBrush.GradientStops>
+																		</LinearGradientBrush>
+																	</Path.Stroke>
+																	<Path.Fill>
+																		<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																			<LinearGradientBrush.GradientStops>
+																				<GradientStopCollection>
+																					<GradientStop Color="#f6c867" />
+																					<GradientStop Color="#fad77a" Offset="1.0" />
+																				</GradientStopCollection>
+																			</LinearGradientBrush.GradientStops>
+																		</LinearGradientBrush>
+																	</Path.Fill>
+																</Path>
+
+																<Path x:Name="BorderOuterLight" Data="M0,0 H9 V9 L4.5,13 L0,9 z" StrokeThickness="1"
+																      Visibility="Collapsed" Stretch="Uniform">
+																	<Path.Stroke>
+																		<SolidColorBrush Color="#edc756" />
+																	</Path.Stroke>
+																	<Path.Fill>
+																		<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																			<LinearGradientBrush.GradientStops>
+																				<GradientStopCollection>
+																					<GradientStop Color="#ffe575" />
+																					<GradientStop Color="#ffef7b" Offset="1.0" />
+																				</GradientStopCollection>
+																			</LinearGradientBrush.GradientStops>
+																		</LinearGradientBrush>
+																	</Path.Fill>
+																</Path>
+
+																<Path x:Name="BorderInner" Data="M0,0 H9 V9 L4.5,13 L0,9 z" Margin="1" StrokeThickness="1"
+																      Visibility="Collapsed" Stretch="Uniform">
+																	<Path.Stroke>
+																		<SolidColorBrush Color="#fcf8e7" />
+																	</Path.Stroke>
+																	<Path.Fill>
+																		<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+																			<LinearGradientBrush.GradientStops>
+																				<GradientStopCollection>
+																					<GradientStop Color="#f9eab0" />
+																					<GradientStop Color="#f7de85" Offset="0.5" />
+																					<GradientStop Color="#f7f3d9" Offset="1.0" />
+																				</GradientStopCollection>
+																			</LinearGradientBrush.GradientStops>
+																		</LinearGradientBrush>
+																	</Path.Fill>
+																</Path>
+															</Grid>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+											</Style>
+										</Thumb.Style>
+									</Thumb>
+								</Track.Thumb>
+							</Track>
+						</Grid>
+						<RepeatButton x:Name="PART_PlusButton" Width="16" Height="16" Grid.Column="2"
+						              VerticalContentAlignment="Center" HorizontalAlignment="Center">
+							<RepeatButton.Content>
+								<Path x:Name="plus" Data="M0,4 H8 M4,0 V8" StrokeThickness="2">
+									<Path.Stroke>
+										<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+											<GradientStop Offset="0" Color="{StaticResource Color_Foreground_Light}" />
+											<GradientStop Offset="1" Color="{StaticResource Color_Foreground_Dark}" />
+										</LinearGradientBrush>
+									</Path.Stroke>
+								</Path>
+							</RepeatButton.Content>
+						</RepeatButton>
+					</Grid>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter TargetName="minus" Property="Stroke" Value="{StaticResource Brush_Foreground_Disabled}" />
+							<Setter TargetName="plus" Property="Stroke" Value="{StaticResource Brush_Foreground_Disabled}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

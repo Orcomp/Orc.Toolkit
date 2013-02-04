@@ -1,0 +1,19 @@
+﻿<Window x:Class="Orc.Toolkit.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Orc.Toolkit.Demo.Views"
+        Title="Orc.Toolkit Demo Application">
+	<Grid>
+		<TabControl>
+			<TabItem Header="Tooltips">
+				<local:Tooltips />
+			</TabItem>
+			<TabItem Header="Statusbar">
+				<local:Statusbar />
+			</TabItem>
+			<TabItem Header="Printing">
+				<local:Printing />
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
