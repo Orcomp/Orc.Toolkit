@@ -10,7 +10,7 @@ FolderPicker
 PinnableTooltip
 StatusBar
 CanvasToPrint
-
+ColorPicker
 
 # License
 

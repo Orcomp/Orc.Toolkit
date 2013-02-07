@@ -6,14 +6,13 @@
 //   The status bar item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Orc.Toolkit
 {
     using System.Windows;
     using System.Windows.Controls;
 
     /// <summary>
-    /// The status bar item.
+    ///     The status bar item.
     /// </summary>
     [TemplateVisualState(GroupName = "CommonStates", Name = "Normal")]
     [TemplateVisualState(GroupName = "CommonStates", Name = "MouseOver")]
@@ -23,7 +22,7 @@ namespace Orc.Toolkit
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StatusBarItem"/> class.
+        ///     Initializes a new instance of the <see cref="StatusBarItem" /> class.
         /// </summary>
         public StatusBarItem()
         {
@@ -37,7 +36,7 @@ namespace Orc.Toolkit
         #region Public Methods and Operators
 
         /// <summary>
-        /// The on apply template.
+        ///     The on apply template.
         /// </summary>
         public override void OnApplyTemplate()
         {

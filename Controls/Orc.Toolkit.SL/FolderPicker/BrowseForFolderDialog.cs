@@ -6,7 +6,7 @@
 //   Represents a common dialog box (Win32::SHBrowseForFolder()) that allows a user to select a folder.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Dialogs
+namespace Orc.Toolkit
 {
     using System;
     using System.Runtime.InteropServices;

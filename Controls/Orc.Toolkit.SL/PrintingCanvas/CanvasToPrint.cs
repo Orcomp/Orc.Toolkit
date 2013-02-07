@@ -15,7 +15,6 @@ namespace Orc.Toolkit
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Printing;
-    using Orc.Toolkit.Helpers;
 
     /// <summary>
     ///     The canvas to print.

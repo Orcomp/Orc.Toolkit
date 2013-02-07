@@ -6,7 +6,7 @@
 //   The network order bit converter.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Helpers
+namespace Orc.Toolkit
 {
     /// <summary>
     ///     The network order bit converter.

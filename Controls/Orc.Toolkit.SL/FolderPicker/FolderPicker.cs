@@ -11,12 +11,10 @@ namespace Orc.Toolkit
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using System.Windows.Interop;
-
-    using Orc.Toolkit.Commands;
-    using Orc.Toolkit.Dialogs;
 #if (!SILVERLIGHT)
+    using System.Windows.Interop;
 #endif
+    using Orc.Toolkit.Commands;
 
     /// <summary>
     ///     The folder picker control.

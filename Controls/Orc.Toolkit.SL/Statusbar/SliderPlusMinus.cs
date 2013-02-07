@@ -6,7 +6,6 @@
 //   The slider plus minus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Orc.Toolkit
 {
     using System.Windows;
@@ -14,7 +13,7 @@ namespace Orc.Toolkit
     using System.Windows.Controls.Primitives;
 
     /// <summary>
-    /// The slider plus minus.
+    ///     The slider plus minus.
     /// </summary>
     [TemplatePart(Name = "PART_MinusButton", Type = typeof(RepeatButton))]
     [TemplatePart(Name = "PART_PlusButton", Type = typeof(RepeatButton))]
@@ -23,12 +22,12 @@ namespace Orc.Toolkit
         #region Fields
 
         /// <summary>
-        /// The minus button.
+        ///     The minus button.
         /// </summary>
         private RepeatButton minusButton;
 
         /// <summary>
-        /// The plus button.
+        ///     The plus button.
         /// </summary>
         private RepeatButton plusButton;
 
@@ -37,7 +36,7 @@ namespace Orc.Toolkit
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SliderPlusMinus"/> class.
+        ///     Initializes a new instance of the <see cref="SliderPlusMinus" /> class.
         /// </summary>
         public SliderPlusMinus()
         {
@@ -49,7 +48,7 @@ namespace Orc.Toolkit
         #region Public Methods and Operators
 
         /// <summary>
-        /// The on apply template.
+        ///     The on apply template.
         /// </summary>
         public override void OnApplyTemplate()
         {

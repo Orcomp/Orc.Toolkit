@@ -1,0 +1,25 @@
+﻿<navigation:Page x:Class="Orc.Toolkit.Demo.Views.ColorPicker" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+		   xmlns:orctk="clr-namespace:Orc.Toolkit;assembly=Orc.Toolkit"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="ColorPicker Page">
+    <Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="250"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<orctk:ColorPicker Width="50" x:Name="colorPicker" Color="Yellow" HorizontalAlignment="Center" 
+                          VerticalAlignment="Center" PopupPlacement="Bottom"/>
+		<Grid Grid.Row="1">
+			<Grid.Background>
+				<SolidColorBrush Color="{Binding Color, ElementName=colorPicker}"/>
+			</Grid.Background>
+		</Grid>
+	</Grid>
+</navigation:Page>

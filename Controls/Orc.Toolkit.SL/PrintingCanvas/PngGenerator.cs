@@ -6,7 +6,7 @@
 //   The png generator.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Helpers
+namespace Orc.Toolkit
 {
     using System;
     using System.IO;

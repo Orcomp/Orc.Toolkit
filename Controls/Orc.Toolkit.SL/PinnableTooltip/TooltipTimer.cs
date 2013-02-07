@@ -6,7 +6,7 @@
 //   A timer used to open and close tooltips.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Helpers
+namespace Orc.Toolkit
 {
     using System;
     using System.Windows.Threading;

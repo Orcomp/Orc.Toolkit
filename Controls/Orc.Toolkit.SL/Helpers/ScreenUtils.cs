@@ -9,10 +9,9 @@
 namespace Orc.Toolkit.Helpers
 {
     using System.Windows;
+#if (!SILVERLIGHT)
     using System.Windows.Interop;
     using System.Windows.Media;
-#if (!SILVERLIGHT)
-
 #endif
 
     /// <summary>
@@ -30,10 +29,13 @@ namespace Orc.Toolkit.Helpers
         {
 #if (SILVERLIGHT)
             {
-                return Application.Current.IsRunningOutOfBrowser ?
-                    new Size(Application.Current.MainWindow.Width, Application.Current.MainWindow.Height) :
-                    new Size(Application.Current.Host.Content.ActualWidth, Application.Current.Host.Content.ActualHeight);
+                return Application.Current.IsRunningOutOfBrowser
+                           ? new Size(Application.Current.MainWindow.Width, Application.Current.MainWindow.Height)
+                           : new Size(
+                                 Application.Current.Host.Content.ActualWidth, 
+                                 Application.Current.Host.Content.ActualHeight);
             }
+
 #else
             {
                 return BrowserInteropHelper.IsBrowserHosted
@@ -51,18 +53,18 @@ namespace Orc.Toolkit.Helpers
 
 #if (!SILVERLIGHT)
 
-        /// <summary>
-        /// The is parent of.
-        /// </summary>
-        /// <param name="parent">
-        /// The parent.
-        /// </param>
-        /// <param name="child">
-        /// The child.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
+    /// <summary>
+    /// The is parent of.
+    /// </summary>
+    /// <param name="parent">
+    /// The parent.
+    /// </param>
+    /// <param name="child">
+    /// The child.
+    /// </param>
+    /// <returns>
+    /// The <see cref="bool"/>.
+    /// </returns>
         public static bool IsParentOf(DependencyObject parent, DependencyObject child)
         {
             if (parent == null || child == null)

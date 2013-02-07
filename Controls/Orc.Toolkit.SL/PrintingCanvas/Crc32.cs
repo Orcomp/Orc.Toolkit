@@ -6,7 +6,7 @@
 //   The crc 32.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Helpers
+namespace Orc.Toolkit
 {
     /// <summary>
     ///     The crc 32.

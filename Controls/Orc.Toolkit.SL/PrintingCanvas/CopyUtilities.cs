@@ -6,7 +6,7 @@
 //   The copy utilities.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Helpers
+namespace Orc.Toolkit
 {
     using System;
 

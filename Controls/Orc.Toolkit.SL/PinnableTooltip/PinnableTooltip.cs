@@ -14,10 +14,11 @@ namespace Orc.Toolkit
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+
     using Orc.Toolkit.Helpers;
 
     /// <summary>
-    /// The pinnable tooltip control.
+    ///     The pinnable tooltip control.
     /// </summary>
     [TemplatePart(Name = "PinButton", Type = typeof(ToggleButton))]
     public class PinnableTooltip : ContentControl
@@ -25,7 +26,7 @@ namespace Orc.Toolkit
         #region Constants
 
         /// <summary>
-        /// The epsilon.
+        ///     The epsilon.
         /// </summary>
         private const double Epsilon = 1E-7;
 
@@ -34,7 +35,7 @@ namespace Orc.Toolkit
         #region Static Fields
 
         /// <summary>
-        /// The horizontal offset property.
+        ///     The horizontal offset property.
         /// </summary>
         public static readonly DependencyProperty HorizontalOffsetProperty =
             DependencyProperty.Register(
@@ -44,13 +45,13 @@ namespace Orc.Toolkit
                 new PropertyMetadata(OnHorizontalOffsetPropertyChanged));
 
         /// <summary>
-        /// The is pinned property.
+        ///     The is pinned property.
         /// </summary>
         public static readonly DependencyProperty IsPinnedProperty = DependencyProperty.Register(
             "IsPinned", typeof(bool), typeof(PinnableTooltip), new PropertyMetadata(false, OnIsPinnedPropertyChanged));
 
         /// <summary>
-        /// The vertical offset property.
+        ///     The vertical offset property.
         /// </summary>
         public static readonly DependencyProperty VerticalOffsetProperty = DependencyProperty.Register(
             "VerticalOffset", 
@@ -63,27 +64,27 @@ namespace Orc.Toolkit
         #region Fields
 
         /// <summary>
-        /// The parent popup.
+        ///     The parent popup.
         /// </summary>
         private readonly Popup parentPopup;
 
         /// <summary>
-        /// The last size.
+        ///     The last size.
         /// </summary>
         private Size lastSize;
 
         /// <summary>
-        /// The owner.
+        ///     The owner.
         /// </summary>
         private UIElement owner;
 
         /// <summary>
-        /// The popup drag drop.
+        ///     The popup drag drop.
         /// </summary>
         private PopupDragDrop popupDragDrop;
 
         /// <summary>
-        /// The timer.
+        ///     The timer.
         /// </summary>
         private TooltipTimer timer;
 
@@ -92,7 +93,7 @@ namespace Orc.Toolkit
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PinnableTooltip"/> class.
+        ///     Initializes a new instance of the <see cref="PinnableTooltip" /> class.
         /// </summary>
         public PinnableTooltip()
         {
@@ -106,7 +107,7 @@ namespace Orc.Toolkit
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the horizontal offset.
+        ///     Gets or sets the horizontal offset.
         /// </summary>
         public double HorizontalOffset
         {
@@ -122,7 +123,7 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether is open.
+        ///     Gets or sets a value indicating whether is open.
         /// </summary>
         public bool IsOpen
         {
@@ -147,7 +148,7 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether is pinned.
+        ///     Gets or sets a value indicating whether is pinned.
         /// </summary>
         public bool IsPinned
         {
@@ -163,7 +164,7 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// Gets or sets the vertical offset.
+        ///     Gets or sets the vertical offset.
         /// </summary>
         public double VerticalOffset
         {
@@ -183,7 +184,7 @@ namespace Orc.Toolkit
         #region Properties
 
         /// <summary>
-        /// Gets a value indicating whether is timer enabled.
+        ///     Gets a value indicating whether is timer enabled.
         /// </summary>
         internal bool IsTimerEnabled
         {
@@ -198,7 +199,7 @@ namespace Orc.Toolkit
         #region Methods
 
         /// <summary>
-        /// The perform placement.
+        ///     The perform placement.
         /// </summary>
         internal void PerformPlacement()
         {
@@ -333,7 +334,7 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// The start timer.
+        ///     The start timer.
         /// </summary>
         internal void StartTimer()
         {
@@ -344,7 +345,7 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// The stop timer.
+        ///     The stop timer.
         /// </summary>
         internal void StopTimer()
         {

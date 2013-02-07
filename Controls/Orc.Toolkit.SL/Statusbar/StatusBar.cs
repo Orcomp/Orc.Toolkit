@@ -1,29 +1,28 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Separator.cs" company="ORC">
+// <copyright file="StatusBar.cs" company="ORC">
 //   MS-PL
 // </copyright>
 // <summary>
-//   The separator.
+//   The status bar.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace Orc.Toolkit
 {
     using System.Windows.Controls;
 
     /// <summary>
-    /// The separator.
+    ///     The status bar.
     /// </summary>
-    public class Separator : Control
+    public class StatusBar : ItemsControl
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Separator"/> class.
+        ///     Initializes a new instance of the <see cref="StatusBar" /> class.
         /// </summary>
-        public Separator()
+        public StatusBar()
         {
-            this.DefaultStyleKey = typeof(Separator);
+            this.DefaultStyleKey = typeof(StatusBar);
         }
 
         #endregion

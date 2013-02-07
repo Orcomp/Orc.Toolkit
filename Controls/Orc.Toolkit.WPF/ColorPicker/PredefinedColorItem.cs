@@ -1,0 +1,114 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PredefinedColorItem.cs" company="ORC">
+//   MS-PL
+// </copyright>
+// <summary>
+//   The predefined color item.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Orc.Toolkit
+{
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+
+    /// <summary>
+    /// The predefined color item.
+    /// </summary>
+    public class PredefinedColorItem : Control
+    {
+        #region Static Fields
+
+        /// <summary>
+        /// The color property.
+        /// </summary>
+        public static readonly DependencyProperty ColorProperty = DependencyProperty.RegisterAttached(
+            "Color", typeof(Color), typeof(PredefinedColorItem), new PropertyMetadata(Colors.White));
+
+        /// <summary>
+        /// The text property.
+        /// </summary>
+        public static readonly DependencyProperty TextProperty = DependencyProperty.RegisterAttached(
+            "Text", typeof(string), typeof(PredefinedColorItem), new PropertyMetadata(string.Empty));
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// Initializes static members of the <see cref="PredefinedColorItem"/> class.
+        /// </summary>
+        static PredefinedColorItem()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(PredefinedColorItem), new FrameworkPropertyMetadata(typeof(PredefinedColorItem)));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PredefinedColorItem"/> class.
+        /// </summary>
+        /// <param name="color">
+        /// The color.
+        /// </param>
+        /// <param name="text">
+        /// The text.
+        /// </param>
+        public PredefinedColorItem(Color color, string text)
+        {
+            // DefaultStyleKeyProperty.OverrideMetadata(typeof(PredefinedColorItem), new FrameworkPropertyMetadata(typeof(PredefinedColorItem)));
+            this.Color = color;
+            this.Text = text;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the color.
+        /// </summary>
+        public Color Color
+        {
+            get
+            {
+                return (Color)this.GetValue(ColorProperty);
+            }
+
+            set
+            {
+                this.SetValue(ColorProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        public string Text
+        {
+            get
+            {
+                return (string)this.GetValue(TextProperty);
+            }
+
+            set
+            {
+                this.SetValue(TextProperty, value);
+            }
+        }
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The on apply template.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+        }
+
+        #endregion
+    }
+}

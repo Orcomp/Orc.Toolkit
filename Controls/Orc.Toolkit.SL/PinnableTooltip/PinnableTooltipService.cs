@@ -14,12 +14,10 @@ namespace Orc.Toolkit
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Input;
-    using System.Windows.Interop;
-
-    using Orc.Toolkit.Helpers;
 #if (!SILVERLIGHT)
-
+    using System.Windows.Interop;
 #endif
+    using Orc.Toolkit.Helpers;
 
     /// <summary>
     ///     The pinnable tooltip service.

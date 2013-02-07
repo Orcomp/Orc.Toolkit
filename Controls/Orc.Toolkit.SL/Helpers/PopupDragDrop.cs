@@ -13,29 +13,29 @@ namespace Orc.Toolkit.Helpers
     using System.Windows.Input;
 
     /// <summary>
-    /// A class that makes popups moveable.
+    ///     A class that makes popups moveable.
     /// </summary>
     internal class PopupDragDrop
     {
         #region Fields
 
         /// <summary>
-        /// The mouse captured.
+        ///     The mouse captured.
         /// </summary>
         private bool mouseCaptured;
 
         /// <summary>
-        /// The mouse x.
+        ///     The mouse x.
         /// </summary>
         private double mouseX;
 
         /// <summary>
-        /// The mouse y.
+        ///     The mouse y.
         /// </summary>
         private double mouseY;
 
         /// <summary>
-        /// The popup.
+        ///     The popup.
         /// </summary>
         private Popup popup;
 
@@ -44,7 +44,7 @@ namespace Orc.Toolkit.Helpers
         #region Constructors and Destructors
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="PopupDragDrop"/> class from being created.
+        ///     Prevents a default instance of the <see cref="PopupDragDrop" /> class from being created.
         /// </summary>
         private PopupDragDrop()
         {

@@ -54,6 +54,11 @@
 
 					<Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}" />
 
+					<HyperlinkButton x:Name="BtnColorPicker" Style="{StaticResource LinkStyle}"
+					                 NavigateUri="/ColorPicker" TargetName="ContentFrame" Content="ColorPicker" />
+
+					<Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}" />
+
 					<HyperlinkButton x:Name="BtnAbout" Style="{StaticResource LinkStyle}"
 					                 NavigateUri="/About" TargetName="ContentFrame" Content="About" />
 

@@ -6,7 +6,7 @@
 //   The png chunk.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Orc.Toolkit.Helpers
+namespace Orc.Toolkit
 {
     /// <summary>
     ///     The png chunk.

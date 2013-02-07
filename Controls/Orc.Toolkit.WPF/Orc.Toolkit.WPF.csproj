@@ -47,29 +47,36 @@
     <Compile Include="..\Orc.Toolkit.SL\Commands\DelegateCommand.cs">
       <Link>Commands\DelegateCommand.cs</Link>
     </Compile>
-    <Compile Include="..\Orc.Toolkit.SL\Dialogs\BrowseForFolderDialog.cs">
-      <Link>Dialogs\BrowseForFolderDialog.cs</Link>
+    <Compile Include="..\Orc.Toolkit.SL\FolderPicker\BrowseForFolderDialog.cs">
+      <Link>FolderPicker\BrowseForFolderDialog.cs</Link>
     </Compile>
-    <Compile Include="..\Orc.Toolkit.SL\FolderPicker.cs">
-      <Link>FolderPicker.cs</Link>
+    <Compile Include="..\Orc.Toolkit.SL\FolderPicker\FolderPicker.cs">
+      <Link>FolderPicker\FolderPicker.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\FolderPicker\IFolderBrowserDialogService.cs">
+      <Link>FolderPicker\IFolderBrowserDialogService.cs</Link>
     </Compile>
     <Compile Include="..\Orc.Toolkit.SL\Helpers\ScreenUtils.cs">
       <Link>Helpers\ScreenUtils.cs</Link>
     </Compile>
-    <Compile Include="..\Orc.Toolkit.SL\Helpers\TooltipTimer.cs">
-      <Link>Helpers\TooltipTimer.cs</Link>
+    <Compile Include="..\Orc.Toolkit.SL\PinnableTooltip\PinnableTooltipService.cs">
+      <Link>PinnableTooltip\PinnableTooltipService.cs</Link>
     </Compile>
-    <Compile Include="..\Orc.Toolkit.SL\IFolderBrowserDialogService.cs">
-      <Link>IFolderBrowserDialogService.cs</Link>
+    <Compile Include="..\Orc.Toolkit.SL\PinnableTooltip\TooltipTimer.cs">
+      <Link>PinnableTooltip\TooltipTimer.cs</Link>
     </Compile>
-    <Compile Include="..\Orc.Toolkit.SL\PinnableTooltipService.cs">
-      <Link>PinnableTooltipService.cs</Link>
-    </Compile>
-    <Compile Include="CanvasToPrint.cs" />
+    <Compile Include="ColorPicker\ColorChangedEventArgs.cs" />
+    <Compile Include="ColorPicker\PredefinedColor.cs" />
+    <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
+    <Compile Include="ColorPicker\ColorBoard.cs" />
+    <Compile Include="ColorPicker\ColorHelper.cs" />
+    <Compile Include="ColorPicker\ColorPicker.cs" />
+    <Compile Include="ColorPicker\PredefinedColorItem.cs" />
+    <Compile Include="ColorPicker\WrapPanel.cs" />
     <Compile Include="Helpers\ControlAdorner.cs" />
     <Compile Include="Helpers\ControlAdornerDragDrop.cs" />
     <Compile Include="Helpers\IControlAdornerChild.cs" />
-    <Compile Include="PinnableTooltip.cs" />
+    <Compile Include="PinnableTooltip\PinnableTooltip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,7 +90,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SliderPlusMinus.cs" />
+    <Compile Include="Statusbar\SliderPlusMinus.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -105,6 +112,7 @@
       <Link>Themes\Images\pin.png</Link>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
