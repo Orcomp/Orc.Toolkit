@@ -25,6 +25,7 @@
                         <ToggleButton IsTabStop="True" ClickMode="Press" x:Name="PART_ToggleDropDown"
                                       Background="Transparent"  Width="24" Height="24" Focusable="False"
                                       IsChecked="{Binding IsOpen, Mode=TwoWay, ElementName=PART_Popup}"
+                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
                                       Content="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center"
                                       BorderBrush="{StaticResource Brush_Control_2}" SnapsToDevicePixels="True">
                             <ToggleButton.Template>
@@ -38,9 +39,6 @@
                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
                                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Brush_Highlight_1}"/>
                                                         </ObjectAnimationUsingKeyFrames>
-                                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="arrow" Storyboard.TargetProperty="Fill">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Brush_Highlight_1}"/>
-                                                        </ObjectAnimationUsingKeyFrames>-->
                                                     </Storyboard>
                                                 </VisualState>
                                                 <VisualState x:Name="Disabled">
@@ -93,6 +91,16 @@
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SettingsIconToolbarButton" TargetType="{x:Type orcTkt:DropDownButton}" BasedOn="{StaticResource SettingsDropDownButton}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/gear_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>

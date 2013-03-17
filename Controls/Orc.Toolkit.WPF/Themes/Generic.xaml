@@ -1053,7 +1053,7 @@
                             <ColumnDefinition Width="14"/>
                         </Grid.ColumnDefinitions>
 
-                        <ToggleButton x:Name="PART_ToggleDropDown" Grid.ColumnSpan="2" ClickMode="Press"
+                        <ToggleButton x:Name="PART_ToggleDropDown" Grid.ColumnSpan="2" ClickMode="Press" ContentTemplate="{TemplateBinding HeaderTemplate}"
                                       IsChecked="{Binding IsOpen, Mode=TwoWay, ElementName=PART_Popup}" Focusable="False">
                             <ToggleButton.Content>
                                 <Grid>
@@ -1066,7 +1066,7 @@
                                       VerticalAlignment="Center" Stretch="None" Grid.Column="1" Width="5"/>
 
                                     <Grid>
-                                        <ContentControl Content="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <ContentControl Content="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center" ContentTemplate="{TemplateBinding ContentTemplate}"/>
                                     </Grid>
                                 </Grid>
                             </ToggleButton.Content>

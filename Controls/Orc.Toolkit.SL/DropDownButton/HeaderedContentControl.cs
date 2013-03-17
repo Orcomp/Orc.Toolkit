@@ -59,5 +59,16 @@ namespace Orc.Toolkit
         }
 
         #endregion
+        
+
+        public DataTemplate HeaderTemplate
+        {
+            get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
+            set { SetValue(HeaderTemplateProperty, value); }
+        }
+        public static readonly DependencyProperty HeaderTemplateProperty =
+            DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(HeaderedContentControl), new PropertyMetadata(null));
+
+
     }
 }

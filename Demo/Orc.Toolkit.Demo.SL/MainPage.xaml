@@ -67,7 +67,12 @@
 					<HyperlinkButton x:Name="BtnAbout" Style="{StaticResource LinkStyle}"
 					                 NavigateUri="/About" TargetName="ContentFrame" Content="About" />
 
-				</StackPanel>
+                    <Rectangle x:Name="Divider6" Style="{StaticResource DividerStyle}" />
+
+                    <HyperlinkButton x:Name="BtnDropDown" Style="{StaticResource LinkStyle}"
+					                 NavigateUri="/Controls" TargetName="ContentFrame" Content="Controls" />
+
+                </StackPanel>
 			</Border>
 
 		</Grid>

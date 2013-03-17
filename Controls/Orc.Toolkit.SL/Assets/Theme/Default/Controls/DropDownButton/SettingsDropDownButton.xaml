@@ -11,6 +11,11 @@
     <Style x:Key="SettingsDropDownButton" TargetType="local:DropDownButton">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Brush_Control_2}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="IsTabStop" Value="True"/>
         <Setter Property="Height" Value="24"/>
         <Setter Property="Width" Value="24"/>
         <Setter Property="Template">
@@ -39,7 +44,7 @@
                         <ToggleButton x:Name="PART_ToggleDropDown" Grid.ColumnSpan="2" ClickMode="Press"
                                       IsChecked="{Binding IsOpen, Mode=TwoWay, ElementName=PART_Popup}"
                                       Background="Transparent"  Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                      BorderBrush="{StaticResource Brush_Control_2}" Content="{TemplateBinding Header}">
+                                      BorderBrush="{StaticResource Brush_Control_2}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}">
                             <ToggleButton.Template>
                                 <ControlTemplate TargetType="ToggleButton">
                                     <Grid Background="{TemplateBinding Background}">
@@ -55,8 +60,8 @@
                                                 </VisualState>
                                                 <VisualState x:Name="Disabled">
                                                     <Storyboard>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Brush_Control_1}"/>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Disableborder" Storyboard.TargetProperty="Visibility">
+                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
                                                 </VisualState>
@@ -68,6 +73,9 @@
                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
                                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Brush_Highlight_1}"/>
                                                         </ObjectAnimationUsingKeyFrames>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Brush_Control_1}"/>
+                                                        </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
                                                 </VisualState>
                                             </VisualStateGroup>
@@ -76,6 +84,11 @@
                                         <Border x:Name="Border" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
                                             <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
                                         </Border>
+
+                                        <Path x:Name="arrow" Data="M 0 0 L 2.5 3 L 5 0 Z" Fill="{StaticResource Brush_Highlight_1}" HorizontalAlignment="Right"
+                                                VerticalAlignment="Bottom" Stretch="None" Margin="2"/>
+
+                                        <Border x:Name="Disableborder" Background="#77ffffff" Visibility="Collapsed"/>
 
                                     </Grid>
                                 </ControlTemplate>
@@ -87,6 +100,16 @@
                         </Popup>
                     </Grid>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SettingsIconToolbarButton" TargetType="local:DropDownButton" BasedOn="{StaticResource SettingsDropDownButton}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/gear_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>

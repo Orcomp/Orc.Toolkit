@@ -8,15 +8,17 @@
     </ResourceDictionary.MergedDictionaries>
     
     <Style TargetType="local:PinnableTooltip">
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Background" Value="#FFF7F8FA" />
-        <Setter Property="Padding" Value="3,0,3,0" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TreeView ItemsSource="{Binding }" Background="Transparent" BorderThickness="0" >
+                    <TreeView ItemsSource="{Binding }" Background="Transparent" BorderThickness="0" Margin="0" Padding="0" >
                         <TreeView.ItemContainerStyle>
                             <Style TargetType="{x:Type TreeViewItem}">
+                                <Setter Property="IsExpanded" Value="True"/>
+                                <Setter Property="Margin" Value="0"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -51,21 +53,23 @@
                                                     <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <ToggleButton x:Name="Expander"
+                                                <Border x:Name="Border" IsHitTestVisible="False" Height="14" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_1}" HorizontalAlignment="Stretch"/>
+                                                <ToggleButton x:Name="Expander" Height="14"
                                                         Style="{StaticResource ExpandCollapseToggleStyle}"
                                                         ClickMode="Press"
                                                         IsChecked="{Binding IsExpanded, 
-                                                        RelativeSource={RelativeSource TemplatedParent}}"/>
-                                                <ContentPresenter x:Name="PART_Header" Grid.Column="1"
-                                                          ContentSource="Header" IsHitTestVisible="False"
+                                                        RelativeSource={RelativeSource TemplatedParent}}"/>                                                
+                                                <ContentPresenter x:Name="PART_Header" Grid.Column="1" Height="14"
+                                                          ContentSource="Header" IsHitTestVisible="False" Margin="0 0 14 0"
                                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                                                <ItemsPresenter x:Name="ItemsHost" IsHitTestVisible="False"
+                                                <ItemsPresenter x:Name="ItemsHost" IsHitTestVisible="False" Margin="-10 1 0 1"
                                                                   Grid.Row="1" Grid.ColumnSpan="2"
                                                                   Visibility="Collapsed" />
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="HasItems" Value="false">
                                                     <Setter TargetName="Expander" Property="Visibility" Value="Hidden" />
+                                                    <Setter TargetName="Border" Property="Visibility" Value="Hidden" />
                                                 </Trigger>
                                                 <MultiTrigger>
                                                     <MultiTrigger.Conditions>
@@ -88,15 +92,21 @@
                             </Style>
                         </TreeView.ItemContainerStyle>
                         <TreeView.ItemTemplate>
-                            <HierarchicalDataTemplate ItemsSource="{Binding Value}">
-                                <TextBlock Text="{Binding Key}"/>                                
+                            <HierarchicalDataTemplate ItemsSource="{Binding Value}">                                
+                                <TextBlock FontWeight="Bold" Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" />
                                 <HierarchicalDataTemplate.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Key.Name}"/>
-                                            <TextBlock Text=": "/>
-                                            <TextBlock FontWeight="Bold" Text="{Binding Value}"/>
-                                        </StackPanel>
+                                        <Grid VerticalAlignment="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition MinWidth="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Key.Name}" TextAlignment="Left" VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left" />
+                                            <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0" Text="{Binding Value}" 
+                                                       TextAlignment="Left" VerticalAlignment="Center" />
+                                        </Grid>
                                     </DataTemplate>
                                 </HierarchicalDataTemplate.ItemTemplate>
                             </HierarchicalDataTemplate>
@@ -136,15 +146,14 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                
-                                <ToggleButton x:Name="PinButton" Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
-                                          IsChecked="{Binding IsPinned, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
-
-                                <ContentPresenter Grid.RowSpan="2" Grid.Column="0"
+                                                               
+                                <ContentPresenter Grid.RowSpan="2" Grid.ColumnSpan="2"
 								                  Content="{TemplateBinding Content}"
 								                  ContentTemplate="{TemplateBinding ContentTemplate}"
 								                  Cursor="{TemplateBinding Cursor}"
 								                  Margin="{TemplateBinding Padding}" />
+                                <ToggleButton x:Name="PinButton" Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
+                                          IsChecked="{Binding IsPinned, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
                             </Grid>
                         </Border>
                     </Border>

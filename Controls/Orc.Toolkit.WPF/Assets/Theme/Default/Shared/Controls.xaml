@@ -108,13 +108,13 @@
     <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="MinHeight" Value="14"/>
-        <Setter Property="MinWidth" Value="14"/>
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
         <Setter Property="Foreground" Value="{StaticResource Brush_Control_2}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid Background="Transparent" Margin="{TemplateBinding Padding}">                        
+                    <Grid Background="Transparent">                        
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal"/>
@@ -153,7 +153,7 @@
                                   StrokeThickness="2" Fill="{TemplateBinding Background}" SnapsToDevicePixels="True">
                                 </Path>
                                 <Path HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
-                                    Data="M0,3 H6" Stroke="{TemplateBinding Foreground}" 
+                                    Data="M0,2 H6" Stroke="{TemplateBinding Foreground}" 
                                   RenderTransformOrigin="0.5 0.5" x:Name="pathMinus" Visibility="Collapsed"
                                   StrokeThickness="2" Fill="{TemplateBinding Background}" SnapsToDevicePixels="True">
                                 </Path>

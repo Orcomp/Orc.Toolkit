@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Shared/Colors.xaml"/>
-        <ResourceDictionary Source="Shared/Icons.xaml"/>
+        <ResourceDictionary Source="Shared/ContentTemplates.xaml"/>
         <ResourceDictionary Source="Shared/Controls.xaml"/>
         <ResourceDictionary Source="Controls/StatusBar/ItemsPanelTemplate.xaml"/>
         <ResourceDictionary Source="Controls/StatusBar/StatusBar.xaml"/>

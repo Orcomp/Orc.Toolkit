@@ -146,7 +146,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Assets\Theme\Default\Shared\Icons.xaml">
+    <Page Include="Assets\Theme\Default\Shared\ContentTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -56,4 +56,64 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="SaveIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/save_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>                
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="OpenIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/folder_Open_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SaveToPngIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/Camera_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="PrintIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/printer_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="UndoIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/Arrow_UndoRevertRestore_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RedoIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/Arrow_RedoRetry_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

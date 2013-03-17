@@ -2,8 +2,9 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
-	xmlns:local="clr-namespace:Orc.Toolkit">
-
+	xmlns:local="clr-namespace:Orc.Toolkit"
+    xmlns:cmds="clr-namespace:Orc.Toolkit.Commands">
+    
     <Color x:Key="Color_Font_1">#000000</Color>
     <SolidColorBrush x:Key="Brush_Font_1" Color="{StaticResource Color_Font_1}"/>
 
@@ -1384,7 +1385,7 @@
                                       VerticalAlignment="Center" Stretch="None" Grid.Column="1" Width="5"/>
 
                                     <Grid>
-                                        <ContentControl Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <ContentControl ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
                                 </Grid>
                             </ToggleButton.Content>
@@ -1398,7 +1399,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     
     <Style TargetType="local:HeaderedContentControl">
         <Setter Property="Template">
@@ -1471,4 +1471,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    
 </ResourceDictionary>

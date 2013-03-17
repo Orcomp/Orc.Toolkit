@@ -7,7 +7,7 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Assets/Styles.xaml" />
-				<ResourceDictionary Source="Assets/Office2010/StatusBar.xaml" />
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Main.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

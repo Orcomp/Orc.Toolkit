@@ -182,7 +182,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Assets\Theme\Default\Shared\Icons.xaml">
+    <Page Include="Assets\Theme\Default\Shared\ContentTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
