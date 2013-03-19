@@ -7,7 +7,7 @@
         <ResourceDictionary Source="../../Shared/Controls.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
-    <Style x:Key="AttriburesPinnableMenuStyle" TargetType="local:PinnableTooltip">
+    <Style TargetType="local:PinnableTooltip">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Background" Value="#FFF7F8FA" />
         <Setter Property="BorderThickness" Value="1" />
