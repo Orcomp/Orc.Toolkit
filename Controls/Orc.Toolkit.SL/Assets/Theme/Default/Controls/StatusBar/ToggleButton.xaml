@@ -6,10 +6,7 @@
         <ResourceDictionary Source="../../Shared/Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="SBToggleButtonStyle" TargetType="ToggleButton">
-        <Setter Property="MinWidth" Value="18"/>
-        <Setter Property="Width" Value="18"/>
-        <Setter Property="Height" Value="18"/>
+    <Style x:Key="SBToggleButtonStyle" TargetType="ToggleButton"> 
         <Setter Property="Padding" Value="4 2"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -157,7 +154,7 @@
                             </Border.Background>
                         </Border>
 
-                        <ContentControl x:Name="content" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"
+                        <ContentPresenter x:Name="content" Content="{TemplateBinding Content}"
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}"/>
                     </Grid>
