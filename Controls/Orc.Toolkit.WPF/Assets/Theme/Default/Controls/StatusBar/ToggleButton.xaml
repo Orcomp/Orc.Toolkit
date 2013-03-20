@@ -6,8 +6,7 @@
 
     <Style TargetType="{x:Type ToggleButton}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="MinWidth" Value="18" />
+        <Setter Property="OverridesDefaultStyle" Value="True" /> 
         <Setter Property="Padding" Value="4 2" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -154,7 +153,7 @@
                         </Border>
 
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-						                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+						                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}"
 						                  Margin="{TemplateBinding Padding}" />
                     </Grid>
 

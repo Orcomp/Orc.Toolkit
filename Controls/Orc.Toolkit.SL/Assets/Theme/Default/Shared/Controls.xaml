@@ -106,4 +106,64 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ExpandCollapseToggleStyle" TargetType="ToggleButton">
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource Brush_Control_2}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderButton"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource Brush_Highlight_1}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup Name="CheckStates">
+                                <VisualState Name="Unchecked"/>
+                                <VisualState Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pathPlus"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pathMinus"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="BorderButton" Background="Transparent" >
+                            <Grid>
+                                <Path HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
+                                    Data="M3,0 V6 M0,3 H6" Stroke="{TemplateBinding Foreground}" 
+                                  RenderTransformOrigin="0.5 0.5" x:Name="pathPlus"
+                                  StrokeThickness="2" Fill="{TemplateBinding Background}">
+                                </Path>
+                                <Path HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
+                                    Data="M0,2 H6" Stroke="{TemplateBinding Foreground}" 
+                                  RenderTransformOrigin="0.5 0.5" x:Name="pathMinus" Visibility="Collapsed"
+                                  StrokeThickness="2" Fill="{TemplateBinding Background}">
+                                </Path>
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -89,7 +89,7 @@
 				</orctk:StatusBarItem>
 				<orctk:StatusBarItem Margin="2 0 12 0">
 					<orctk:SliderPlusMinus x:Name="slider" Style="{StaticResource SBSliderPlusMinusStyle}" Margin="4 0" Minimum="-50"
-					                       Maximum="50" SmallChange="5"
+					                       Maximum="50" SmallChange="5"  
 					                       LargeChange="10" Value="20" />
 				</orctk:StatusBarItem>
 			</StackPanel>

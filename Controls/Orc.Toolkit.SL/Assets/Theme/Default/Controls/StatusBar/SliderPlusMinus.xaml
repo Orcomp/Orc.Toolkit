@@ -7,9 +7,8 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="SBSliderPlusMinusStyle"  TargetType="local:SliderPlusMinus">
-        <Setter Property="Margin" Value="16 0"/>
         <Setter Property="Height" Value="16"/>
-        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="MinWidth" Value="50"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:SliderPlusMinus">
@@ -200,7 +199,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <RepeatButton x:Name="PART_MinusButton" Width="16" Height="16" Grid.Column="0" Margin="-16 0 0 0" 
+                        <RepeatButton x:Name="PART_MinusButton" Width="16" Height="16" Grid.Column="0" 
                                           VerticalContentAlignment="Center" HorizontalAlignment="Center" >
                             <RepeatButton.Content>
                                 <Path x:Name="minus" Data="M0,0 H8" StrokeThickness="2">
@@ -212,18 +211,21 @@
                                     </Path.Stroke>
                                 </Path>
                             </RepeatButton.Content>
+                            <RepeatButton.RenderTransform>
+                                <TranslateTransform X="-16"/>
+                            </RepeatButton.RenderTransform>
                         </RepeatButton>
 
-                        <Grid Grid.Column="1">
+                        <Grid Grid.ColumnSpan="3">
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                 <Path VerticalAlignment="Center" HorizontalAlignment="Stretch" 
-                                      Stretch="Uniform" StrokeThickness="1" Data="M0,0 L100,0">
+                                      Stretch="UniformToFill" StrokeThickness="1" Data="M0,0 L20,0">
                                     <Path.Stroke>
                                         <SolidColorBrush Color="{StaticResource Color_Slider_Line_Dark}"/>
                                     </Path.Stroke>
                                 </Path>
                                 <Path HorizontalAlignment="Stretch"  VerticalAlignment="Center"
-                                      Stretch="Uniform" StrokeThickness="1" Data="M0,0 L100,0">
+                                      Stretch="UniformToFill" StrokeThickness="1" Data="M0,0 L20,0">
                                     <Path.Stroke>
                                         <SolidColorBrush Color="{StaticResource Color_Slider_Line_Light}"/>
                                     </Path.Stroke>
@@ -401,7 +403,7 @@
                             </Grid>
                         </Grid>
 
-                        <RepeatButton x:Name="PART_PlusButton" Width="16" Height="16" Grid.Column="2" Margin="0 0 -16 0"
+                        <RepeatButton x:Name="PART_PlusButton" Width="16" Height="16" Grid.Column="2" Margin="0 0 0 0"
                                            VerticalContentAlignment="Center" HorizontalAlignment="Center">
                             <RepeatButton.Content>
                                 <Path x:Name="plus" Data="M0,4 H8 M4,0 V8" StrokeThickness="2">
@@ -413,6 +415,9 @@
                                     </Path.Stroke>
                                 </Path>
                             </RepeatButton.Content>
+                            <RepeatButton.RenderTransform>
+                                <TranslateTransform X="16"/>
+                            </RepeatButton.RenderTransform>
                         </RepeatButton>
                     </Grid>
                 </ControlTemplate>
