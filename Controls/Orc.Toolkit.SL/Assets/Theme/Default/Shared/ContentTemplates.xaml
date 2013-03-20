@@ -6,7 +6,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="PointerIconContentTemplate">
-        <Viewbox UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Viewbox UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1">
             <Canvas Width="100" Height="100">
                 <Path Data="M44.811001,38.161586 L7.5877909,7.5 7.5,50.303001 23.389637,38.200543 z M25.094182,44.734633 L39.084998,78.830997" Height="86.331" Stretch="Fill" Stroke="#7F000000" StrokeThickness="15" Canvas.Top="12.368" Width="52.311" Fill="#7F000000" Canvas.Left="32.008"/>
                 <Path Data="M44.811001,38.161586 L7.5877909,7.5 7.5,50.303001 23.389637,38.200543 z M25.094182,44.734633 L39.084998,78.830997" Height="86.331" Stretch="Fill" Stroke="#fefefe" StrokeThickness="15" Canvas.Top="10.379" Width="52.311" Fill="#fefefe" Canvas.Left="22.349"/>
@@ -15,7 +15,7 @@
     </DataTemplate>   
 
     <DataTemplate x:Key="ZoomIconContentTemplate">
-        <Viewbox UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Viewbox UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1">
             <Canvas Width="100" Height="100">
                 <Path Data="M67.5,37.5 C67.5,54.068542 54.068542,67.5 37.5,67.5 C20.931458,67.5 7.5,54.068542 7.5,37.5 C7.5,20.931458 20.931458,7.5 37.5,7.5 C54.068542,7.5 67.5,20.931458 67.5,37.5 z M62.5,62.5 L82.5,82.5" Height="90" Canvas.Left="13.693" Stretch="Fill" Stroke="#6D000000" StrokeThickness="20" Canvas.Top="5.568" Width="90"/>
                 <Path Data="M67.5,37.5 C67.5,54.068542 54.068542,67.5 37.5,67.5 C20.931458,67.5 7.5,54.068542 7.5,37.5 C7.5,20.931458 20.931458,7.5 37.5,7.5 C54.068542,7.5 67.5,20.931458 67.5,37.5 z M62.5,62.5 L82.5,82.5" Height="90" Canvas.Left="-0.114" Stretch="Fill" Stroke="#fefefe" StrokeThickness="20" Canvas.Top="5.568" Width="90"/>
@@ -24,7 +24,7 @@
     </DataTemplate>    
 
     <DataTemplate x:Key="PanIconContentTemplate">
-        <Viewbox UseLayoutRounding="True"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Viewbox UseLayoutRounding="True"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1">
             <Canvas Width="100" Height="100">
                 <Path Data="M21.42,13.79 L28.522999,48.080001 M42.726999,7.5 L43.863998,43.554 M64.955998,11.078 L61.433001,44.992998 M86.761,21.132 L76.249998,48.364001 M7.5000002,58.591546 L25.743023,73.953886 27.3051,50.751263 45.925509,46.774 63.036155,48.762631 75.113,54.160273 71.08704,73.194364 64.04161,81.717091 39.131576,84.842003 25.040124,73.762546" Fill="#6D000000" Height="92.342" Canvas.Left="5.739" Stretch="Fill" Stroke="#6D000000" StrokeThickness="15" Width="94.261" Canvas.Top="7.658" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>
                 <Path Data="M21.42,13.79 L28.522999,48.080001 M42.726999,7.5 L43.863998,43.554 M64.955998,11.078 L61.433001,44.992998 M86.761,21.132 L76.249998,48.364001 M7.5000002,58.591546 L25.743023,73.953886 27.3051,50.751263 45.925509,46.774 63.036155,48.762631 75.113,54.160273 71.08704,73.194364 64.04161,81.717091 39.131576,84.842003 25.040124,73.762546" Fill="#fefefe" Height="92.342" Canvas.Left="1.591" Stretch="Fill" Stroke="#fefefe" StrokeThickness="15" Width="94.261" Canvas.Top="2.488" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>

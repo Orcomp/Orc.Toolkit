@@ -9,6 +9,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ExpanderToLeft" TargetType="local:Expander">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Expander">
@@ -21,16 +25,6 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border x:Name="HeaderBorder" Background="{StaticResource Brush_Control_1}" Grid.Column="1" Visibility="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=1}">
-                            <ToggleButton VerticalAlignment="Top" Margin="1" 
-                                          Style="{StaticResource Header_ToggleButton}"
-                                      IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                                <ToggleButton.Content>
-                                    <ContentControl Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                </ToggleButton.Content>
-                            </ToggleButton>
-                        </Border>
-
                         <Grid x:Name="ContentPresenterGrid" Visibility="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -42,12 +36,27 @@
                             </Grid.ColumnDefinitions>
 
                             <Border Margin="0 0 0 1" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_1}"/>
-                            <ContentControl Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}" FontWeight="Bold" Margin="2"
-                                            HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                            <ContentControl Content="{TemplateBinding Header}" FontWeight="Bold" Margin="2"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             <ToggleButton Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
                                           IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <ContentControl x:Name="contentPresenter" Content="{TemplateBinding Content}" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                              Content="{TemplateBinding Content}"  Grid.Row="1" Grid.ColumnSpan="2"/>
                         </Grid>
+
+                        <Border x:Name="HeaderBorder" Background="{StaticResource Brush_Control_1}" Grid.Column="1" Visibility="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=1}">
+                            <ToggleButton VerticalAlignment="Top" Margin="1" 
+                                          Style="{StaticResource Header_ToggleButton}"
+                                      IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Content>
+                                    <ContentControl Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                        </Border>
+
+                        
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

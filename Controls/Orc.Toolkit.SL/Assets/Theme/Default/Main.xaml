@@ -10,5 +10,6 @@
         <ResourceDictionary Source="Controls/DropDownButton/SettingsDropDownButton.xaml"/>
         <ResourceDictionary Source="Controls/ToolBar/ToolBarButton.xaml"/>
         <ResourceDictionary Source="Controls/PinnableTooltip/PinnableTooltip.xaml"/>
+        <ResourceDictionary Source="Controls/TabControl/MainTabControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

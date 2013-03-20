@@ -1401,6 +1401,10 @@
     </Style>
     
     <Style TargetType="local:HeaderedContentControl">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HeaderedContentControl">
@@ -1416,9 +1420,10 @@
                         </Border>
 
                         <ContentControl Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"/>
-                        <ContentControl Grid.Row="1" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" 
+                        <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" 
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"/>
                     </Grid>
 
                 </ControlTemplate>
@@ -1464,7 +1469,8 @@
                                             HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
                             <ToggleButton Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
                                           IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            <ContentControl x:Name="contentPresenter" Content="{TemplateBinding Content}" Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Row="1" Grid.ColumnSpan="2"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
