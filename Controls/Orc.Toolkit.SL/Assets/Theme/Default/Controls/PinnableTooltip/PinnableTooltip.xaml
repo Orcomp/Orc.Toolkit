@@ -171,4 +171,167 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="#FFF7F8FA" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA3AEB9" Offset="0" />
+                    <GradientStop Color="#FF8399A9" Offset="0.375" />
+                    <GradientStop Color="#FF718597" Offset="0.375" />
+                    <GradientStop Color="#FF617584" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <sdk:TreeView ItemsSource="{Binding }" Background="Transparent" BorderThickness="0" Margin="0" Padding="0" >
+                        <sdk:TreeView.Template>
+                            <ControlTemplate TargetType="sdk:TreeView">
+                                <Grid Background="Transparent">
+                                    <ScrollViewer x:Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="{x:Null}" 
+                                              BorderBrush="Transparent" BorderThickness="0" IsTabStop="False" TabNavigation="Once" Margin="0" Padding="0">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Grid>
+                            </ControlTemplate>
+                        </sdk:TreeView.Template>
+                        <sdk:TreeView.ItemContainerStyle>
+                            <Style TargetType="sdk:TreeViewItem">
+                                <Setter Property="IsExpanded" Value="True"/>
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="sdk:TreeViewItem">
+                                            <Grid>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="SelectionStates">
+                                                        <VisualState x:Name="Selected">
+
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unselected" />
+                                                        <VisualState x:Name="SelectedInactive">
+
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="ExpansionStates">
+                                                        <VisualState x:Name="Expanded">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                        Storyboard.TargetName="ItemsHost">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Collapsed" />
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="HasItemsStates">
+                                                        <VisualState x:Name="HasItems">
+
+                                                        </VisualState>
+                                                        <VisualState x:Name="NoItems" >
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                        Storyboard.TargetName="ExpanderButton">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                        Storyboard.TargetName="Border">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border x:Name="Border" IsHitTestVisible="False" Height="14" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_1}" HorizontalAlignment="Stretch"/>
+                                                <ToggleButton x:Name="ExpanderButton" Height="14"
+                                                        Style="{StaticResource ExpandCollapseToggleStyle}"  ClickMode="Press"
+                                                        IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                <ContentPresenter x:Name="Header" Grid.Column="1" Height="14" IsHitTestVisible="False" Margin="0 0 14 0"
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding Header}"
+                                                                  ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                                                <ItemsPresenter x:Name="ItemsHost" IsHitTestVisible="False" Margin="1 1 0 1"
+                                                                  Grid.Row="1" Grid.ColumnSpan="2"
+                                                                  Visibility="Collapsed"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:TreeView.ItemContainerStyle>
+
+                        <sdk:TreeView.ItemTemplate>
+                            <sdk:HierarchicalDataTemplate ItemsSource="{Binding Value}">
+                                <TextBlock FontWeight="Bold" Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" />
+                                <sdk:HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid VerticalAlignment="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition MinWidth="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Key.Name}" TextAlignment="Left" VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left" />
+                                            <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0" Text="{Binding Value}" 
+                                                       TextAlignment="Left" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </sdk:HierarchicalDataTemplate.ItemTemplate>
+                            </sdk:HierarchicalDataTemplate>
+                        </sdk:TreeView.ItemTemplate>
+                    </sdk:TreeView>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border x:Name="Root" CornerRadius="2" BorderThickness="{TemplateBinding BorderThickness}" Background="#FFFFFFFF"
+					        BorderBrush="{TemplateBinding BorderBrush}">
+                        <Border BorderBrush="#FFFFFFFF" BorderThickness="1" CornerRadius="1" Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}">
+                            <Border.Resources>
+                                <Storyboard x:Key="Visible State" />
+                                <Storyboard x:Key="Normal State" />
+                            </Border.Resources>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <ContentPresenter Grid.RowSpan="2" Grid.ColumnSpan="2"
+								                  Content="{TemplateBinding Content}" 
+								                  ContentTemplate="{TemplateBinding ContentTemplate}"
+								                  Cursor="{TemplateBinding Cursor}" Margin="0"/>
+                                <ToggleButton x:Name="PinButton" Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
+                                          IsChecked="{Binding IsPinned, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                            </Grid>
+                        </Border>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

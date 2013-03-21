@@ -53,6 +53,7 @@
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +95,7 @@
     <Compile Include="WatermarkTextBox\WatermarkTextBox.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Assets\Theme\Default\Controls\DropDownButton\SettingsDropDownButton.xaml">
+    <Page Include="Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +171,9 @@
     <Resource Include="Assets\Theme\Default\Images\printer_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\save_16xLG.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\LaunchConditionsEditor_259.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

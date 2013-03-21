@@ -8,7 +8,7 @@
         <ResourceDictionary Source="Controls/StatusBar/StatusBar.xaml"/>
         <ResourceDictionary Source="Controls/TabControl/MainTabControl.xaml"/>
         <ResourceDictionary Source="Controls/Expander/ExpanderToLeft.xaml"/>
-        <ResourceDictionary Source="Controls/DropDownButton/SettingsDropDownButton.xaml"/>
+        <ResourceDictionary Source="Controls/DropDownButton/DropDownButton.xaml"/>
         <ResourceDictionary Source="Controls/ColorPicker/ColorPicker.xaml"/>
         <ResourceDictionary Source="Controls/ToolBar/ToolBarButton.xaml"/>
         <ResourceDictionary Source="Controls/PinnableTooltip/PinnableTooltip.xaml"/>
