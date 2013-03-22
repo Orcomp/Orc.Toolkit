@@ -27,7 +27,7 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <sdk:TreeView ItemsSource="{Binding }" Background="Transparent" BorderThickness="0" Margin="0" Padding="0" >
+                    <sdk:TreeView ItemsSource="{Binding }" Background="Transparent" BorderThickness="0" Margin="0" Padding="0" MaxHeight="500">
                         <sdk:TreeView.Template>
                             <ControlTemplate TargetType="sdk:TreeView">
                                 <Grid Background="Transparent">
@@ -156,8 +156,14 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
+                                
+                                <Border>
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--header pattern-->
+                                    </StackPanel>
+                                </Border>
                                
-                                <ContentPresenter Grid.RowSpan="2" Grid.ColumnSpan="2"
+                                <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"
 								                  Content="{TemplateBinding Content}" 
 								                  ContentTemplate="{TemplateBinding ContentTemplate}"
 								                  Cursor="{TemplateBinding Cursor}" Margin="0"/>

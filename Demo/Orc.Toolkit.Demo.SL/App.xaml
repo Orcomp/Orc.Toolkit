@@ -7,8 +7,15 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Assets/Styles.xaml" />
-                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Main.xaml"/>
-			</ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Shared/Colors.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Shared/ContentTemplates.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Shared/Controls.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Controls/Expander/ExpanderToLeft.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Controls/StatusBar/ItemsPanelTemplate.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Controls/StatusBar/StatusBar.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Controls/DropDownButton/DropDownButton.xaml"/>
+                <ResourceDictionary Source="/Orc.Toolkit;component/Assets/Theme/Default/Controls/ToolBar/ToolBarButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
 
