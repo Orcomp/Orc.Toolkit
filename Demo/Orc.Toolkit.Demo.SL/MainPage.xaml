@@ -64,13 +64,13 @@
 
                     <Rectangle x:Name="Divider5" Style="{StaticResource DividerStyle}" />
 
-					<HyperlinkButton x:Name="BtnAbout" Style="{StaticResource LinkStyle}"
-					                 NavigateUri="/About" TargetName="ContentFrame" Content="About" />
+                    <HyperlinkButton x:Name="Controls" Style="{StaticResource LinkStyle}"
+					                 NavigateUri="/Controls" TargetName="ContentFrame" Content="Controls" />
 
                     <Rectangle x:Name="Divider6" Style="{StaticResource DividerStyle}" />
 
-                    <HyperlinkButton x:Name="BtnDropDown" Style="{StaticResource LinkStyle}"
-					                 NavigateUri="/Controls" TargetName="ContentFrame" Content="Controls" />
+                    <HyperlinkButton x:Name="BtnAbout" Style="{StaticResource LinkStyle}"
+					                 NavigateUri="/About" TargetName="ContentFrame" Content="About" />
 
                 </StackPanel>
 			</Border>
