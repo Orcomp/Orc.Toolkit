@@ -88,7 +88,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="BorderButton" Background="Transparent" >
+                        <Border x:Name="BorderButton" Background="Transparent">
                             <Path HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
                               Data="M0,5 H7 M7,0 V11 M8,3 H15 V8 H8 M8,4 H15" Stroke="{TemplateBinding Foreground}" 
                                   RenderTransformOrigin="0.5 0.5" x:Name="path"
@@ -101,6 +101,8 @@
                                 </Path.RenderTransform>
                             </Path>
                         </Border>
+                        
+                        
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
