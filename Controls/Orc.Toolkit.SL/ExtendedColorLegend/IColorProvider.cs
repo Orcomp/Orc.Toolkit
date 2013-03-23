@@ -33,6 +33,11 @@ namespace Orc.Toolkit
         /// </summary>
         string Description { get; set; }
 
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        string Id { get; set; }
+
         #endregion
     }
 }
