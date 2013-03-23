@@ -139,6 +139,8 @@ namespace Orc.Toolkit.Demo.Views
             }
         }
 
+        public string Id { get; set; }
+
         #endregion
 
         #region INotifyPropertyChanged Members

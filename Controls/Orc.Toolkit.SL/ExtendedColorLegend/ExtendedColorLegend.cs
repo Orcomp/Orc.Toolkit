@@ -172,7 +172,10 @@ namespace Orc.Toolkit
         /// </summary>
         private ButtonBase button;
 
-        public CheckBox checkBox;
+        /// <summary>
+        /// The check box.
+        /// </summary>
+        private CheckBox checkBox;
 
         /// <summary>
         /// Item color of which is editing now
@@ -239,7 +242,6 @@ namespace Orc.Toolkit
                 this.SetValue(AllowColorEditingProperty, value);
             }
         }
-
         
         /// <summary>
         /// Gets or sets a value indicating whether search box is shown or not
@@ -390,11 +392,14 @@ namespace Orc.Toolkit
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether is all visible.
+        /// </summary>
         public bool IsAllVisible
         {
             get
             {
-                return (bool) GetValue(IsAllVisibleProperty);
+                return (bool)GetValue(IsAllVisibleProperty);
             }
 
             set
@@ -452,32 +457,33 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// Gets or sets the color change command
+        /// Gets the color change command
         /// </summary>
         public ICommand ChangeColorCommand
         {
             get
             {
-                return this.changeColorCommand ?? (this.changeColorCommand = new DelegateCommand(o =>
-                {
-                    if (!this.AllowColorEditing)
-                    {
-                        return;
-                    }
+                return this.changeColorCommand ?? (this.changeColorCommand = new DelegateCommand(
+                    o =>
+                        {
+                            if (!this.AllowColorEditing)
+                            {
+                                return;
+                            }
 
-                    this.currentColorProvider = null;
-                    var colorProvider = o as IColorProvider;
+                            this.currentColorProvider = null;
+                            var colorProvider = o as IColorProvider;
 
-                    if (colorProvider == null)
-                    {
-                        return;
-                    }
+                            if (colorProvider == null)
+                            {
+                                return;
+                            }
 
-                    this.EditingColor = colorProvider.Color;
-                    this.currentColorProvider = colorProvider;
-                    this.IsColorSelecting = true;
-
-                }, p => p != null));
+                            this.EditingColor = colorProvider.Color;
+                            this.currentColorProvider = colorProvider;
+                            this.IsColorSelecting = true;
+                        }, 
+                        p => p != null));
             }
         }
 
@@ -504,23 +510,21 @@ namespace Orc.Toolkit
                 //#endif
             }
 
-            if (button != null)
+            if (this.button != null)
             {
-                button.Click += (s, e) =>
+                this.button.Click += (s, e) =>
                     {
                         if (listBox != null)
-                            listBox.SelectedIndex = -1;
+                        {
+                            this.listBox.SelectedIndex = -1;
+                        }
                     };
             }
 
-            if (this.checkBox != null) 
+            if (this.checkBox != null)
             {
-                this.checkBox.Checked += (sender, args) => { 
-                    this.IsAllVisible = true; 
-                };
-                this.checkBox.Unchecked += (sender, args) => { 
-                    this.IsAllVisible = false; 
-                };
+                this.checkBox.Checked += (sender, args) => { this.IsAllVisible = true; };
+                this.checkBox.Unchecked += (sender, args) => { this.IsAllVisible = false; };
             }
 
             this.colorBoard = new ColorBoard();
@@ -540,7 +544,10 @@ namespace Orc.Toolkit
         /// The get selected list.
         /// </summary>
         /// <returns>
-        /// The <see cref="ObservableCollection"/>.
+        /// The <see>
+        ///         <cref>ObservableCollection</cref>
+        ///     </see>
+        ///     .
         /// </returns>
         public IEnumerable<IColorProvider> GetSelectedList()
         {
@@ -670,50 +677,6 @@ namespace Orc.Toolkit
         }
 
         #endregion //Commands
-
-        /// <summary>
-        /// Handler for double click
-        /// </summary>
-        /// <param name="sender">the list box item</param>
-        /// <param name="e">event parameters</param>
-        private void ListBoxMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (!this.AllowColorEditing)
-            {
-                return;
-            }
-
-            this.currentColorProvider = null;
-            var elem = (UIElement)this.InputHitTest(e.GetPosition(this));
-            ListBoxItem clickedItem = null;
-
-            while (elem != this)
-            {
-                if (elem is ListBoxItem)
-                {
-                    clickedItem = (ListBoxItem)elem;
-                    break;
-                }
-
-                elem = (UIElement)VisualTreeHelper.GetParent(elem);
-            }
-
-            if (clickedItem == null)
-            {
-                return;
-            }
-
-            var colorProvider = clickedItem.Content as IColorProvider;
-
-            if (colorProvider == null)
-            {
-                return;
-            }
-
-            this.EditingColor = colorProvider.Color;
-            this.currentColorProvider = colorProvider;
-            this.IsColorSelecting = true;
-        }
 
         #endif
 
