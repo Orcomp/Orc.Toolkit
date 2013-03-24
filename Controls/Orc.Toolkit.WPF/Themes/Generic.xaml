@@ -1325,14 +1325,15 @@
                                     </Grid>
                                 </Border>
                             </Grid>
-                            <ListBox Grid.Row="2" ItemsSource="{Binding FilteredItemsSource, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0" x:Name="PART_List">
+                            <ListBox Grid.Row="2" ItemsSource="{Binding FilteredItemsSource, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0" x:Name="PART_List" HorizontalContentAlignment="Stretch">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="local:IColorProvider">
-                                        <Grid>
+                                        <Grid HorizontalAlignment="Stretch">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition x:Name="visibilityCheckColumn" Width="15"/>
                                                 <ColumnDefinition Width="24"/>
-                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <CheckBox x:Name="visibilityCheckbox" Grid.Column="0" IsChecked="{Binding IsVisible}" VerticalAlignment="Center"
                                                       Visibility="{Binding ShowColorVisibilityControls, 
@@ -1380,6 +1381,7 @@
                                             </Button>
                                                                                         
                                             <TextBlock Text="{Binding Description}" Grid.Column="2"/>
+                                            <TextBlock Text="{Binding AdditionalData}" Grid.Column="3" Margin="0 0 10 0"></TextBlock>
                                         </Grid>
                                         <DataTemplate.Triggers>
                                             <MultiTrigger>

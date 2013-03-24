@@ -31,9 +31,9 @@ namespace Orc.Toolkit.Demo.Views
         public void FillLegend(ExtendedColorLegend elc)
         {
             var colors = new ObservableCollection<IColorProvider>();
-            colors.Add(new DemoColorProvider() { Color = Colors.Red, IsVisible = true, Description = "Red" });
-            colors.Add(new DemoColorProvider() { Color = Colors.Yellow, IsVisible = true, Description = "Yellow" });
-            colors.Add(new DemoColorProvider() { Color = Colors.Green, IsVisible = true, Description = "Green" });
+            colors.Add(new DemoColorProvider() { Color = Colors.Red, IsVisible = true, Description = "Red", AdditionalData = "(5)"});
+            colors.Add(new DemoColorProvider() { Color = Colors.Yellow, IsVisible = true, Description = "Yellow", AdditionalData = "(4)" });
+            colors.Add(new DemoColorProvider() { Color = Colors.Green, IsVisible = true, Description = "Green", AdditionalData = "(3)" });
             elc.ItemsSource = colors;
         }
 
@@ -140,6 +140,8 @@ namespace Orc.Toolkit.Demo.Views
         }
 
         public string Id { get; set; }
+
+        public string AdditionalData { get; set; }
 
         #endregion
 
