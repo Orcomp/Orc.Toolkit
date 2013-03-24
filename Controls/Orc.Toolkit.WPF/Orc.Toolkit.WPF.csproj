@@ -74,6 +74,12 @@
     <Compile Include="..\Orc.Toolkit.SL\Helpers\ScreenUtils.cs">
       <Link>Helpers\ScreenUtils.cs</Link>
     </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\PinnableTooltip\LinkTooltipItem.cs">
+      <Link>PinnableTooltip\LinkTooltipItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\PinnableTooltip\OrdinalTooltipItem.cs">
+      <Link>PinnableTooltip\OrdinalTooltipItem.cs</Link>
+    </Compile>
     <Compile Include="..\Orc.Toolkit.SL\PinnableTooltip\PinnableTooltipService.cs">
       <Link>PinnableTooltip\PinnableTooltipService.cs</Link>
     </Compile>
@@ -87,6 +93,7 @@
     <Compile Include="ColorPicker\PredefinedColor.cs" />
     <Compile Include="Expander\Expander.cs" />
     <Compile Include="ExtendedColorLegend\Commands\ExtendedColorLegendCommands.cs" />
+    <Compile Include="PinnableTooltip\PinnableItemTemplateSelector.cs" />
     <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
     <Compile Include="ColorPicker\ColorBoard.cs" />
     <Compile Include="ColorPicker\ColorHelper.cs" />

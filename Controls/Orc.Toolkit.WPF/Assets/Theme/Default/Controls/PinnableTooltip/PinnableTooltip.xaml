@@ -6,6 +6,40 @@
         <ResourceDictionary Source="../../Shared/Colors.xaml"/>
         <ResourceDictionary Source="../../Shared/Controls.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+    <local:PinnableItemTemplateSelector x:Key="PinnableItemTemplateSelector" />
+
+    <DataTemplate x:Key="OrdinalTooltipItemTemplate" DataType="local:OrdinalTooltipItem">
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left" />
+            <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0" Text="{Binding Value}" 
+                                                       TextAlignment="Left" VerticalAlignment="Center" />
+        </Grid>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="LinkTooltipItemTemplate" DataType="local:LinkTooltipItem">
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left" />
+            
+            <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0"
+                                                       TextAlignment="Left" VerticalAlignment="Center">
+                <Hyperlink Command="{Binding OpenLinkCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PinnableTooltip}}}"
+                           CommandParameter="{Binding Value}">    
+                    <TextBlock Text="{Binding Value}" />
+                </Hyperlink>
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
     
     <Style TargetType="local:PinnableTooltip">
         <Setter Property="Padding" Value="0"/>
@@ -92,23 +126,9 @@
                             </Style>
                         </TreeView.ItemContainerStyle>
                         <TreeView.ItemTemplate>
-                            <HierarchicalDataTemplate ItemsSource="{Binding Value}">                                
+                            <HierarchicalDataTemplate ItemsSource="{Binding Value}" ItemTemplateSelector="{StaticResource PinnableItemTemplateSelector}">                                
                                 <TextBlock FontWeight="Bold" Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
                                            HorizontalAlignment="Left" />
-                                <HierarchicalDataTemplate.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid VerticalAlignment="Center">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition MinWidth="100"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Key.Name}" TextAlignment="Left" VerticalAlignment="Center"
-                                                       HorizontalAlignment="Left" />
-                                            <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0" Text="{Binding Value}" 
-                                                       TextAlignment="Left" VerticalAlignment="Center" />
-                                        </Grid>
-                                    </DataTemplate>
-                                </HierarchicalDataTemplate.ItemTemplate>
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
                     </TreeView>
