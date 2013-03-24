@@ -17,6 +17,7 @@ namespace Orc.Toolkit
     using System.Windows.Input;
     using System.Windows.Media;
 
+    using Orc.Toolkit.Commands;
     using Orc.Toolkit.Helpers;
 
     /// <summary>
@@ -110,6 +111,11 @@ namespace Orc.Toolkit
         ///     The timer.
         /// </summary>
         private TooltipTimer timer;
+
+        /// <summary>
+        /// Change color command
+        /// </summary>
+        private ICommand openLinkCommand;
 
         #endregion
 
@@ -216,6 +222,22 @@ namespace Orc.Toolkit
             set
             {
                 this.SetValue(VerticalOffsetProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the color change command
+        /// </summary>
+        public ICommand OpenLinkCommand
+        {
+            get
+            {
+                return this.openLinkCommand ?? (this.openLinkCommand = new DelegateCommand(
+                    o =>
+                    {
+                        MessageBox.Show("I am open link command");
+                    },
+                    p => true));
             }
         }
 
