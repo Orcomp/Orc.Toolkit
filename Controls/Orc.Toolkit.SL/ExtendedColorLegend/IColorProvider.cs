@@ -34,6 +34,11 @@ namespace Orc.Toolkit
         string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the additional data.
+        /// </summary>
+        string AdditionalData { get; set; }
+
+        /// <summary>
         /// Gets or sets the id.
         /// </summary>
         string Id { get; set; }
