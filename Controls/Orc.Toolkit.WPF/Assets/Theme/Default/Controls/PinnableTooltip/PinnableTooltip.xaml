@@ -147,7 +147,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <Border Margin="5 0 5 0" Height="10" VerticalAlignment="Center">
+                                <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center">
                                     <Border.Background>
                                         <DrawingBrush TileMode="Tile" Viewport="0 0 3 3" ViewportUnits="Absolute"
                                                       Viewbox="0,0,4,4" ViewboxUnits="Absolute">

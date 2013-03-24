@@ -23,6 +23,7 @@ namespace Orc.Toolkit
     ///     The pinnable tooltip control.
     /// </summary>
     [TemplatePart(Name = "PinButton", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "DragGrip", Type = typeof(FrameworkElement))]
     public class PinnableTooltip : ContentControl, IControlAdornerChild
     {
         #region Constants
@@ -64,6 +65,11 @@ namespace Orc.Toolkit
         #endregion
 
         #region Fields
+
+        /// <summary>
+        ///     The drag grip.
+        /// </summary>
+        private FrameworkElement dragGrip;
 
         /// <summary>
         ///     The adorner.
@@ -421,11 +427,30 @@ namespace Orc.Toolkit
             {
                 toggleButton.Focusable = false;
             }
-        }
 
+            this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
+            if (this.dragGrip != null)
+            {
+                this.dragGrip.PreviewMouseLeftButtonDown += dragGrip_PreviewMouseLeftButtonDown;
+            }
+        }
+            
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Pin and start dragging
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void dragGrip_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!this.IsPinned)
+            {
+                this.IsPinned = true;
+            }
+        }
 
         /// <summary>
         ///     The perform placement.
