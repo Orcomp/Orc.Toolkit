@@ -6,6 +6,8 @@
         <ResourceDictionary Source="../../Shared/Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <orcTkt:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
     <Style x:Key="DropDownButtonStyle" TargetType="{x:Type orcTkt:DropDownButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -79,8 +81,50 @@
 
                         <Popup AllowsTransparency="True" Placement="{Binding PopupPlacement, RelativeSource={RelativeSource TemplatedParent}}" 
                                x:Name="PART_Popup" PlacementTarget="{Binding ElementName=PART_ToggleDropDown}"
-                               StaysOpen="False" Focusable="True" >
-                            <ContentControl x:Name="PART_Content" Content="{TemplateBinding Content}" Focusable="True"/>
+                               StaysOpen="True" Focusable="True" >
+                            <Border Margin="0 1 0 0" Background="#efefef" BorderThickness="1" BorderBrush="#acacac" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                <Border BorderThickness="1" BorderBrush="#fff">
+                                    <Grid Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <Border.Background>
+                                                <DrawingBrush TileMode="Tile" Viewport="0 0 3 3" ViewportUnits="Absolute"
+                                                      Viewbox="0,0,4,4" ViewboxUnits="Absolute">
+                                                    <DrawingBrush.Drawing>
+                                                        <DrawingGroup >
+                                                            <GeometryDrawing Brush="#fff">
+                                                                <GeometryDrawing.Geometry>
+                                                                    <RectangleGeometry Rect="1 1 3 3"/>
+                                                                </GeometryDrawing.Geometry>
+                                                            </GeometryDrawing>
+                                                            <GeometryDrawing Brush="#ccc">
+                                                                <GeometryDrawing.Geometry>
+                                                                    <RectangleGeometry Rect="0 0 2 2"/>
+                                                                </GeometryDrawing.Geometry>
+                                                            </GeometryDrawing>
+                                                        </DrawingGroup>
+                                                    </DrawingBrush.Drawing>
+                                                </DrawingBrush>
+                                            </Border.Background>
+                                        </Border>
+
+                                        <ContentControl x:Name="PART_Content" Grid.Row="1" Grid.ColumnSpan="2"
+                                                Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="True"/>
+
+                                        <ToggleButton x:Name="PinButton" Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
+                                          IsChecked="{Binding IsPinned, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                              Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    </Grid>
+                                </Border>
+                            </Border>
                         </Popup>
 
                     </Grid>

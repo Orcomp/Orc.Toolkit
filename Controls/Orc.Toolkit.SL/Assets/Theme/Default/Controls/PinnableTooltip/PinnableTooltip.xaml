@@ -27,7 +27,7 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <sdk:TreeView ItemsSource="{Binding }" Background="Transparent" BorderThickness="0" Margin="0" Padding="0" MaxHeight="500">
+                    <sdk:TreeView ItemsSource="{Binding DataContext, RelativeSource={RelativeSource AncestorType=local:PinnableTooltip}}" Background="Transparent" BorderThickness="0" Margin="0" Padding="0" MaxHeight="500">
                         <sdk:TreeView.Template>
                             <ControlTemplate TargetType="sdk:TreeView">
                                 <Grid Background="Transparent">
@@ -109,8 +109,7 @@
                                     </Setter.Value>
                                 </Setter>
                             </Style>
-                        </sdk:TreeView.ItemContainerStyle>
-                        
+                        </sdk:TreeView.ItemContainerStyle>                        
                         <sdk:TreeView.ItemTemplate>
                             <sdk:HierarchicalDataTemplate ItemsSource="{Binding Value}">
                                 <TextBlock FontWeight="Bold" Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
@@ -156,8 +155,8 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                
-                                <Border>
+
+                                <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Background="Transparent">
                                     <StackPanel Orientation="Horizontal">
                                         <!--header pattern-->
                                     </StackPanel>
@@ -166,7 +165,7 @@
                                 <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"
 								                  Content="{TemplateBinding Content}" 
 								                  ContentTemplate="{TemplateBinding ContentTemplate}"
-								                  Cursor="{TemplateBinding Cursor}" Margin="0"/>
+								                  Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}"/>
                                 <ToggleButton x:Name="PinButton" Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
                                           IsChecked="{Binding IsPinned, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
                             </Grid>
