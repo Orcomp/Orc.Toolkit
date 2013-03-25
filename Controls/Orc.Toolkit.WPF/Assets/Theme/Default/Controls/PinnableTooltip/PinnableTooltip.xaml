@@ -94,9 +94,9 @@
                                                         IsChecked="{Binding IsExpanded, 
                                                         RelativeSource={RelativeSource TemplatedParent}}"/>                                                
                                                 <ContentPresenter x:Name="PART_Header" Grid.Column="1" Height="14"
-                                                          ContentSource="Header" IsHitTestVisible="False" Margin="0 0 14 0"
+                                                          ContentSource="Header" Margin="0 0 14 0"
                                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
-                                                <ItemsPresenter x:Name="ItemsHost" IsHitTestVisible="False" Margin="-10 1 0 1"
+                                                <ItemsPresenter x:Name="ItemsHost" Margin="-10 1 0 1"
                                                                   Grid.Row="1" Grid.ColumnSpan="2"
                                                                   Visibility="Collapsed" />
                                             </Grid>
