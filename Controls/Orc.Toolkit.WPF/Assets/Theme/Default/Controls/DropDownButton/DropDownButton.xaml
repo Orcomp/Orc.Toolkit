@@ -4,6 +4,7 @@
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../../Shared/Colors.xaml"/>
+        <ResourceDictionary Source="../../Shared/Controls.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <orcTkt:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>

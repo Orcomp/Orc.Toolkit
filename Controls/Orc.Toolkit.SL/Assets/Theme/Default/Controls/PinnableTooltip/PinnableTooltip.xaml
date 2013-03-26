@@ -121,7 +121,7 @@
                                                 <ColumnDefinition MinWidth="100"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Key.Name}" TextAlignment="Left" VerticalAlignment="Center"
+                                            <TextBlock Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
                                                        HorizontalAlignment="Left" />
                                             <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0" Text="{Binding Value}" 
                                                        TextAlignment="Left" VerticalAlignment="Center" />
@@ -156,7 +156,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Background="Transparent">
+                                <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Background="{StaticResource Brush_Control_2}">
                                     <StackPanel Orientation="Horizontal">
                                         <!--header pattern-->
                                     </StackPanel>

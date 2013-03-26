@@ -7,41 +7,29 @@
     
     <Color x:Key="Color_Font_1">#000000</Color>
     <SolidColorBrush x:Key="Brush_Font_1" Color="{StaticResource Color_Font_1}"/>
-
     <Color x:Key="Color_Font_2">#303030</Color>
     <SolidColorBrush x:Key="Brush_Font_2" Color="{StaticResource Color_Font_2}"/>
-
-
-
     <Color x:Key="Color_Control_1">#eeeeee</Color>
     <SolidColorBrush x:Key="Brush_Control_1" Color="{StaticResource Color_Control_1}"/>
-
     <Color x:Key="Color_Control_2">#cccccc</Color>
     <SolidColorBrush x:Key="Brush_Control_2" Color="{StaticResource Color_Control_2}"/>
-
     <Color x:Key="Color_Control_3">#ffffff</Color>
     <SolidColorBrush x:Key="Brush_Control_3" Color="{StaticResource Color_Control_3}"/>
-
     <Color x:Key="Color_Control_4">#909090</Color>
     <SolidColorBrush x:Key="Brush_Control_4" Color="{StaticResource Color_Control_4}"/>
-
     <Color x:Key="Color_Control_5">#f5f5f5</Color>
     <SolidColorBrush x:Key="Brush_Control_5" Color="{StaticResource Color_Control_5}"/>
-
     <Color x:Key="Color_Highlight_1">#707070</Color>
     <SolidColorBrush x:Key="Brush_Highlight_1" Color="{StaticResource Color_Highlight_1}"/>
     <LinearGradientBrush x:Key="Brush_Highlight_2" StartPoint="0 0" EndPoint="1 0">
         <GradientStop Color="{StaticResource Color_Highlight_1}" Offset="0.6"/>
         <GradientStop Color="#00ffffff" Offset="1.0"/>
     </LinearGradientBrush>
-
     <Color x:Key="Color_Hover">#FFf1f1f1</Color>
     <Color x:Key="Color_MediumLight">#FFdddddd</Color>
     <Color x:Key="Color_Medium">#FF888888</Color>
     <Color x:Key="Color_Selection">#FF667ade</Color>
     <SolidColorBrush x:Key="Brush_MediumColor" Color="{StaticResource Color_Medium}"/>
-
-
     <!--STATUSBAR-->
     <Color x:Key="Color_StatusBarBackground_TopDark">#939aa3</Color>
     <Color x:Key="Color_StatusBarBackground_TopLight">#f7fafc</Color>
@@ -49,28 +37,20 @@
     <Color x:Key="Color_StatusBarBackground_Dark">#b7bcc1</Color>
     <Color x:Key="Color_StatusBarBackground_Bottom">#767573</Color>
     <Color x:Key="Color_StatusBarBackground_Side">#767573</Color>
-
     <Color x:Key="Color_Foreground">#3b3b5a</Color>
     <Color x:Key="Color_Foreground_Disaled">#803b3b5a</Color>
-
     <Color x:Key="Color_Separator_Dark">#75797d</Color>
     <Color x:Key="Color_Separator_Light">#4075797d</Color>
-
     <Color x:Key="Color_Separator_SideDark">#80ffffff</Color>
     <Color x:Key="Color_Separator_SideLight">#50ffffff</Color>
-
     <Color x:Key="Color_SizeGrip_Dark">#9da6b0</Color>
     <Color x:Key="Color_SizeGrip_Light">#e6e9ed</Color>
-
     <Color x:Key="HilightColor1">#edc756</Color>
-
     <Color x:Key="Color_TextBackground">#fff</Color>
     <Color x:Key="Color_ComboBoxDropDownBorder">#a7abb0</Color>
     <Color x:Key="Color_ComboBoxBorder_Normal">#a7abb0</Color>
-
     <Color x:Key="Color_ComboBoxArrow_Dark">#636567</Color>
     <Color x:Key="Color_ComboBoxArrow_Light">#838587</Color>
-
     <Color x:Key="Color_ButtonBorder">#7f8792</Color>
     <Color x:Key="Color_Slider_Border">#7f8994</Color>
     <Color x:Key="Color_Slider_Fill_Light">#fefefe</Color>
@@ -83,18 +63,13 @@
     <Color x:Key="Color_ButtonFill_Light">#fdfefe</Color>
     <Color x:Key="Color_ButtonFill_Middle">#f7f9fb</Color>
     <Color x:Key="Color_ButtonFill_Dark">#dee1e4</Color>
-
-
     <SolidColorBrush x:Key="Brush_Foreground" Color="{StaticResource Color_Foreground}" />
     <SolidColorBrush x:Key="Brush_Foreground_Disabled" Color="{StaticResource Color_Foreground_Disaled}" />
-
     <SolidColorBrush x:Key="Brush_SizeGrip_Dark" Color="{StaticResource Color_SizeGrip_Dark}" />
     <SolidColorBrush x:Key="Brush_SizeGrip_Light" Color="{StaticResource Color_SizeGrip_Light}" />
-
     <SolidColorBrush x:Key="Brush_TextBackground" Color="{StaticResource Color_TextBackground}" />
     <SolidColorBrush x:Key="Brush_ComboBoxDropDownBorder" Color="{StaticResource Color_ComboBoxDropDownBorder}" />
     <SolidColorBrush x:Key="Brush_ComboBoxBorder_Normal" Color="{StaticResource Color_ComboBoxBorder_Normal}" />
-
     <LinearGradientBrush x:Key="Brush_StatusBarBackground" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="{StaticResource Color_StatusBarBackground_Light}" Offset="0" />
         <GradientStop Color="{StaticResource Color_StatusBarBackground_Dark}" Offset="1" />
@@ -103,7 +78,6 @@
 	                 Color="{StaticResource Color_StatusBarBackground_TopDark}" />
     <SolidColorBrush x:Key="Brush_StatusBarBckgroundTopLightLine"
 	                 Color="{StaticResource Color_StatusBarBackground_TopLight}" />
-
     <LinearGradientBrush x:Key="Brush_Separator_Center" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="{StaticResource Color_Separator_Light}" Offset="0" />
         <GradientStop Color="{StaticResource Color_Separator_Dark}" Offset="0.5" />
@@ -114,7 +88,6 @@
         <GradientStop Color="{StaticResource Color_Separator_SideDark}" Offset="0.5" />
         <GradientStop Color="{StaticResource Color_Separator_SideLight}" Offset="1" />
     </LinearGradientBrush>
-
     <LinearGradientBrush x:Key="Brush_ComboBoxArrow" StartPoint="1,1" EndPoint="0,0">
         <GradientStop Color="{StaticResource Color_ComboBoxArrow_Dark}" Offset="0" />
         <GradientStop Color="{StaticResource Color_ComboBoxArrow_Light}" Offset="1" />
@@ -214,7 +187,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style TargetType="local:FolderPicker">
 		<Setter Property="MinWidth" Value="30" />
@@ -725,9 +697,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-    
-    
+    </Style>   
 
     <Style TargetType="local:StatusBar">
         <Setter Property="Margin" Value="0"/>
@@ -809,9 +779,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    
+    </Style>    
 
     <Style TargetType="local:ColorPicker">
 		<Setter Property="TabNavigation" Value="Once" />
@@ -1344,7 +1312,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
     
     <Style TargetType="local:DropDownButton">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -1392,7 +1359,51 @@
                         </ToggleButton>
 
                         <Popup x:Name="PART_Popup" >
-                            <ContentControl x:Name="PART_Content" Content="{TemplateBinding Content}"/>
+                            <Border Margin="0 1 0 0" Background="#efefef" BorderThickness="1" BorderBrush="#acacac">
+                                <Border BorderThickness="1" BorderBrush="#fff">
+                                    <Grid Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="{StaticResource Color_Control_2}"/>
+                                                <!--<DrawingBrush TileMode="Tile" Viewport="0 0 3 3" ViewportUnits="Absolute"
+                                                      Viewbox="0,0,4,4" ViewboxUnits="Absolute">
+                                                    <DrawingBrush.Drawing>
+                                                        <DrawingGroup >
+                                                            <GeometryDrawing Brush="#fff">
+                                                                <GeometryDrawing.Geometry>
+                                                                    <RectangleGeometry Rect="1 1 3 3"/>
+                                                                </GeometryDrawing.Geometry>
+                                                            </GeometryDrawing>
+                                                            <GeometryDrawing Brush="#ccc">
+                                                                <GeometryDrawing.Geometry>
+                                                                    <RectangleGeometry Rect="0 0 2 2"/>
+                                                                </GeometryDrawing.Geometry>
+                                                            </GeometryDrawing>
+                                                        </DrawingGroup>
+                                                    </DrawingBrush.Drawing>
+                                                </DrawingBrush>-->
+                                            </Border.Background>
+                                        </Border>
+
+                                        <ContentControl x:Name="PART_Content" Grid.Row="1" Grid.ColumnSpan="2"
+                                                Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}"
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" IsTabStop="True"/>
+
+                                        <ToggleButton x:Name="PinButton" Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
+                                          IsChecked="{Binding IsPinned, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                              Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                    </Grid>
+                                </Border>
+                            </Border>
                         </Popup>
                     </Grid>
                 </ControlTemplate>

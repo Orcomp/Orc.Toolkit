@@ -4,6 +4,80 @@
 	xmlns:local="clr-namespace:Orc.Toolkit"
     xmlns:cmds="clr-namespace:Orc.Toolkit.Commands">
 
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <Color x:Key="Color_ButtonBorder">#7f8792</Color>
+    <Color x:Key="Color_Slider_Border">#7f8994</Color>
+    <Color x:Key="Color_Slider_Fill_Light">#fefefe</Color>
+    <Color x:Key="Color_Slider_Fill_Dark">#e2e5e8</Color>
+    <Color x:Key="Color_Slider_Fill_Dark1">#b4bac0</Color>
+    <Color x:Key="Color_Slider_Line_Dark">#9da6b0</Color>
+    <Color x:Key="Color_Slider_Line_Light">#e6e9ed</Color>
+    <Color x:Key="Color_Foreground_Light">#828487</Color>
+    <Color x:Key="Color_Foreground_Dark">#4c4e4f</Color>
+    <Color x:Key="Color_ButtonFill_Light">#fdfefe</Color>
+    <Color x:Key="Color_ButtonFill_Middle">#f7f9fb</Color>
+    <Color x:Key="Color_ButtonFill_Dark">#dee1e4</Color>
+    <Color x:Key="Color_Font_1">#000000</Color>
+    <SolidColorBrush x:Key="Brush_Font_1" Color="{StaticResource Color_Font_1}"/>
+    <Color x:Key="Color_Font_2">#303030</Color>
+    <SolidColorBrush x:Key="Brush_Font_2" Color="{StaticResource Color_Font_2}"/>
+    <Color x:Key="Color_Control_1">#eeeeee</Color>
+    <SolidColorBrush x:Key="Brush_Control_1" Color="{StaticResource Color_Control_1}"/>
+    <Color x:Key="Color_Control_2">#cccccc</Color>
+    <SolidColorBrush x:Key="Brush_Control_2" Color="{StaticResource Color_Control_2}"/>
+    <Color x:Key="Color_Control_3">#ffffff</Color>
+    <SolidColorBrush x:Key="Brush_Control_3" Color="{StaticResource Color_Control_3}"/>
+    <Color x:Key="Color_Control_4">#909090</Color>
+    <SolidColorBrush x:Key="Brush_Control_4" Color="{StaticResource Color_Control_4}"/>
+    <Color x:Key="Color_Control_5">#f5f5f5</Color>
+    <SolidColorBrush x:Key="Brush_Control_5" Color="{StaticResource Color_Control_5}"/>
+    <Color x:Key="Color_Highlight_1">#707070</Color>
+    <SolidColorBrush x:Key="Brush_Highlight_1" Color="{StaticResource Color_Highlight_1}"/>
+    <LinearGradientBrush x:Key="Brush_Highlight_2" StartPoint="0 0" EndPoint="1 0">
+        <GradientStop Color="{StaticResource Color_Highlight_1}" Offset="0.6"/>
+        <GradientStop Color="#00ffffff" Offset="1.0"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#FFFFB700" />
+    <LinearGradientBrush x:Key="MouseOverBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFFEFBF4" />
+        <GradientStop Offset="0.19" Color="#FFFDE7CE" />
+        <GradientStop Offset="0.39" Color="#FFFDDEB8" />
+        <GradientStop Offset="0.39" Color="#FFFFCE6B" />
+        <GradientStop Offset="0.79" Color="#FFFFDE9A" />
+        <GradientStop Offset="1" Color="#FFFFEBAA" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="#FFC29B29" />
+    <LinearGradientBrush x:Key="PressedBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFE3C085" />
+        <GradientStop Offset="0.19" Color="#FFF4CC89" />
+        <GradientStop Offset="0.36" Color="#FFF5C777" />
+        <GradientStop Offset="0.36" Color="#FFF5BB56" />
+        <GradientStop Offset="0.79" Color="#FFF4CE9A" />
+        <GradientStop Offset="1" Color="#FFF3E28D" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="TextBoxBorder" EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+        <GradientStop Color="#ABADB3" Offset="0.05" />
+        <GradientStop Color="#E2E3EA" Offset="0.07" />
+        <GradientStop Color="#E3E9EF" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TextBox_MouseOver" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#5794BF" Offset="0.05" />
+        <GradientStop Color="#B7D5EA" Offset="0.07" />
+        <GradientStop Color="#C7E2F1" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TextBox_Focused" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#3D7BAD" Offset="0.05" />
+        <GradientStop Color="#A4C9E3" Offset="0.07" />
+        <GradientStop Color="#B7D9ED" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TextBox_DisabledBorder" Color="#ADB2B5" />
+    <SolidColorBrush x:Key="TextBox_DisabledBackground" Color="#F4F4F4" />
+    
+
     <Style x:Key="Pin_ToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -64,7 +138,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
     <Style TargetType="local:FolderPicker">
 		<Setter Property="MinWidth" Value="30" />
 		<Setter Property="Template">
@@ -86,7 +160,7 @@
 		</Setter>
 	</Style>
 
-	<Style TargetType="local:PinnableTooltip">
+	<Style TargetType="{x:Type local:PinnableTooltip}">
 		<Setter Property="Background" Value="#FFF7F8FA" />
 		<Setter Property="Padding" Value="3,0,3,0" />
 		<Setter Property="BorderThickness" Value="1" />
@@ -102,7 +176,7 @@
 		</Setter>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="local:PinnableTooltip">
+				<ControlTemplate TargetType="{x:Type local:PinnableTooltip}">
 					<Border x:Name="Root" CornerRadius="2" BorderThickness="{TemplateBinding BorderThickness}" Background="#FFFFFFFF"
 					        BorderBrush="{TemplateBinding BorderBrush}">
 						<Border BorderBrush="#FFFFFFFF" BorderThickness="1" CornerRadius="1" Background="{TemplateBinding Background}"
@@ -140,20 +214,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
-	<Color x:Key="Color_ButtonBorder">#7f8792</Color>
-	<Color x:Key="Color_Slider_Border">#7f8994</Color>
-	<Color x:Key="Color_Slider_Fill_Light">#fefefe</Color>
-	<Color x:Key="Color_Slider_Fill_Dark">#e2e5e8</Color>
-	<Color x:Key="Color_Slider_Fill_Dark1">#b4bac0</Color>
-	<Color x:Key="Color_Slider_Line_Dark">#9da6b0</Color>
-	<Color x:Key="Color_Slider_Line_Light">#e6e9ed</Color>
-	<Color x:Key="Color_Foreground_Light">#828487</Color>
-	<Color x:Key="Color_Foreground_Dark">#4c4e4f</Color>
-	<Color x:Key="Color_ButtonFill_Light">#fdfefe</Color>
-	<Color x:Key="Color_ButtonFill_Middle">#f7f9fb</Color>
-	<Color x:Key="Color_ButtonFill_Dark">#dee1e4</Color>
-
 
 	<Style TargetType="{x:Type local:SliderPlusMinus}">
 		<Setter Property="Height" Value="16" />
@@ -1055,38 +1115,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
-    <Color x:Key="Color_Font_1">#000000</Color>
-    <SolidColorBrush x:Key="Brush_Font_1" Color="{StaticResource Color_Font_1}"/>
-
-    <Color x:Key="Color_Font_2">#303030</Color>
-    <SolidColorBrush x:Key="Brush_Font_2" Color="{StaticResource Color_Font_2}"/>
-
-
-
-    <Color x:Key="Color_Control_1">#eeeeee</Color>
-    <SolidColorBrush x:Key="Brush_Control_1" Color="{StaticResource Color_Control_1}"/>
-
-    <Color x:Key="Color_Control_2">#cccccc</Color>
-    <SolidColorBrush x:Key="Brush_Control_2" Color="{StaticResource Color_Control_2}"/>
-
-    <Color x:Key="Color_Control_3">#ffffff</Color>
-    <SolidColorBrush x:Key="Brush_Control_3" Color="{StaticResource Color_Control_3}"/>
-
-    <Color x:Key="Color_Control_4">#909090</Color>
-    <SolidColorBrush x:Key="Brush_Control_4" Color="{StaticResource Color_Control_4}"/>
-
-    <Color x:Key="Color_Control_5">#f5f5f5</Color>
-    <SolidColorBrush x:Key="Brush_Control_5" Color="{StaticResource Color_Control_5}"/>
-
-    <Color x:Key="Color_Highlight_1">#707070</Color>
-    <SolidColorBrush x:Key="Brush_Highlight_1" Color="{StaticResource Color_Highlight_1}"/>
-    <LinearGradientBrush x:Key="Brush_Highlight_2" StartPoint="0 0" EndPoint="1 0">
-        <GradientStop Color="{StaticResource Color_Highlight_1}" Offset="0.6"/>
-        <GradientStop Color="#00ffffff" Offset="1.0"/>
-    </LinearGradientBrush>
-
-    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     
     <Style TargetType="{x:Type local:DropDownButton}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -1186,29 +1214,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-    <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#FFFFB700" />
-    <LinearGradientBrush x:Key="MouseOverBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="#FFFEFBF4" />
-        <GradientStop Offset="0.19" Color="#FFFDE7CE" />
-        <GradientStop Offset="0.39" Color="#FFFDDEB8" />
-        <GradientStop Offset="0.39" Color="#FFFFCE6B" />
-        <GradientStop Offset="0.79" Color="#FFFFDE9A" />
-        <GradientStop Offset="1" Color="#FFFFEBAA" />
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="PressedBorderBrush" Color="#FFC29B29" />
-    <LinearGradientBrush x:Key="PressedBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0" Color="#FFE3C085" />
-        <GradientStop Offset="0.19" Color="#FFF4CC89" />
-        <GradientStop Offset="0.36" Color="#FFF5C777" />
-        <GradientStop Offset="0.36" Color="#FFF5BB56" />
-        <GradientStop Offset="0.79" Color="#FFF4CE9A" />
-        <GradientStop Offset="1" Color="#FFF3E28D" />
-    </LinearGradientBrush>
+    </Style>    
 
     <Style x:Key="ClearFilterButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
@@ -1258,28 +1264,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <LinearGradientBrush x:Key="TextBoxBorder" EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
-        <GradientStop Color="#ABADB3" Offset="0.05" />
-        <GradientStop Color="#E2E3EA" Offset="0.07" />
-        <GradientStop Color="#E3E9EF" Offset="1" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="TextBox_MouseOver" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#5794BF" Offset="0.05" />
-        <GradientStop Color="#B7D5EA" Offset="0.07" />
-        <GradientStop Color="#C7E2F1" Offset="1" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="TextBox_Focused" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#3D7BAD" Offset="0.05" />
-        <GradientStop Color="#A4C9E3" Offset="0.07" />
-        <GradientStop Color="#B7D9ED" Offset="1" />
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="TextBox_DisabledBorder" Color="#ADB2B5" />
-    <SolidColorBrush x:Key="TextBox_DisabledBackground" Color="#F4F4F4" />
+    </Style>    
 
     <DataTemplate x:Key="DefaultWatermarkTemplate">
         <ContentControl Content="{Binding}" Foreground="Gray" Focusable="False" />
