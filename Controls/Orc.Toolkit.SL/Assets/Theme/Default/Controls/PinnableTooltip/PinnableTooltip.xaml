@@ -46,8 +46,20 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="sdk:TreeViewItem">
-                                            <Grid>
+                                            <Grid Background="Transparent">
                                                 <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal"/>
+                                                        <VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverBorder"
+                                                                                               Storyboard.TargetProperty="Visibility">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Pressed"/>
+                                                    </VisualStateGroup>
                                                     <VisualStateGroup x:Name="SelectionStates">
                                                         <VisualState x:Name="Selected">
 
@@ -94,6 +106,7 @@
                                                     <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Border x:Name="HoverBorder" IsHitTestVisible="False" Height="14" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_2}" HorizontalAlignment="Stretch" Visibility="Collapsed"/>
                                                 <Border x:Name="Border" IsHitTestVisible="False" Height="14" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_1}" HorizontalAlignment="Stretch"/>
                                                 <ToggleButton x:Name="ExpanderButton" Height="14"
                                                         Style="{StaticResource ExpandCollapseToggleStyle}"  ClickMode="Press"

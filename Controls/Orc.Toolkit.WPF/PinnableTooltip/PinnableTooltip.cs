@@ -444,11 +444,6 @@ namespace Orc.Toolkit
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            var toggleButton = this.GetTemplateChild("PinButton") as ToggleButton;
-            if (toggleButton != null)
-            {
-                toggleButton.Focusable = false;
-            }
 
             this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
             if (this.dragGrip != null)

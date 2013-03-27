@@ -21,6 +21,7 @@ namespace Orc.Toolkit
     ///     The pinnable tooltip control.
     /// </summary>
     [TemplatePart(Name = "PinButton", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "DragGrip", Type = typeof(FrameworkElement))]
     public class PinnableTooltip : ContentControl
     {
         #region Constants
@@ -62,6 +63,11 @@ namespace Orc.Toolkit
         #endregion
 
         #region Fields
+
+        /// <summary>
+        ///     The drag grip.
+        /// </summary>
+        private FrameworkElement dragGrip;
 
         /// <summary>
         ///     The parent popup.
@@ -932,6 +938,33 @@ namespace Orc.Toolkit
             }
         }
 
+        /// <summary>
+        ///     The on apply template.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
+            if (this.dragGrip != null)
+            {
+                this.dragGrip.MouseLeftButtonDown += this.dragGrip_MouseLeftButtonDown;
+            }
+        }
+
+        /// <summary>
+        /// Pin the popup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void dragGrip_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (!this.IsPinned)
+            {
+                this.IsPinned = true;
+            }
+        }
+        
         #endregion
     }
 }
