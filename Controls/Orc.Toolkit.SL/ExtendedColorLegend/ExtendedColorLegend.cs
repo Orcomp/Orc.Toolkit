@@ -167,7 +167,7 @@ namespace Orc.Toolkit
         /// </summary>
         private Popup popup;
 
-            /// <summary>
+        /// <summary>
         /// The button color change
         /// </summary>
         private ButtonBase button;
