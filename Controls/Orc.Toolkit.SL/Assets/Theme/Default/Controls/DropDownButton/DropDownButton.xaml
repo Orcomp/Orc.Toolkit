@@ -110,7 +110,7 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
 
-                                        <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <Border x:Name="PART_DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
                                             <Border.Background>
                                                 <SolidColorBrush Color="{StaticResource Color_Control_2}"/>
                                                 <!--<DrawingBrush TileMode="Tile" Viewport="0 0 3 3" ViewportUnits="Absolute"

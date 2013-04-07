@@ -23,6 +23,9 @@
             <TabItem Header="ColorLegend">
                 <local:ColorLegend />
             </TabItem>
+            <TabItem Header="AttributeConfigurationEditor">
+                <local:AttributeConfigurationEditor Margin="4"/>
+            </TabItem>
 		</TabControl>
 	</Grid>
 </Window>

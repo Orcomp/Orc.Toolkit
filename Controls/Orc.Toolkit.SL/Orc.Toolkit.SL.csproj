@@ -58,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditor.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationButton.cs" />
+    <Compile Include="AttributeConfigurationEditor\ExtendedDataGridColumn.cs" />
     <Compile Include="Behaviours\MultiSelectorBehaviour.cs" />
     <Compile Include="ColorPicker\ColorChangedEventArgs.cs" />
     <Compile Include="ColorPicker\PredefinedColor.cs" />

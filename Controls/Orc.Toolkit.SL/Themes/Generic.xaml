@@ -3,7 +3,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
 	xmlns:local="clr-namespace:Orc.Toolkit"
-    xmlns:cmds="clr-namespace:Orc.Toolkit.Commands">
+    xmlns:cmds="clr-namespace:Orc.Toolkit.Commands"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     
     <Color x:Key="Color_Font_1">#000000</Color>
     <SolidColorBrush x:Key="Brush_Font_1" Color="{StaticResource Color_Font_1}"/>
@@ -155,6 +158,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Grid Background="Transparent" Margin="{TemplateBinding Padding}">
+                        <Grid.Resources>
+                            <TransformGroup x:Key="transform">
+                                <RotateTransform Angle="-45"/>
+                                <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                            </TransformGroup>
+                        </Grid.Resources>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal"/>
@@ -167,21 +176,35 @@
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
+                            <VisualStateGroup Name="CheckStates">
+                                <VisualState Name="Unchecked"/>
+                                <VisualState Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="path"
+                                                                       Storyboard.TargetProperty="RenderTransform">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource transform}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Border x:Name="BorderButton" Background="Transparent" >
+                        <Border x:Name="BorderButton" Background="Transparent">
                             <Path HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
                               Data="M0,5 H7 M7,0 V11 M8,3 H15 V8 H8 M8,4 H15" Stroke="{TemplateBinding Foreground}" 
-                                  RenderTransformOrigin="0.5 0.5"
-                                  StrokeThickness="1"  >
+                                  RenderTransformOrigin="0.5 0.5" x:Name="path"
+                                  StrokeThickness="1" >
                                 <Path.RenderTransform>
                                     <TransformGroup>
-                                        <RotateTransform Angle="-45"/>
-                                        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                        <RotateTransform Angle="0"/>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
                                     </TransformGroup>
                                 </Path.RenderTransform>
                             </Path>
                         </Border>
+
+
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1371,7 +1394,7 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
 
-                                        <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <Border x:Name="PART_DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Visibility="{Binding Path=IsDragable, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
                                             <Border.Background>
                                                 <SolidColorBrush Color="{StaticResource Color_Control_2}"/>
                                                 <!--<DrawingBrush TileMode="Tile" Viewport="0 0 3 3" ViewportUnits="Absolute"
@@ -1489,5 +1512,210 @@
         </Setter>
     </Style>
 
-    
+    <Style TargetType="local:AttributeConfigurationButton">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:AttributeConfigurationButton">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3 0" Grid.Column="1" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:AttributeConfigurationEditor">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{StaticResource Brush_Control_1}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Brush_Control_2}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:AttributeConfigurationEditor">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" MinHeight="100"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <sdk:DataGrid x:Name="PART_DataGrid" Background="Transparent" BorderThickness="0" BorderBrush="{x:Null}" Margin="0 0 0 6">
+                                <sdk:DataGrid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Padding" Value="2"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="TextAlignment" Value="Left"/>
+                                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="MinHeight" Value="20"/>
+                                    </Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Padding" Value="2"/>
+                                        <Setter Property="Margin" Value="0"/>
+                                        <Setter Property="TextAlignment" Value="Left"/>
+                                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="MinHeight" Value="20"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TextBox">
+                                                    <Grid Background="Transparent">
+                                                        <ScrollViewer x:Name="ContentElement" Padding="{TemplateBinding Padding}" BorderThickness="0" IsTabStop="False"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </sdk:DataGrid.Resources>
+                            </sdk:DataGrid>
+
+                            <Border x:Name="PART_ResizeGripper" Cursor="SizeNS" Background="{StaticResource Brush_Control_2}" Grid.Row="0" Height="6" VerticalAlignment="Bottom" Margin="0 0 0 1">
+                                <Grid Width="15" Height="7" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Fill="#eee" Data="M1,3 H3 V5 H1   M7,3 H9 V5 H7   M13,3 H15 V5 H13 z"/>
+                                    <Path Fill="#aaa" Data="M0,2 H2 V4 H0    M6,2 H8 V4 H6    M12,2 H14 V4 H12 z"/>
+                                </Grid>
+                            </Border>
+                            
+                            <ItemsPresenter x:Name="PART_ButtonsPresenter" Grid.Row="1">
+                                <ItemsPresenter.Resources>
+                                    <Style TargetType="local:AttributeConfigurationButton">
+                                        <Setter Property="Background" Value="{StaticResource Brush_Control_2}"/>
+                                        <Setter Property="Margin" Value="1 0 1 1"/>
+                                        <Setter Property="Height" Value="20"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="local:AttributeConfigurationButton">
+                                                    <Grid Background="{TemplateBinding Background}">
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal"/>
+                                                                <VisualState x:Name="MouseOver">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverBorder"
+                                                                                                       Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Pressed">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverBorder"
+                                                                                                       Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="SelectionStates">
+                                                                <VisualState x:Name="Unselected" />
+                                                                <VisualState x:Name="Selected">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedBorder"
+                                                                                                       Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        
+                                                        <Border x:Name="HoverBorder" Grid.ColumnSpan="2" Background="{StaticResource Brush_Highlight_1}" Visibility="Collapsed"/>
+                                                        <Border x:Name="SelectedBorder" Grid.ColumnSpan="2" Background="{StaticResource Brush_Highlight_1}" Visibility="Collapsed"/>
+                                                        
+                                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                                          Margin="3 0" Content="{TemplateBinding Header}"
+                                                                          ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                                          Margin="3 0" Grid.Column="1" 
+                                                                          Content="{TemplateBinding Content}" 
+                                                                          ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ItemsPresenter.Resources>
+                            </ItemsPresenter>
+
+                            <StackPanel x:Name="PART_FooterTrayPanel" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <StackPanel.Resources>
+                                    <Style TargetType="local:AttributeConfigurationButton">
+                                        <Setter Property="Height" Value="20"/>
+                                        <Setter Property="Width" Value="20"/>
+                                        <Setter Property="Background" Value="{StaticResource Brush_Control_2}"/>
+                                        <Setter Property="Margin" Value="0 0 1 1"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="local:AttributeConfigurationButton">
+                                                    <Grid Background="{TemplateBinding Background}" ToolTipService.ToolTip="{TemplateBinding Content}" 
+                                                          ToolTipService.Placement="Top" >
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal"/>
+                                                                <VisualState x:Name="MouseOver">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverBorder"
+                                                                                                       Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Pressed">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverBorder"
+                                                                                                       Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="SelectionStates">
+                                                                <VisualState x:Name="Unselected" />
+                                                                <VisualState x:Name="Selected">
+                                                                    <Storyboard>
+                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedBorder"
+                                                                                                       Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                        </ObjectAnimationUsingKeyFrames>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+
+                                                        <Border x:Name="HoverBorder" Background="{StaticResource Brush_Highlight_1}" Visibility="Collapsed"/>
+                                                        <Border x:Name="SelectedBorder" Background="{StaticResource Brush_Highlight_1}" Visibility="Collapsed"/>
+                                                        
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                                          Margin="3 0" Content="{TemplateBinding Header}"
+                                                                          ContentTemplate="{TemplateBinding HeaderTemplate}"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </StackPanel.Resources>
+                            </StackPanel>
+                        </Grid>
+                    </Border>       
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

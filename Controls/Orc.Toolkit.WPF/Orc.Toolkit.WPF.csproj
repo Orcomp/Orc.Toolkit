@@ -47,6 +47,21 @@
     <Compile Include="..\Orc.Toolkit.SL\Assets\Converters\BoolToVisibilityConverter.cs">
       <Link>Assets\Converters\BoolToVisibilityConverter.cs</Link>
     </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationButton.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationEditor.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditor.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\ExtendedDataGridColumn.cs">
+      <Link>AttributeConfigurationEditor\ExtendedDataGridColumn.cs</Link>
+    </Compile>
     <Compile Include="..\Orc.Toolkit.SL\Behaviours\MultiSelectorBehaviour.cs">
       <Link>Behaviours\MultiSelectorBehaviour.cs</Link>
     </Compile>

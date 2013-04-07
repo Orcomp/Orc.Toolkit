@@ -25,8 +25,9 @@ namespace Orc.Toolkit
     /// The drop down button.
     /// </summary>
     [TemplatePart(Name = "PART_Popup", Type = typeof(Popup))]
-    [TemplatePart(Name = "PART_ToggleDropDown", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "PART_ToggleDropDown", Type = typeof(ToggleButton))]    
     [TemplatePart(Name = "PART_Content", Type = typeof(ContentControl))]
+    [TemplatePart(Name = "PART_DragGrip", Type = typeof(FrameworkElement))]
     public class DropDownButton : HeaderedContentControl
     {
         /// <summary>
@@ -74,7 +75,7 @@ namespace Orc.Toolkit
             this.button = (ToggleButton)this.GetTemplateChild("PART_ToggleDropDown");
             this.popup = (Popup)this.GetTemplateChild("PART_Popup");
             this.content = (ContentControl)this.GetTemplateChild("PART_Content");
-            this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
+            this.dragGrip = (FrameworkElement)this.GetTemplateChild("PART_DragGrip");
                         
             this.SizeChanged += this.DropDownButton_SizeChanged;
             if (this.dragGrip != null)

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Orc.Toolkit.Demo.Views.AttributeConfigurationEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" x:Name="root"
+             d:DesignHeight="300" d:DesignWidth="700"
+             xmlns:orcTkt="clr-namespace:Orc.Toolkit;assembly=Orc.Toolkit"
+             xmlns:model="clr-namespace:Orc.Toolkit.Demo.Models">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Image x:Key="GeneralImage" Source="../Assets/note_16xLG.png" Width="16" Height="16"/>
+            <Image x:Key="TooltipImage" Source="../Assets/Bubble_16xLG.png" Width="16" Height="16"/>
+            <Image x:Key="LabelImage" Source="../Assets/manifest_16xLG.png" Width="16" Height="16"/>
+            <model:AttributeConfigurations x:Key="AttributeConfigurations"/>
+            <CollectionViewSource x:Key="Types" Source="{Binding SupportedTypes, ElementName=root}"/>
+        </Grid.Resources>
+
+        <orcTkt:AttributeConfigurationEditor Margin="6" ItemsSource="{Binding Source={StaticResource AttributeConfigurations}}">
+            <orcTkt:AttributeConfigurationEditorSection Header="General"  HeaderImage="{StaticResource GeneralImage}">
+                <orcTkt:AttributeConfigurationEditorProperty Header="Attribute Name" BindingPath="Name" ShowInAllSections="True"/>
+                <orcTkt:AttributeConfigurationEditorProperty Header="Attribute Category" BindingPath="Category"/>
+                <orcTkt:AttributeConfigurationEditorProperty Header="Type" BindingPath="Type"
+                                                             SupportedValues="{Binding Source={StaticResource Types}}"
+                                                             SupportedValuesDisplayMemberPath="DisplayName"
+                                                             SupportedValuesValuePath="ClassName"/>
+            </orcTkt:AttributeConfigurationEditorSection>
+            <orcTkt:AttributeConfigurationEditorSection Header="Label" HeaderImage="{StaticResource LabelImage}">
+                <orcTkt:AttributeConfigurationEditorProperty Header="Is In Label"  BindingPath="IsInLabel"/>
+                <orcTkt:AttributeConfigurationEditorProperty Header="Label Position" BindingPath="LabelPosition"/>
+            </orcTkt:AttributeConfigurationEditorSection>
+            <orcTkt:AttributeConfigurationEditorSection Header="Tooltip" HeaderImage="{StaticResource TooltipImage}">
+                <orcTkt:AttributeConfigurationEditorProperty Header="Is in tooltip" BindingPath="IsInTooltip"/>
+                <orcTkt:AttributeConfigurationEditorProperty Header="Tooltip position" BindingPath="TooltipPosition"/>
+            </orcTkt:AttributeConfigurationEditorSection>
+        </orcTkt:AttributeConfigurationEditor>
+
+        <DataGrid Grid.Column="1" Margin="6" AutoGenerateColumns="True" ItemsSource="{Binding Source={StaticResource AttributeConfigurations}}" />
+    </Grid>
+</UserControl>
