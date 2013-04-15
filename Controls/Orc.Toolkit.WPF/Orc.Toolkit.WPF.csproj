@@ -239,7 +239,11 @@
   <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\LaunchConditionsEditor_259.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\Bubble_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\manifest_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\note_16xLG.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
