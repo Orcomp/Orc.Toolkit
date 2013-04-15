@@ -244,6 +244,9 @@
     <Resource Include="Assets\Theme\Default\Images\manifest_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\note_16xLG.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\WindowsForm_817_16x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
