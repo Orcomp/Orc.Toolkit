@@ -228,6 +228,14 @@ namespace Orc.Toolkit
             if (this.popup.IsOpen && !this.IsPinned)
             {
                 Point p = e.GetPosition(popup);
+                if (popup.Child != null)
+                {
+                    Point p2 = e.GetPosition(popup.Child);
+                    if ((p2.Y > 0) && (p2.X > 0))
+                    {
+                        p = p2;
+                    }
+                }
                 if (!new Rect(0, 0, (popup.Child as FrameworkElement).ActualWidth, (popup.Child as FrameworkElement).ActualHeight).Contains(p))
                     popup.IsOpen = false;
             }
