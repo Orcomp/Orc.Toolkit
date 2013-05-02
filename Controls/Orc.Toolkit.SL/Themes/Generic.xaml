@@ -4,6 +4,7 @@
 	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
 	xmlns:local="clr-namespace:Orc.Toolkit"
     xmlns:cmds="clr-namespace:Orc.Toolkit.Commands"
+    xmlns:sysctrls="clr-namespace:System.Windows.Controls;assembly=System.Windows"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
@@ -1714,6 +1715,293 @@
                             </StackPanel>
                         </Grid>
                     </Border>       
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ClearFilterButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <!--<Setter Property="ToolTipService.InitialShowDelay" Value="900" />
+        <Setter Property="ToolTipService.ShowDuration" Value="20000" />
+        <Setter Property="ToolTipService.BetweenShowDelay" Value="0" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <!--<Grid SnapsToDevicePixels="True">-->
+                    <Grid>
+                        <Border x:Name="OuterBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2" />
+                        <Border x:Name="MiddleBorder" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" CornerRadius="2">
+                            <Border x:Name="InnerBorder" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent" CornerRadius="2" Padding="{TemplateBinding Padding}">
+                                <StackPanel x:Name="StackPanel" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                    <ContentPresenter x:Name="Content"
+                                             Content="{TemplateBinding Content}"
+                                             Margin="1" 
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                    <!-- removed above RenderOptions.BitmapScalingMode="NearestNeighbor"-->
+                                </StackPanel>
+                            </Border>
+                        </Border>
+                    </Grid>
+                    <!--<ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource MouseOverBackgroundBrush}" />
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource MouseOverBorderBrush}" />
+                            <Setter Property="BorderBrush" TargetName="InnerBorder" Value="#80FFFFFF" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="Content" Value="0.5" />
+                            <Setter Property="TextElement.Foreground" TargetName="OuterBorder" Value="#FF9E9E9E" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" TargetName="OuterBorder" Value="{StaticResource PressedBackgroundBrush}" />
+                            <Setter Property="BorderBrush" TargetName="OuterBorder" Value="{StaticResource PressedBorderBrush}" />
+                            <Setter Property="BorderBrush" TargetName="InnerBorder" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:ExtendedColorLegend">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ExtendedColorLegend">
+                    <Border Background="#FFCED4DF"
+                            BorderBrush="#FF43577B"
+                            BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition x:Name="toolsContainerRow" Height="33" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock FontWeight="Bold" Margin="4" TextAlignment="Left"
+                                       Text="{Binding Path=OperationColorAttribute, RelativeSource={RelativeSource TemplatedParent}}">
+                            </TextBlock>
+                            <Grid x:Name="toolsContainer" Grid.Row="1" Margin="4,4,4,4" Background="#FFCED4DF"
+                                  Visibility="{Binding ShowToolBox, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <local:DropDownButton Header="Settings" Grid.Column="0" Margin="0 0 5 0" 
+                                                      Visibility="{Binding ShowSettings, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <Border>
+                                        <ContentPresenter>
+                                            <ContentPresenter.ContentTemplate>
+                                                <DataTemplate>
+                                                    <Border Background="White" BorderBrush="Black" BorderThickness="1" Width="150">
+                                                        <Grid Margin="5 5 5 5">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="30"/>
+                                                                <RowDefinition Height="30"/>
+                                                                <RowDefinition Height="30"/>
+                                                                <RowDefinition Height="30"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="15"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <CheckBox Grid.Row="0" Grid.ColumnSpan="3" Content="Show Visibility Column" 
+                                                                      IsChecked="{Binding ShowColorVisibilityControls, 
+                                                                                          RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor, AncestorLevel=3}, Mode=TwoWay}" />
+                                                            <CheckBox Grid.Row="1" Grid.ColumnSpan="3" Content="Allow Color Edit" 
+                                                                      IsChecked="{Binding AllowColorEditing, RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}, Mode=OneWay}" />
+                                                            <CheckBox Grid.Row="2" Grid.ColumnSpan="3" Content="Use Regex search" 
+                                                                      IsChecked="{Binding UseRegexFiltering, RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}}" />
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ContentPresenter.ContentTemplate>
+                                        </ContentPresenter>
+                                    </Border>
+                                </local:DropDownButton>
+
+                                <Border x:Name="searchBoxContainer" 
+                                        Grid.Column="1"  
+                                        Background="Transparent"
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        Visibility="{Binding ShowSearchBox, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <Grid Background="White">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <local:WatermarkTextBox x:Name="filterTextBox" Background="Transparent"
+                                                                Text="{Binding Filter, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                                                Watermark="{TemplateBinding FilterWatermark}">
+                                            <local:WatermarkTextBox.Style>
+                                                <Style TargetType="Control">
+                                                    <Setter Property="BorderThickness" Value="1" />
+                                                    <!--<Setter Property="BorderThickness" Value="0" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="BorderThickness" Value="1" />
+                                                        </Trigger>
+                                                    </Style.Triggers>-->
+                                                </Style>
+                                            </local:WatermarkTextBox.Style>
+                                        </local:WatermarkTextBox>
+                                        <Button Grid.Column="1" 
+                                                Style="{StaticResource ClearFilterButtonStyle}"
+                                                Command="{Binding ClearFilterCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <Image Width="16" Height="16" Source="/Orc.Toolkit;component/Themes/Images/ClearFilter16.png"></Image>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <ListBox Grid.Row="2" ItemsSource="{Binding FilteredItemsSource, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0" x:Name="PART_List" HorizontalContentAlignment="Stretch">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="local:IColorProvider">
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition x:Name="visibilityCheckColumn" Width="15"/>
+                                                <ColumnDefinition Width="24"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox x:Name="visibilityCheckbox" 
+                                                      Grid.Column="0" 
+                                                      IsChecked="{Binding IsVisible}" 
+                                                      VerticalAlignment="Center"/>
+
+                                            <!--Visibility="{Binding ShowColorVisibilityControls, 
+                                                                           RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}, 
+                                                                           Converter={StaticResource BoolToVisibilityConverter}}"-->
+                                            
+                                            <Button x:Name="PART_ButtonColorChange" Height="14" VerticalAlignment="Center" Grid.Column="1"
+                                                    Command="{Binding ChangeColorCommand, RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}}" 
+                                                    Visibility="Visible"
+                                                    CommandParameter="{Binding}">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Grid Grid.Column="1" Background="Transparent">
+                                                            <VisualStateManager.VisualStateGroups>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal" />
+                                                                    <VisualState x:Name="MouseOver" >
+                                                                        <Storyboard>
+                                                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="arrow" Storyboard.TargetProperty="Visibility">
+                                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visibility.Visible"/>
+                                                                            </ObjectAnimationUsingKeyFrames>-->
+                                                                        </Storyboard>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Disabled">
+
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateManager.VisualStateGroups>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="14"/>
+                                                                <ColumnDefinition Width="10"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Ellipse Width="14" Height="14">
+                                                                <Ellipse.Fill>
+                                                                    <SolidColorBrush Color="{Binding Color, UpdateSourceTrigger=PropertyChanged}" />
+                                                                </Ellipse.Fill>
+                                                            </Ellipse>
+
+                                                            <Path x:Name="arrow" Data="M 0 0 L 2.5 3 L 5 0 Z" Fill="Black" HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center" Stretch="None" Grid.Column="1" Width="5" Visibility="Visible"/>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+
+                                            <TextBlock Text="{Binding Description}" Grid.Column="2"/>
+                                            <TextBlock Text="{Binding AdditionalData}" Grid.Column="3" Margin="0 0 10 0"></TextBlock>
+                                        </Grid>
+                                        <!--<DataTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition SourceName="visibilityCheckbox" Property="Visibility" Value="Collapsed"></Condition>
+                                                </MultiTrigger.Conditions>
+                                                <Setter TargetName="visibilityCheckColumn" Property="Width" Value="0"></Setter>
+                                            </MultiTrigger>
+                                        </DataTemplate.Triggers>-->
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Content="Check all" VerticalAlignment="Center" x:Name="PART_All_Visible"
+                                          Margin="5 0"
+                                          IsChecked="{Binding IsAllVisible, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"/>
+                                <!-- remove above Visibility="{Binding ShowColorVisibilityControls, 
+                                                                    RelativeSource={RelativeSource AncestorType={x:Type local:ExtendedColorLegend}}, 
+                                                                    Converter={StaticResource BooleanToVisibilityConverter}}"-->
+                                <Border Background="Transparent" Grid.Column="2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                    Margin="4 0" BorderThickness="1" BorderBrush="Gray">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition  MinWidth="100" Width="*"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Margin="4 2" Foreground="Gray" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding SelectedItems.Count, ElementName=PART_List, StringFormat='Selected Items: {0}'}"/>
+                                        <Button x:Name="PART_UnselectAll" Grid.Column="1">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Grid Background="Transparent">
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal" />
+                                                                <VisualState x:Name="MouseOver" >
+                                                                    <Storyboard>
+                                                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="hover" Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                                                        </ObjectAnimationUsingKeyFrames>-->
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Pressed">
+                                                                    <Storyboard>
+                                                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="press" Storyboard.TargetProperty="Visibility">
+                                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                                                        </ObjectAnimationUsingKeyFrames>-->
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                                <VisualState x:Name="Disabled">
+
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <Border x:Name="hover" Background="{StaticResource Brush_Control_1}" Visibility="Collapsed"/>
+                                                        <Border x:Name="press" Background="{StaticResource Brush_Highlight_1}" Visibility="Collapsed"/>
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                            <Path Width="8" Height="8" Stroke="Gray" StrokeThickness="2" Data="M0,0 L8,8 M8,0 L0,8"/>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+
+                            <!--Popup changed see WPF definition-->
+                            <Popup x:Name="PART_Popup_Color_Board" 
+                                   IsOpen="{Binding Path=IsColorSelecting, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

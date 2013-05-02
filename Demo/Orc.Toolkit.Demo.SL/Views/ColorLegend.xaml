@@ -7,17 +7,12 @@
              d:DesignHeight="300" d:DesignWidth="705" xmlns:my="clr-namespace:Orc.Toolkit;assembly=Orc.Toolkit"
                  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation">
     <Grid>
-        <my:ExtendedColorLegend HorizontalAlignment="Left" Margin="26,26,0,0" Name="extendedColorLegend1" VerticalAlignment="Top" Height="254" Width="237" ShowColorVisibilityControls="False"
-                                x:FieldModifier="public" Visibility="Visible" IsEnabled="True">
-            <my:ExtendedColorLegend.ContentTemplate>
-                <DataTemplate>
-                    <Border Width="200" Height="200" Background="#ececec" BorderBrush="#cecece" BorderThickness="1">
-                        <Border BorderThickness="1" BorderBrush="White">
-                            <TextBox Width="100" Text="Content" VerticalAlignment="Center" />
-                        </Border>
-                    </Border>
-                </DataTemplate>
-            </my:ExtendedColorLegend.ContentTemplate>
+        <my:ExtendedColorLegend HorizontalAlignment="Left" Margin="26,26,0,0" Name="extendedColorLegend1" VerticalAlignment="Top" Height="254" Width="237" 
+                                ShowColorVisibilityControls="True" 
+                                AllowColorEditing="True"
+                                x:FieldModifier="public" Visibility="Visible" IsEnabled="True"
+                                OperationColorAttribute="Just a color">
+            
         </my:ExtendedColorLegend>
         <!--
         <CheckBox Content="Show Search Box" Height="16" HorizontalAlignment="Left" Margin="288,26,0,0" Name="cbShowSearchBox" VerticalAlignment="Top" Width="129" IsChecked="True" 

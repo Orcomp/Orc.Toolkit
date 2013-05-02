@@ -26,7 +26,7 @@ namespace Orc.Toolkit
     /// Control to show color legend with checkboxes for each color
     /// </summary>
     [TemplatePart(Name = "PART_List", Type = typeof(ListBox))]
-    [TemplatePart(Name = "PART_Popup", Type = typeof(Popup))]
+    [TemplatePart(Name = "PART_Popup_Color_Board", Type = typeof(Popup))]
     [TemplatePart(Name = "PART_UnselectAll", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_All_Visible", Type = typeof(CheckBox))]
     public class ExtendedColorLegend : HeaderedContentControl
@@ -206,6 +206,7 @@ namespace Orc.Toolkit
             CommandBindings.Add(
                 new CommandBinding(ExtendedColorLegendCommands.ClearFilter, this.ClearFilter, this.CanClearFilter));
             #else
+            this.DefaultStyleKey = typeof(ExtendedColorLegend);
             this.ClearFilterCommand = new DelegateCommand(o => this.Filter = string.Empty, o => string.IsNullOrEmpty(this.Filter));
             #endif
         }
@@ -496,7 +497,7 @@ namespace Orc.Toolkit
         {
             base.OnApplyTemplate();
             this.listBox = (ListBox)this.GetTemplateChild("PART_List");
-            this.popup = (Popup)this.GetTemplateChild("PART_Popup");
+            this.popup = (Popup)this.GetTemplateChild("PART_Popup_Color_Board");
             this.button = (ButtonBase)GetTemplateChild("PART_UnselectAll");
             this.checkBox = (CheckBox)GetTemplateChild("PART_All_Visible");
 
