@@ -60,6 +60,23 @@ namespace Orc.Toolkit
             typeof(PinnableTooltip), 
             new PropertyMetadata(OnVerticalOffsetPropertyChanged));
 
+#if(SILVERLIGHT)
+        public PlacementMode PopupPlacement
+        {
+            get
+            {
+                return (PlacementMode)this.GetValue(PopupPlacementProperty);
+            }
+
+            set
+            {
+                this.SetValue(PopupPlacementProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PopupPlacementProperty =
+            DependencyProperty.Register("PopupPlacement", typeof(PlacementMode), typeof(DropDownButton), new PropertyMetadata(PlacementMode.Bottom));
+#endif
+
         #endregion
 
         #region Fields
@@ -349,7 +366,7 @@ namespace Orc.Toolkit
         /// <param name="element">
         /// The element.
         /// </param>
-        internal void SetOwner(UIElement element)
+        public void SetOwner(UIElement element)
         {
             this.owner = element;
         }
