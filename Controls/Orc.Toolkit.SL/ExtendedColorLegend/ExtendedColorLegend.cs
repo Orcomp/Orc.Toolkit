@@ -55,6 +55,11 @@ namespace Orc.Toolkit
         public static readonly DependencyProperty FilteredItemsSourceProperty = DependencyProperty.Register("FilteredItemsSource", typeof(IEnumerable<IColorProvider>), typeof(ExtendedColorLegend), new PropertyMetadata(null));
 
         /// <summary>
+        /// Property to store all visible now ids
+        /// </summary>
+        public static readonly DependencyProperty FilteredItemsIdsProperty = DependencyProperty.Register("FilteredItemsIds", typeof(IEnumerable<string>), typeof(ExtendedColorLegend), new PropertyMetadata(null));
+
+        /// <summary>
         /// The selected items property.
         /// </summary>
         public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.RegisterAttached(
@@ -95,9 +100,14 @@ namespace Orc.Toolkit
         public static readonly DependencyProperty ShowSearchBoxProperty = DependencyProperty.Register("ShowSearchBox", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
 
         /// <summary>
-        /// Property indicating whether search box is shown or not
+        /// Property indicating tob toolbox is shown or not
         /// </summary>
         public static readonly DependencyProperty ShowToolBoxProperty = DependencyProperty.Register("ShowToolBox", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
+
+        /// <summary>
+        /// Property indicating tob toolbox is shown or not
+        /// </summary>
+        public static readonly DependencyProperty ShowBottomToolBoxProperty = DependencyProperty.Register("ShowBottomToolBox", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
 
         /// <summary>
         /// Property indicating whether search box is shown or not
@@ -126,9 +136,14 @@ namespace Orc.Toolkit
         public static readonly DependencyProperty ShowSearchBoxProperty = DependencyProperty.Register("ShowSearchBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
 
         /// <summary>
-        /// Property indicating whether search box is shown or not
+        /// Property indicating whethertop toolbox is shown or not
         /// </summary>
         public static readonly DependencyProperty ShowToolBoxProperty = DependencyProperty.Register("ShowToolBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
+
+        /// <summary>
+        /// Property indicating whether bottom tool box is shown or not
+        /// </summary>
+        public static readonly DependencyProperty ShowBottomToolBoxProperty = DependencyProperty.Register("ShowBottomToolBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
 
         /// <summary>
         /// Property indicating whether search box is shown or not
@@ -277,6 +292,22 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether tool box is shown or not
+        /// </summary>
+        public bool ShowBottomToolBox
+        {
+            get
+            {
+                return (bool)GetValue(ShowBottomToolBoxProperty);
+            }
+
+            set
+            {
+                this.SetValue(ShowBottomToolBoxProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether settings button is shown or not
         /// </summary>
         public bool ShowSettings
@@ -390,6 +421,7 @@ namespace Orc.Toolkit
             {
                 this.SetValue(ItemsSourceProperty, value);
                 this.FilteredItemsSource = this.GetFilteredItems();
+                this.FilteredItemsIds = this.FilteredItemsSource == null ? null : this.FilteredItemsSource.Select(cp => cp.Id);
             }
         }
 
@@ -421,7 +453,28 @@ namespace Orc.Toolkit
 
             set
             {
+                if (value == null)
+                {
+                    return;
+                }
+
                 this.SetValue(FilteredItemsSourceProperty, value);                
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the filtered items ids.
+        /// </summary>
+        public IEnumerable<string> FilteredItemsIds
+        {
+            get
+            {
+                return (IEnumerable<string>)this.GetValue(FilteredItemsIdsProperty);
+            }
+
+            set
+            {
+                this.SetValue(FilteredItemsIdsProperty, value);
             }
         }
 
@@ -652,6 +705,7 @@ namespace Orc.Toolkit
         protected virtual void OnFilterChanged(string oldValue, string newValue)
         {
             this.FilteredItemsSource = this.GetFilteredItems();
+            this.FilteredItemsIds = this.FilteredItemsSource == null ? null : this.FilteredItemsSource.Select(cp => cp.Id);
         }
 
         #if (!SILVERLIGHT)

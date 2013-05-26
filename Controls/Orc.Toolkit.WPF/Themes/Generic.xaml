@@ -1490,7 +1490,8 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
 
-                            <Grid Grid.Row="3">
+                            <Grid Grid.Row="3"
+                                  Visibility="{Binding ShowBottomToolBox, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="5"/>
