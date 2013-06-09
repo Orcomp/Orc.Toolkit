@@ -1796,7 +1796,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <local:DropDownButton Header="Settings" Grid.Column="0" Margin="0 0 5 0" 
-                                                      Visibility="{Binding ShowSettings, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                      Visibility="{Binding ShowSettings, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                      x:Name="PART_Settings_Button" >
                                     <Border>
                                         <ContentPresenter>
                                             <ContentPresenter.ContentTemplate>
@@ -1814,13 +1815,9 @@
                                                                 <ColumnDefinition Width="15"/>
                                                                 <ColumnDefinition Width="Auto"/>
                                                             </Grid.ColumnDefinitions>
-                                                            <CheckBox Grid.Row="0" Grid.ColumnSpan="3" Content="Show Visibility Column" 
-                                                                      IsChecked="{Binding ShowColorVisibilityControls, 
-                                                                                          RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor, AncestorLevel=3}, Mode=TwoWay}" />
-                                                            <CheckBox Grid.Row="1" Grid.ColumnSpan="3" Content="Allow Color Edit" 
-                                                                      IsChecked="{Binding AllowColorEditing, RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}, Mode=OneWay}" />
-                                                            <CheckBox Grid.Row="2" Grid.ColumnSpan="3" Content="Use Regex search" 
-                                                                      IsChecked="{Binding UseRegexFiltering, RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}}" />
+                                                            <CheckBox Grid.Row="0" Grid.ColumnSpan="3" Content="Show Visibility Column" x:Name="cbVisibilitySetting"/>
+                                                            <CheckBox Grid.Row="1" Grid.ColumnSpan="3" Content="Allow Color Edit" x:Name="cbColorEditingSetting" />
+                                                            <CheckBox Grid.Row="2" Grid.ColumnSpan="3" Content="Use Regex search" x:Name="cbUseRegexSetting" />
                                                         </Grid>
                                                     </Border>
                                                 </DataTemplate>
@@ -1841,7 +1838,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <local:WatermarkTextBox x:Name="filterTextBox" Background="Transparent"
-                                                                Text="{Binding Filter, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                                                Text="{Binding Filter, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                                                 Watermark="{TemplateBinding FilterWatermark}">
                                             <local:WatermarkTextBox.Style>
                                                 <Style TargetType="Control">
@@ -1869,19 +1866,20 @@
                                     <DataTemplate DataType="local:IColorProvider">
                                         <Grid HorizontalAlignment="Stretch">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition x:Name="visibilityCheckColumn" Width="15"/>
+                                                <ColumnDefinition x:Name="visibilityCheckColumn" Width="Auto"/>
                                                 <ColumnDefinition Width="24"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <CheckBox x:Name="visibilityCheckbox" 
                                                       Grid.Column="0" 
-                                                      IsChecked="{Binding IsVisible}" 
-                                                      VerticalAlignment="Center"/>
+                                                      IsChecked="{Binding IsVisible, Mode=TwoWay}" 
+                                                      VerticalAlignment="Center"
+                                                      Visibility="{Binding ShowColorVisibilityControls, 
+                                                                           RelativeSource={RelativeSource TemplatedParent}, 
+                                                                           Converter={StaticResource BoolToVisibilityConverter}}"/>
 
-                                            <!--Visibility="{Binding ShowColorVisibilityControls, 
-                                                                           RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}, 
-                                                                           Converter={StaticResource BoolToVisibilityConverter}}"-->
+                                            <!---->
                                             
                                             <Button x:Name="PART_ButtonColorChange" Height="14" VerticalAlignment="Center" Grid.Column="1"
                                                     Command="{Binding ChangeColorCommand, RelativeSource={RelativeSource AncestorType=local:ExtendedColorLegend, Mode=FindAncestor}}" 

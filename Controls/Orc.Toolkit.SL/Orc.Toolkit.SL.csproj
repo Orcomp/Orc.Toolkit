@@ -72,6 +72,7 @@
     <Compile Include="ExtendedColorLegend\ExtendedColorLegend.cs" />
     <Compile Include="ExtendedColorLegend\IColorProvider.cs" />
     <Compile Include="Helpers\LayoutTransformer.cs" />
+    <Compile Include="Helpers\VisualTreeEnumeration.cs" />
     <Compile Include="PinnableTooltip\LinkTooltipItem.cs" />
     <Compile Include="PinnableTooltip\OrdinalTooltipItem.cs" />
     <Compile Include="PrintingCanvas\CanvasToPrint.cs" />

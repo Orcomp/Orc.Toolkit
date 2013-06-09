@@ -86,6 +86,14 @@ namespace Orc.Toolkit
             #endif
         }
 
+        #if (SILVERLIGHT)
+        public WatermarkTextBox()
+            : base()
+        {
+            this.TextChanged += (sender, args) =>
+                { this.GetBindingExpression(TextBox.TextProperty).UpdateSource(); };
+        }
+        #endif
         #endregion //Constructors
 
         #region Base Class Overrides

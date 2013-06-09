@@ -67,6 +67,16 @@ namespace Orc.Toolkit
             this.DefaultStyleKey = typeof(DropDownButton);
         }
 
+        /// <summary>
+        /// The popup opened.
+        /// </summary>
+        public event EventHandler PopupOpened;
+
+        /// <summary>
+        /// The content layout updated.
+        /// </summary>
+        public event EventHandler ContentLayoutUpdated;
+
         #region OVERRIDE
 
         public override void OnApplyTemplate()
@@ -76,6 +86,28 @@ namespace Orc.Toolkit
             this.popup = (Popup)this.GetTemplateChild("PART_Popup");
             this.content = (ContentControl)this.GetTemplateChild("PART_Content");
             this.dragGrip = (FrameworkElement)this.GetTemplateChild("PART_DragGrip");
+
+            if (this.popup != null)
+            {
+                this.popup.Opened += (sender, args) =>
+                    {
+                        if (this.PopupOpened != null)
+                        {
+                            this.PopupOpened(sender, args);
+                        }
+                    };
+            }
+
+            if (this.content != null)
+            {
+                this.content.LayoutUpdated += (sender, args) =>
+                    {
+                        if (this.ContentLayoutUpdated != null)
+                        {
+                            this.ContentLayoutUpdated(this.content, args);
+                        }
+                    };
+            }
                         
             this.SizeChanged += this.DropDownButton_SizeChanged;
             if (this.dragGrip != null)
@@ -110,14 +142,9 @@ namespace Orc.Toolkit
             Window.GetWindow(this).AddHandler(UIElement.MouseDownEvent, new MouseButtonEventHandler(Outside_MouseDown), true);
 #endif
         }
-
-        
         #endregion
 
         #region DP
-
-
-
         public bool IsPinned
         {
             get { return (bool)GetValue(IsPinnedProperty); }
