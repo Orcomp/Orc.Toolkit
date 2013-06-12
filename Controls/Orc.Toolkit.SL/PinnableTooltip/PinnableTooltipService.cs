@@ -440,7 +440,7 @@ namespace Orc.Toolkit
                 SetRootVisual();
             }
 
-            if (toolTip.Content == null || toolTip.IsTimerEnabled || toolTip.IsOpen)
+            if (toolTip == null || toolTip.Content == null || toolTip.IsTimerEnabled || toolTip.IsOpen)
             {
                 return;
             }
@@ -481,6 +481,11 @@ namespace Orc.Toolkit
                 {
                     return;
                 }
+            }
+
+            if (toolTip == null)
+            {
+                return;
             }
 
             if (!toolTip.IsOpen)
@@ -558,7 +563,7 @@ namespace Orc.Toolkit
         {
             lock (Locker)
             {
-                foreach (PinnableTooltip toolTip in ElementsAndToolTips.Values.Where(toolTip => !toolTip.IsPinned))
+                foreach (PinnableTooltip toolTip in ElementsAndToolTips.Values.Where(toolTip => toolTip!= null && !toolTip.IsPinned))
                 {
 #if (!SILVERLIGHT)
                     if (ScreenUtils.IsParentOf(toolTip, e.OriginalSource as DependencyObject))
