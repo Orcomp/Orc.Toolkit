@@ -66,6 +66,7 @@
     <Compile Include="Behaviours\MultiSelectorBehaviour.cs" />
     <Compile Include="ColorPicker\ColorChangedEventArgs.cs" />
     <Compile Include="ColorPicker\PredefinedColor.cs" />
+    <Compile Include="ComboBoxEx\ComboBoxEx.cs" />
     <Compile Include="DropDownButton\DropDownButton.cs" />
     <Compile Include="DropDownButton\HeaderedContentControl.cs" />
     <Compile Include="Expander\Expander.cs" />
