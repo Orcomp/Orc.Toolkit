@@ -54,6 +54,8 @@ namespace Orc.Toolkit
         /// </summary>
         private Popup popup;
 
+        private bool openOnWindowActivation = false;
+
         /// <summary>
         /// The button.
         /// </summary>
@@ -135,13 +137,20 @@ namespace Orc.Toolkit
                 System.Windows.Window window = System.Windows.Window.GetWindow(this);
                 window.LocationChanged += window_LocationChanged;
                 window.SizeChanged += window_SizeChanged;
+                window.Deactivated += window_Deactivated;
+                window.Activated += window_Activated;
                 LayoutUpdated += DropDownButton_LayoutUpdated;
             }
 
             popup.Opened += popup_Opened;
             Window.GetWindow(this).AddHandler(UIElement.MouseDownEvent, new MouseButtonEventHandler(Outside_MouseDown), true);
+            Window.GetWindow(this).Activated += window_Activated;
 #endif
         }
+
+        
+
+        
         #endregion
 
         #region DP
@@ -265,6 +274,34 @@ namespace Orc.Toolkit
                 }
                 if (!new Rect(0, 0, (popup.Child as FrameworkElement).ActualWidth, (popup.Child as FrameworkElement).ActualHeight).Contains(p))
                     popup.IsOpen = false;
+            }
+        }
+
+        void window_Deactivated(object sender, EventArgs e)
+        {
+            if (this.popup.IsOpen)
+            {
+                if (!Window.GetWindow(this).IsActive)
+                {
+                    if (popup.Child != null)
+                    {
+                        openOnWindowActivation = true;
+                        popup.Child.IsHitTestVisible = false;
+                    }
+
+                }
+
+                popup.IsOpen = false;
+            }
+        }
+
+        void window_Activated(object sender, EventArgs e)
+        {
+            if (openOnWindowActivation)
+            {
+                openOnWindowActivation = false;
+                popup.IsOpen = true;
+                popup.Child.IsHitTestVisible = true;
             }
         }
 #endif
