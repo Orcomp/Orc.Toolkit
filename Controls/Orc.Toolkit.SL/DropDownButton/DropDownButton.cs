@@ -147,9 +147,6 @@ namespace Orc.Toolkit
             Window.GetWindow(this).Activated += window_Activated;
 #endif
         }
-
-        
-
         
         #endregion
 

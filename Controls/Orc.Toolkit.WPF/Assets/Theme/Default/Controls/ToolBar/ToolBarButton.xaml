@@ -73,6 +73,16 @@
         </Setter>
     </Style>
 
+    <Style x:Key="UpdateToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/DataRefresh16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SaveIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
