@@ -63,11 +63,31 @@
         </Setter>
     </Style>
 
-    <Style x:Key="NewIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+    <Style x:Key="NoteIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/note_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NewIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/projectNew_16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="OpenPrjIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/projectOpen_16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
