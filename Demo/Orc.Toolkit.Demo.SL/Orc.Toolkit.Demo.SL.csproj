@@ -85,14 +85,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AttributeConfigurationEditorTest\AttributeConfigurations.cs" />
+    <Compile Include="Views\AttributeConfigurationEditor.xaml.cs">
+      <DependentUpon>AttributeConfigurationEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ColorLegend.xaml.cs">
       <DependentUpon>ColorLegend.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls.xaml.cs">
-      <DependentUpon>Controls.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
@@ -143,15 +144,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AttributeConfigurationEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ColorLegend.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ColorPicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +196,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\samp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Bubble_16xLG.png" />
+    <Resource Include="Assets\LuggageTag_16xLG.png" />
+    <Resource Include="Assets\manifest_16xLG.png" />
+    <Resource Include="Assets\note_16xLG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

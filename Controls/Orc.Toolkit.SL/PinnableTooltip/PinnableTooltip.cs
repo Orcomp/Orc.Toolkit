@@ -21,6 +21,7 @@ namespace Orc.Toolkit
     ///     The pinnable tooltip control.
     /// </summary>
     [TemplatePart(Name = "PinButton", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "DragGrip", Type = typeof(FrameworkElement))]
     public class PinnableTooltip : ContentControl
     {
         #region Constants
@@ -59,9 +60,31 @@ namespace Orc.Toolkit
             typeof(PinnableTooltip), 
             new PropertyMetadata(OnVerticalOffsetPropertyChanged));
 
+#if(SILVERLIGHT)
+        public PlacementMode PopupPlacement
+        {
+            get
+            {
+                return (PlacementMode)this.GetValue(PopupPlacementProperty);
+            }
+
+            set
+            {
+                this.SetValue(PopupPlacementProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PopupPlacementProperty =
+            DependencyProperty.Register("PopupPlacement", typeof(PlacementMode), typeof(DropDownButton), new PropertyMetadata(PlacementMode.Bottom));
+#endif
+
         #endregion
 
         #region Fields
+
+        /// <summary>
+        ///     The drag grip.
+        /// </summary>
+        private FrameworkElement dragGrip;
 
         /// <summary>
         ///     The parent popup.
@@ -343,7 +366,7 @@ namespace Orc.Toolkit
         /// <param name="element">
         /// The element.
         /// </param>
-        internal void SetOwner(UIElement element)
+        public void SetOwner(UIElement element)
         {
             this.owner = element;
         }
@@ -932,6 +955,33 @@ namespace Orc.Toolkit
             }
         }
 
+        /// <summary>
+        ///     The on apply template.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
+            if (this.dragGrip != null)
+            {
+                this.dragGrip.MouseLeftButtonDown += this.dragGrip_MouseLeftButtonDown;
+            }
+        }
+
+        /// <summary>
+        /// Pin the popup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void dragGrip_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (!this.IsPinned)
+            {
+                this.IsPinned = true;
+            }
+        }
+        
         #endregion
     }
 }

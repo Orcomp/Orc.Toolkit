@@ -25,21 +25,20 @@ namespace Orc.Toolkit
     /// The drop down button.
     /// </summary>
     [TemplatePart(Name = "PART_Popup", Type = typeof(Popup))]
-    [TemplatePart(Name = "PART_ToggleDropDown", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "PART_ToggleDropDown", Type = typeof(ToggleButton))]    
     [TemplatePart(Name = "PART_Content", Type = typeof(ContentControl))]
+    [TemplatePart(Name = "PART_DragGrip", Type = typeof(FrameworkElement))]
     public class DropDownButton : HeaderedContentControl
     {
         /// <summary>
         /// last mouse position
         /// </summary>
-#if(!SILVERLIGHT)
         private Point lastMousePosition;
 
         /// <summary>
         /// is mouse draging
         /// </summary>
         private bool isDraging;
-#endif
         /// <summary>
         /// The drag grip.
         /// </summary>
@@ -55,6 +54,8 @@ namespace Orc.Toolkit
         /// </summary>
         private Popup popup;
 
+        private bool openOnWindowActivation = false;
+
         /// <summary>
         /// The button.
         /// </summary>
@@ -68,6 +69,16 @@ namespace Orc.Toolkit
             this.DefaultStyleKey = typeof(DropDownButton);
         }
 
+        /// <summary>
+        /// The popup opened.
+        /// </summary>
+        public event EventHandler PopupOpened;
+
+        /// <summary>
+        /// The content layout updated.
+        /// </summary>
+        public event EventHandler ContentLayoutUpdated;
+
         #region OVERRIDE
 
         public override void OnApplyTemplate()
@@ -76,16 +87,36 @@ namespace Orc.Toolkit
             this.button = (ToggleButton)this.GetTemplateChild("PART_ToggleDropDown");
             this.popup = (Popup)this.GetTemplateChild("PART_Popup");
             this.content = (ContentControl)this.GetTemplateChild("PART_Content");
-            this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
+            this.dragGrip = (FrameworkElement)this.GetTemplateChild("PART_DragGrip");
+
+            if (this.popup != null)
+            {
+                this.popup.Opened += (sender, args) =>
+                    {
+                        if (this.PopupOpened != null)
+                        {
+                            this.PopupOpened(sender, args);
+                        }
+                    };
+            }
+
+            if (this.content != null)
+            {
+                this.content.LayoutUpdated += (sender, args) =>
+                    {
+                        if (this.ContentLayoutUpdated != null)
+                        {
+                            this.ContentLayoutUpdated(this.content, args);
+                        }
+                    };
+            }
                         
             this.SizeChanged += this.DropDownButton_SizeChanged;
             if (this.dragGrip != null)
             {
-                #if(!SILVERLIGHT)
                 this.dragGrip.MouseLeftButtonDown += this.dragGrip_MouseLeftButtonDown;
                 this.dragGrip.MouseMove += this.dragGrip_MouseMove;
                 this.dragGrip.MouseLeftButtonUp += this.dragGrip_MouseLeftButtonUp;
-                #endif
             }
 
 #if(SILVERLIGHT)
@@ -94,8 +125,8 @@ namespace Orc.Toolkit
             {
                 root.MouseLeftButtonDown += (s, ee) =>
                 {
-                    if (popup.IsOpen)
-                        popup.IsOpen = false;
+                    if (this.popup.IsOpen && !this.IsPinned)
+                        this.popup.IsOpen = false;
                 };
             }
 #endif
@@ -106,22 +137,20 @@ namespace Orc.Toolkit
                 System.Windows.Window window = System.Windows.Window.GetWindow(this);
                 window.LocationChanged += window_LocationChanged;
                 window.SizeChanged += window_SizeChanged;
+                window.Deactivated += window_Deactivated;
+                window.Activated += window_Activated;
                 LayoutUpdated += DropDownButton_LayoutUpdated;
             }
 
             popup.Opened += popup_Opened;
-            popup.IsKeyboardFocusWithinChanged += popup_IsKeyboardFocusWithinChanged;
-            FindTopLevelElement(popup).MouseDown += Outside_MouseDown;
+            Window.GetWindow(this).AddHandler(UIElement.MouseDownEvent, new MouseButtonEventHandler(Outside_MouseDown), true);
+            Window.GetWindow(this).Activated += window_Activated;
 #endif
         }
-
         
         #endregion
 
         #region DP
-
-
-
         public bool IsPinned
         {
             get { return (bool)GetValue(IsPinnedProperty); }
@@ -132,9 +161,10 @@ namespace Orc.Toolkit
                 new PropertyChangedCallback(OnPinnedPropertyChanged)));
         private static void OnPinnedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-#if(!SILVERLIGHT)
             DropDownButton dropDownButton = d as DropDownButton;
-            if (d != null)
+#if(!SILVERLIGHT)
+            
+            if (dropDownButton != null)
             {
                 if ((bool)e.NewValue == true)
                 {
@@ -145,6 +175,15 @@ namespace Orc.Toolkit
                     dropDownButton.popup.StaysOpen = false;                    
                     dropDownButton.popup.IsOpen = false;
                     dropDownButton.popup.HorizontalOffset = dropDownButton.popup.VerticalOffset = 0;
+                }
+            }
+#else
+            if (dropDownButton != null)
+            {
+                if ((bool)e.NewValue != true)
+                {
+                    dropDownButton.popup.IsOpen = false;
+                    dropDownButton.UpdatePopupPosition();
                 }
             }
 #endif
@@ -176,7 +215,7 @@ namespace Orc.Toolkit
         #endregion
 
         #region private
-#if(!SILVERLIGHT)
+
         void dragGrip_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             this.dragGrip.ReleaseMouseCapture();
@@ -188,10 +227,14 @@ namespace Orc.Toolkit
         {
             if (this.isDraging)
             {
+#if(!SILVERLIGHT)
                 Point currentMousePosition = System.Windows.Window.GetWindow(this).PointToScreen(e.GetPosition(System.Windows.Window.GetWindow(this)));
+#else
+                Point currentMousePosition = e.GetPosition(Application.Current.RootVisual);
+#endif
 
                 this.popup.HorizontalOffset += (currentMousePosition.X - lastMousePosition.X);
-                this.popup.VerticalOffset += (currentMousePosition.Y - lastMousePosition.Y);
+                this.popup.VerticalOffset += (currentMousePosition.Y - lastMousePosition.Y);                
 
                 this.lastMousePosition = currentMousePosition;
             }
@@ -203,10 +246,13 @@ namespace Orc.Toolkit
             if (isDraging)
             {
                 IsPinned = true;
+#if(!SILVERLIGHT)
                 lastMousePosition = System.Windows.Window.GetWindow(this).PointToScreen(e.GetPosition(System.Windows.Window.GetWindow(this)));
+#else
+                lastMousePosition = e.GetPosition(Application.Current.RootVisual);
+#endif
             }
         }
-#endif
 
 
 #if (!SILVERLIGHT)
@@ -215,8 +261,44 @@ namespace Orc.Toolkit
             if (this.popup.IsOpen && !this.IsPinned)
             {
                 Point p = e.GetPosition(popup);
+                if (popup.Child != null)
+                {
+                    Point p2 = e.GetPosition(popup.Child);
+                    if ((p2.Y > 0) && (p2.X > 0))
+                    {
+                        p = p2;
+                    }
+                }
                 if (!new Rect(0, 0, (popup.Child as FrameworkElement).ActualWidth, (popup.Child as FrameworkElement).ActualHeight).Contains(p))
                     popup.IsOpen = false;
+            }
+        }
+
+        void window_Deactivated(object sender, EventArgs e)
+        {
+            if (this.popup.IsOpen)
+            {
+                if (!Window.GetWindow(this).IsActive)
+                {
+                    if (popup.Child != null)
+                    {
+                        openOnWindowActivation = true;
+                        popup.Child.IsHitTestVisible = false;
+                    }
+
+                }
+
+                popup.IsOpen = false;
+            }
+        }
+
+        void window_Activated(object sender, EventArgs e)
+        {
+            if (openOnWindowActivation)
+            {
+                openOnWindowActivation = false;
+                popup.IsOpen = true;
+                popup.Child.IsHitTestVisible = true;
             }
         }
 #endif
@@ -229,38 +311,7 @@ namespace Orc.Toolkit
             else
                 this.popup.Focus();
         }
-        void popup_IsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //if (!popup.IsKeyboardFocusWithin)
-            //    popup.IsOpen = false;
-        }
-
-        private static FrameworkElement FindTopLevelElement(Popup popup)
-        {
-            FrameworkElement iterator, nextUp = popup;
-            do
-            {
-                iterator = nextUp;
-                nextUp = VisualTreeHelper.GetParent(iterator) as FrameworkElement;
-            } while (nextUp != null);
-            return iterator;
-        }
-
-        void UpdatePopupPosition()
-        {
-            if (this.IsPinned)
-                return;
-
-            if (this.popup != null)
-            {
-                if (this.popup.IsOpen)
-                {
-                    this.popup.HorizontalOffset += 0.1;
-                    this.popup.HorizontalOffset -= 0.1;
-                }
-            }
-        }
-
+        
         void window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.UpdatePopupPosition();
@@ -276,37 +327,52 @@ namespace Orc.Toolkit
             this.UpdatePopupPosition();
         }
 #endif
-
-        private void DropDownButton_SizeChanged(object sender, SizeChangedEventArgs e)
+        void UpdatePopupPosition()
         {
-#if (SILVERLIGHT)
+            if (this.IsPinned)
+                return;
+#if(!SILVERLIGHT)
+            if (this.popup != null)
+            {
+                if (this.popup.IsOpen)
+                {
+                    this.popup.HorizontalOffset += 0.1;
+                    this.popup.HorizontalOffset -= 0.1;
+                }
+            }
+#else
             if (this.PopupPlacement == PlacementMode.Bottom)
             {
                 this.popup.VerticalOffset = this.ActualHeight;
+                this.popup.HorizontalOffset = 0;
             }
 
             if (this.PopupPlacement == PlacementMode.Top)
             {
                 this.popup.VerticalOffset = -1 * this.content.ActualHeight;
+                this.popup.HorizontalOffset = 0;
             }
 
             if (this.PopupPlacement == PlacementMode.Right)
             {
                 this.popup.HorizontalOffset = this.ActualWidth;
+                this.popup.VerticalOffset = 0;
             }
 
             if (this.PopupPlacement == PlacementMode.Left)
             {
                 this.popup.HorizontalOffset = -1 * this.content.ActualWidth;
+                this.popup.VerticalOffset = 0;
             }
-
 #endif
-#if(!SILVERLIGHT)
+        }
+
+        private void DropDownButton_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
             if (popup != null)
             {
                 this.UpdatePopupPosition();
             }
-#endif
         }
 
         #endregion

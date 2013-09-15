@@ -24,8 +24,6 @@ namespace Orc.Toolkit
     using System.Windows.Media;
     using Commands;
 
-    using Orc.Toolkit.Helpers;
-
     /// <summary>
     /// Control to show color legend with checkboxes for each color
     /// </summary>
@@ -33,7 +31,6 @@ namespace Orc.Toolkit
     [TemplatePart(Name = "PART_Popup_Color_Board", Type = typeof(Popup))]
     [TemplatePart(Name = "PART_UnselectAll", Type = typeof(ButtonBase))]
     [TemplatePart(Name = "PART_All_Visible", Type = typeof(CheckBox))]
-    [TemplatePart(Name = "PART_Settings_Button", Type = typeof(DropDownButton))]
     public class ExtendedColorLegend : HeaderedContentControl
     {
         #region Dependency properties
@@ -76,7 +73,7 @@ namespace Orc.Toolkit
         /// <summary>
         /// Property indicating whether color can be edited or not
         /// </summary>
-        public static readonly DependencyProperty AllowColorEditingProperty = DependencyProperty.Register("AllowColorEditing", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true, OnAllowColorEditingChanged));
+        public static readonly DependencyProperty AllowColorEditingProperty = DependencyProperty.Register("AllowColorEditing", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
 
         /// <summary>
         /// The is drop down open property.
@@ -101,37 +98,38 @@ namespace Orc.Toolkit
         /// <summary>
         /// Property indicating whether search box is shown or not
         /// </summary>
-        public static readonly DependencyProperty ShowSearchBoxProperty = DependencyProperty.Register("ShowSearchBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
+        public static readonly DependencyProperty ShowSearchBoxProperty = DependencyProperty.Register("ShowSearchBox", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
 
         /// <summary>
-        /// Property indicating whethertop toolbox is shown or not
+        /// Property indicating tob toolbox is shown or not
         /// </summary>
-        public static readonly DependencyProperty ShowToolBoxProperty = DependencyProperty.Register("ShowToolBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
+        public static readonly DependencyProperty ShowToolBoxProperty = DependencyProperty.Register("ShowToolBox", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
 
         /// <summary>
-        /// Property indicating whether bottom tool box is shown or not
+        /// Property indicating tob toolbox is shown or not
         /// </summary>
-        public static readonly DependencyProperty ShowBottomToolBoxProperty = DependencyProperty.Register("ShowBottomToolBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
-
-        /// <summary>
-        /// Property indicating whether search box is shown or not
-        /// </summary>
-        public static readonly DependencyProperty ShowColorVisibilityControlsProperty = DependencyProperty.Register("ShowColorVisibilityControls", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true, OnShowColorVisibilityControlsChanged));
+        public static readonly DependencyProperty ShowBottomToolBoxProperty = DependencyProperty.Register("ShowBottomToolBox", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
 
         /// <summary>
         /// Property indicating whether search box is shown or not
         /// </summary>
-        public static readonly DependencyProperty ShowSettingsProperty = DependencyProperty.Register("ShowSettingsBox", typeof(bool), typeof(ExtendedColorLegend), new PropertyMetadata(true));
+        public static readonly DependencyProperty ShowColorVisibilityControlsProperty = DependencyProperty.Register("ShowColorVisibilityControls", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
+
+        /// <summary>
+        /// Property indicating whether search box is shown or not
+        /// </summary>
+        public static readonly DependencyProperty ShowSettingsProperty = DependencyProperty.Register("ShowSettings", typeof(bool), typeof(ExtendedColorLegend), new UIPropertyMetadata(true));
 
         /// <summary>
         /// Expose filter property
         /// </summary>
-        public static readonly DependencyProperty FilterProperty = DependencyProperty.Register("Filter", typeof(string), typeof(ExtendedColorLegend), new PropertyMetadata(null, OnFilterChanged));
+        public static readonly DependencyProperty FilterProperty = DependencyProperty.Register("Filter", typeof(string), typeof(ExtendedColorLegend), new UIPropertyMetadata(null, OnFilterChanged));
 
         /// <summary>
         /// Property for filter watermark
         /// </summary>
-        public static readonly DependencyProperty FilterWatermarkProperty = DependencyProperty.Register("FilterWatermark", typeof(string), typeof(ExtendedColorLegend), new PropertyMetadata("Search"));
+        public static readonly DependencyProperty FilterWatermarkProperty = DependencyProperty.Register("FilterWatermark", typeof(string), typeof(ExtendedColorLegend), new UIPropertyMetadata("Search"));
+      
         #endregion
 
         /// <summary>
@@ -167,20 +165,23 @@ namespace Orc.Toolkit
         /// <summary>
         /// Change color command
         /// </summary>
-        private ICommand changeColorCommand;
+        private ICommand changeColorCommand;        
 
         /// <summary>
-        /// The manual binding ready.
+        /// Initializes static members of the <see cref="ExtendedColorLegend" /> class.
         /// </summary>
-        private bool manualBindingReady;
+        static ExtendedColorLegend()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ExtendedColorLegend), new FrameworkPropertyMetadata(typeof(ExtendedColorLegend)));
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtendedColorLegend" /> class.
         /// </summary>
         public ExtendedColorLegend()
         {
-            this.DefaultStyleKey = typeof(ExtendedColorLegend);
-            this.ClearFilterCommand = new DelegateCommand(o => this.Filter = string.Empty, o => true);
+            CommandBindings.Add(
+                new CommandBinding(ExtendedColorLegendCommands.ClearFilter, this.ClearFilter, this.CanClearFilter));
         }
 
         #region Public properties
@@ -192,11 +193,6 @@ namespace Orc.Toolkit
             get { return (string)GetValue(OperationColorAttributeProperty); }
             set { this.SetValue(OperationColorAttributeProperty, value); }
         }
-        
-        /// <summary>
-        ///     Gets or sets BrowseCommand.
-        /// </summary>
-        public ICommand ClearFilterCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether color can be edited or not
@@ -497,7 +493,7 @@ namespace Orc.Toolkit
         }
 
         #endregion
-
+        
         /// <summary>
         /// The on apply template.
         /// </summary>
@@ -508,80 +504,11 @@ namespace Orc.Toolkit
             this.popup = (Popup)this.GetTemplateChild("PART_Popup_Color_Board");
             this.button = (ButtonBase)GetTemplateChild("PART_UnselectAll");
             this.checkBox = (CheckBox)GetTemplateChild("PART_All_Visible");
-            
-            var settingsButton = (DropDownButton)GetTemplateChild("PART_Settings_Button");
-            if (settingsButton != null)
-            {
-                settingsButton.ContentLayoutUpdated += (sender, args) =>
-                    {
-                        if (manualBindingReady)
-                        {
-                            return;
-                        }
-
-                        if (sender is ContentControl)
-                        {
-                            var settingsContent = sender as ContentControl;
-                            ContentPresenter contentPresenter = FindVisualChild<ContentPresenter>(settingsContent);
-                            if (contentPresenter == null) 
-                            {
-                                return;
-                            } 
-
-                            var content = contentPresenter.Content;
-                            if (content == null)
-                            {
-                                return;
-                            }
-
-                            var qryAllChecks = (content as DependencyObject).Descendents().OfType<CheckBox>();
-
-                            var allChecks = qryAllChecks as CheckBox[] ?? qryAllChecks.ToArray();
-                            var cbVisibilitySetting = allChecks.First(cb => cb.Name == "cbVisibilitySetting");
-                            if (cbVisibilitySetting != null)
-                            {
-                                cbVisibilitySetting.IsChecked = this.ShowColorVisibilityControls;
-                                cbVisibilitySetting.Checked +=
-                                    (o, eventArgs) => { this.ShowColorVisibilityControls = true; };
-                                cbVisibilitySetting.Unchecked +=
-                                    (o, eventArgs) => this.ShowColorVisibilityControls = false;
-                            }
-
-                            var cbColorEditingSetting = allChecks.First(cb => cb.Name == "cbColorEditingSetting");
-                            if (cbColorEditingSetting != null)
-                            {
-                                cbColorEditingSetting.IsChecked = this.AllowColorEditing;
-                                cbColorEditingSetting.Checked +=
-                                    (o, eventArgs) => { this.AllowColorEditing = true; };
-                                cbColorEditingSetting.Unchecked +=
-                                    (o, eventArgs) => this.AllowColorEditing = false;
-                            }
-
-                            var cbUseRegexSetting = allChecks.First(cb => cb.Name == "cbUseRegexSetting");
-                            if (cbUseRegexSetting != null)
-                            {
-                                cbUseRegexSetting.IsChecked = this.UseRegexFiltering;
-                                cbUseRegexSetting.Checked +=
-                                    (o, eventArgs) => { this.UseRegexFiltering = true; };
-                                cbUseRegexSetting.Unchecked +=
-                                    (o, eventArgs) => this.UseRegexFiltering = false;
-                            }
-
-                            manualBindingReady = true;
-                        }
-                    };
-            }
 
             if (this.listBox != null)
             {
                 this.listBox.SelectionChanged += (sender, args) => { this.SelectedColorItems = this.GetSelectedList(); };
                 this.listBox.SelectionMode = SelectionMode.Extended;
-                
-                this.listBox.LayoutUpdated += (sender, args) =>
-                    {
-                        this.UpdateVisibilityControlsVisibility(); 
-                        this.UpdateColorEditingControlsVisibility();
-                    };
             }
 
             if (this.button != null)
@@ -612,42 +539,6 @@ namespace Orc.Toolkit
             this.SetBinding(EditingColorProperty, b);
             this.colorBoard.DoneClicked += this.ColorBoardDoneClicked;
             this.colorBoard.CancelClicked += this.ColorBoardCancelClicked;
-        }
-
-        /// <summary>
-        /// The update visibility controls visibility.
-        /// </summary>
-        public void UpdateVisibilityControlsVisibility()
-        {
-            if (this.listBox == null)
-            {
-                return;
-            }
-
-            var qryAllChecks = this.listBox.Descendents().OfType<CheckBox>();
-            foreach (CheckBox check in qryAllChecks)
-            {
-                check.Visibility = this.ShowColorVisibilityControls ? Visibility.Visible : Visibility.Collapsed;
-            }
-
-            this.checkBox.Visibility = this.ShowColorVisibilityControls ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        /// <summary>
-        /// The update color editing controls visibility.
-        /// </summary>
-        public void UpdateColorEditingControlsVisibility()
-        {
-            if (this.listBox == null)
-            {
-                return;
-            }
-
-            var qryAllArrows = this.listBox.Descendents().OfType<System.Windows.Shapes.Path>().Where(p => p.Name == "arrow");
-            foreach (System.Windows.Shapes.Path path in qryAllArrows)
-            {
-                path.Visibility = this.AllowColorEditing ? Visibility.Visible : Visibility.Collapsed;
-            }
         }
 
         /// <summary>
@@ -685,42 +576,6 @@ namespace Orc.Toolkit
                 extendedColorLegend.ItemsSource = (IEnumerable<IColorProvider>)e.NewValue;
             }
         }
-        
-        /// <summary>
-        /// The show color visibility controls changed.
-        /// </summary>
-        /// <param name="o">
-        /// The o.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private static void OnShowColorVisibilityControlsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var extendedColorLegend = o as ExtendedColorLegend;
-            if (extendedColorLegend != null)
-            {
-                extendedColorLegend.UpdateVisibilityControlsVisibility();
-            }
-        }
-
-        /// <summary>
-        /// The on allow color editing changed.
-        /// </summary>
-        /// <param name="o">
-        /// The o.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private static void OnAllowColorEditingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var extendedColorLegend = o as ExtendedColorLegend;
-            if (extendedColorLegend != null)
-            {
-                extendedColorLegend.UpdateColorEditingControlsVisibility();
-            }
-        }
 
         /// <summary>
         /// Process filter changed event
@@ -748,39 +603,6 @@ namespace Orc.Toolkit
         /// </param>
         private static void OnIsColorSelectingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-        }
-
-        /// <summary>
-        /// The find visual child.
-        /// </summary>
-        /// <param name="obj">
-        /// The obj.
-        /// </param>
-        /// <typeparam name="TChildItem">
-        /// the type of expected result.
-        /// </typeparam>
-        /// <returns>
-        /// The <see cref="TChildItem"/>.
-        /// </returns>
-        private TChildItem FindVisualChild<TChildItem>(DependencyObject obj)
-                where TChildItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child is TChildItem)
-                {
-                    return (TChildItem)child;
-                }
-
-                TChildItem childOfChild = this.FindVisualChild<TChildItem>(child);
-                if (childOfChild != null)
-                {
-                    return childOfChild;
-                }
-            }
-
-            return null;
         }
 
         /// <summary>
@@ -832,6 +654,30 @@ namespace Orc.Toolkit
             this.FilteredItemsSource = this.GetFilteredItems();
             this.FilteredItemsIds = this.FilteredItemsSource == null ? null : this.FilteredItemsSource.Select(cp => cp.Id);
         }
+
+        #region Commands
+
+        /// <summary>
+        /// Clears filter
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event params</param>
+        private void ClearFilter(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Filter = string.Empty;
+        }
+
+        /// <summary>
+        /// Shows if clear filter command can be executed
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event params</param>
+        private void CanClearFilter(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !string.IsNullOrEmpty(this.Filter);
+        }
+
+        #endregion //Commands
 
         /// <summary>
         /// The color board_ done clicked.

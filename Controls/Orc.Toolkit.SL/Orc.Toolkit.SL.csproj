@@ -58,15 +58,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditor.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationButton.cs" />
+    <Compile Include="AttributeConfigurationEditor\ExtendedDataGridColumn.cs" />
     <Compile Include="Behaviours\MultiSelectorBehaviour.cs" />
     <Compile Include="ColorPicker\ColorChangedEventArgs.cs" />
     <Compile Include="ColorPicker\PredefinedColor.cs" />
+    <Compile Include="ComboBoxEx\ComboBoxEx.cs" />
     <Compile Include="DropDownButton\DropDownButton.cs" />
     <Compile Include="DropDownButton\HeaderedContentControl.cs" />
     <Compile Include="Expander\Expander.cs" />
     <Compile Include="ExtendedColorLegend\ExtendedColorLegend.cs" />
     <Compile Include="ExtendedColorLegend\IColorProvider.cs" />
     <Compile Include="Helpers\LayoutTransformer.cs" />
+    <Compile Include="Helpers\VisualTreeEnumeration.cs" />
     <Compile Include="PinnableTooltip\LinkTooltipItem.cs" />
     <Compile Include="PinnableTooltip\OrdinalTooltipItem.cs" />
     <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
@@ -100,10 +107,6 @@
     <Page Include="Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\DropDownButton\SettingsDropDownButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\Expander\ExpanderToLeft.xaml">
       <SubType>Designer</SubType>

@@ -64,8 +64,8 @@
 
                     <Rectangle x:Name="Divider5" Style="{StaticResource DividerStyle}" />
 
-                    <HyperlinkButton x:Name="Controls" Style="{StaticResource LinkStyle}"
-					                 NavigateUri="/Controls" TargetName="ContentFrame" Content="Controls" />
+                    <HyperlinkButton x:Name="AttributeConfigurationEditor" Style="{StaticResource LinkStyle}"
+					                 NavigateUri="/AttributeConfigurationEditor" TargetName="ContentFrame" Content="AttributeConfigurationEditor" />
 
                     <Rectangle x:Name="Divider6" Style="{StaticResource DividerStyle}" />
 

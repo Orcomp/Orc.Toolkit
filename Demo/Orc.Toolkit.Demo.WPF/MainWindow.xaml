@@ -23,6 +23,12 @@
             <TabItem Header="ColorLegend">
                 <local:ColorLegend />
             </TabItem>
+            <TabItem Header="AttributeConfigurationEditor">
+                <local:AttributeConfigurationEditor Margin="4"/>
+            </TabItem>
+            <TabItem Header="Searchable List">
+                <local:SearchableList />
+            </TabItem>
 		</TabControl>
 	</Grid>
 </Window>

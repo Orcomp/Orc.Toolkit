@@ -47,6 +47,21 @@
     <Compile Include="..\Orc.Toolkit.SL\Assets\Converters\BoolToVisibilityConverter.cs">
       <Link>Assets\Converters\BoolToVisibilityConverter.cs</Link>
     </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationButton.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationEditor.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditor.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\ExtendedDataGridColumn.cs">
+      <Link>AttributeConfigurationEditor\ExtendedDataGridColumn.cs</Link>
+    </Compile>
     <Compile Include="..\Orc.Toolkit.SL\Behaviours\MultiSelectorBehaviour.cs">
       <Link>Behaviours\MultiSelectorBehaviour.cs</Link>
     </Compile>
@@ -55,9 +70,6 @@
     </Compile>
     <Compile Include="..\Orc.Toolkit.SL\DropDownButton\DropDownButton.cs">
       <Link>DropDownButton\DropDownButton.cs</Link>
-    </Compile>
-    <Compile Include="..\Orc.Toolkit.SL\ExtendedColorLegend\ExtendedColorLegend.cs">
-      <Link>ExtendedColorLegend\ExtendedColorLegend.cs</Link>
     </Compile>
     <Compile Include="..\Orc.Toolkit.SL\ExtendedColorLegend\IColorProvider.cs">
       <Link>ExtendedColorLegend\IColorProvider.cs</Link>
@@ -93,6 +105,7 @@
     <Compile Include="ColorPicker\PredefinedColor.cs" />
     <Compile Include="Expander\Expander.cs" />
     <Compile Include="ExtendedColorLegend\Commands\ExtendedColorLegendCommands.cs" />
+    <Compile Include="ExtendedColorLegend\ExtendedColorLegend.cs" />
     <Compile Include="PinnableTooltip\PinnableItemTemplateSelector.cs" />
     <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
     <Compile Include="ColorPicker\ColorBoard.cs" />
@@ -117,6 +130,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SearchableListBox\SearchableListBox.cs" />
     <Compile Include="Statusbar\SliderPlusMinus.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,10 +143,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Assets\Theme\Default\Controls\DropDownButton\SettingsDropDownButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,7 +238,21 @@
   <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\LaunchConditionsEditor_259.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\Bubble_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\manifest_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\note_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\WindowsForm_817_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\DataRefresh16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\projectNew_16.png" />
+    <Resource Include="Assets\Theme\Default\Images\projectOpen_16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -46,8 +46,20 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="sdk:TreeViewItem">
-                                            <Grid>
+                                            <Grid Background="Transparent">
                                                 <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal"/>
+                                                        <VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HoverBorder"
+                                                                                               Storyboard.TargetProperty="Visibility">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Pressed"/>
+                                                    </VisualStateGroup>
                                                     <VisualStateGroup x:Name="SelectionStates">
                                                         <VisualState x:Name="Selected">
 
@@ -94,14 +106,15 @@
                                                     <ColumnDefinition Width="auto"/>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Border x:Name="HoverBorder" IsHitTestVisible="False" Height="14" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_2}" HorizontalAlignment="Stretch" Visibility="Collapsed"/>
                                                 <Border x:Name="Border" IsHitTestVisible="False" Height="14" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_1}" HorizontalAlignment="Stretch"/>
                                                 <ToggleButton x:Name="ExpanderButton" Height="14"
                                                         Style="{StaticResource ExpandCollapseToggleStyle}"  ClickMode="Press"
                                                         IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                                <ContentPresenter x:Name="Header" Grid.Column="1" Height="14" IsHitTestVisible="False" Margin="0 0 14 0"
+                                                <ContentPresenter x:Name="Header" Grid.Column="1" Height="14" Margin="0 0 14 0"
                                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding Header}"
                                                                   ContentTemplate="{TemplateBinding HeaderTemplate}"/>
-                                                <ItemsPresenter x:Name="ItemsHost" IsHitTestVisible="False" Margin="1 1 0 1"
+                                                <ItemsPresenter x:Name="ItemsHost" Margin="1 1 0 1"
                                                                   Grid.Row="1" Grid.ColumnSpan="2"
                                                                   Visibility="Collapsed"/>
                                             </Grid>
@@ -121,7 +134,7 @@
                                                 <ColumnDefinition MinWidth="100"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding Key.Name}" TextAlignment="Left" VerticalAlignment="Center"
+                                            <TextBlock Text="{Binding Key}" TextAlignment="Left" VerticalAlignment="Center"
                                                        HorizontalAlignment="Left" />
                                             <TextBlock Grid.Column="1" FontWeight="Bold" Margin="5 0 0 0" Text="{Binding Value}" 
                                                        TextAlignment="Left" VerticalAlignment="Center" />
@@ -156,7 +169,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Background="Transparent">
+                                <Border x:Name="DragGrip" Margin="5 0 5 0" Height="10" VerticalAlignment="Center" Background="{StaticResource Brush_Control_2}">
                                     <StackPanel Orientation="Horizontal">
                                         <!--header pattern-->
                                     </StackPanel>

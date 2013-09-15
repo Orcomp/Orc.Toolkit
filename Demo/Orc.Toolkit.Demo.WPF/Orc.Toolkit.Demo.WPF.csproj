@@ -53,17 +53,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\AttributeConfigurationEditorTest\AttributeConfiguration.cs" />
     <Compile Include="Views\ColorLegend.xaml.cs">
       <DependentUpon>ColorLegend.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AttributeConfigurationEditor.xaml.cs">
+      <DependentUpon>AttributeConfigurationEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DropDownButton.xaml.cs">
       <DependentUpon>DropDownButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Printing.xaml.cs">
       <DependentUpon>Printing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchableList.xaml.cs">
+      <DependentUpon>SearchableList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statusbar.xaml.cs">
       <DependentUpon>Statusbar.xaml</DependentUpon>
@@ -119,11 +126,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AttributeConfigurationEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DropDownButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Printing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchableList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,7 +184,16 @@
   <ItemGroup>
     <Resource Include="Assets\samp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Bubble_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\manifest_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\LuggageTag_16xLG.png" />
+    <Resource Include="Assets\note_16xLG.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -83,6 +83,12 @@ namespace Orc.Toolkit
             "Tooltip", typeof(object), typeof(PinnableTooltipService), new PropertyMetadata(OnTooltipPropertyChanged));
 
         /// <summary>
+        /// The tooltip owner property.
+        /// </summary>
+        public static readonly DependencyProperty IsTooltipOwnerProperty = DependencyProperty.RegisterAttached(
+            "IsTooltipOwner", typeof(bool), typeof(PinnableTooltipService), new PropertyMetadata(OnIsTooltipOwnerPropertyChanged));
+
+        /// <summary>
         ///     The elements and tool tips.
         /// </summary>
         private static readonly Dictionary<UIElement, PinnableTooltip> ElementsAndToolTips =
@@ -226,6 +232,20 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
+        /// The get is tooltip owner.
+        /// </summary>
+        /// <param name="element">
+        /// The element.
+        /// </param>
+        /// <returns>
+        /// The <see cref="object"/>.
+        /// </returns>
+        public static bool GetIsTooltipOwner(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsTooltipOwnerProperty);
+        }
+
+        /// <summary>
         /// The set initial show delay.
         /// </summary>
         /// <param name="element">
@@ -293,6 +313,20 @@ namespace Orc.Toolkit
         public static void SetTooltip(DependencyObject element, object value)
         {
             element.SetValue(TooltipProperty, value);
+        }
+
+        /// <summary>
+        /// The set is tooltip owner.
+        /// </summary>
+        /// <param name="element">
+        /// The element.
+        /// </param>
+        /// <param name="value">
+        /// The value.
+        /// </param>
+        public static void SetIsTooltipOwner(DependencyObject element, bool value)
+        {
+            element.SetValue(IsTooltipOwnerProperty, value);
         }
 
         #endregion
@@ -406,7 +440,7 @@ namespace Orc.Toolkit
                 SetRootVisual();
             }
 
-            if (toolTip.Content == null || toolTip.IsTimerEnabled || toolTip.IsOpen)
+            if (toolTip == null || toolTip.Content == null || toolTip.IsTimerEnabled || toolTip.IsOpen)
             {
                 return;
             }
@@ -447,6 +481,11 @@ namespace Orc.Toolkit
                 {
                     return;
                 }
+            }
+
+            if (toolTip == null)
+            {
+                return;
             }
 
             if (!toolTip.IsOpen)
@@ -524,7 +563,7 @@ namespace Orc.Toolkit
         {
             lock (Locker)
             {
-                foreach (PinnableTooltip toolTip in ElementsAndToolTips.Values.Where(toolTip => !toolTip.IsPinned))
+                foreach (PinnableTooltip toolTip in ElementsAndToolTips.Values.Where(toolTip => toolTip!= null && !toolTip.IsPinned))
                 {
 #if (!SILVERLIGHT)
                     if (ScreenUtils.IsParentOf(toolTip, e.OriginalSource as DependencyObject))
@@ -550,6 +589,28 @@ namespace Orc.Toolkit
         private static void OnRootVisualMouseMove(object sender, MouseEventArgs e)
         {
             MousePosition = e.GetPosition(null);
+        }
+
+        /// <summary>
+        /// The on is tooltip owner property changed.
+        /// </summary>
+        /// <param name="d">
+        /// The d.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnIsTooltipOwnerPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue != null)
+            {
+                UnregisterTooltip(d as UIElement);
+            }
+
+            if ((e.NewValue != null) && ((bool)e.NewValue))
+            {
+                RegisterTooltip(d as UIElement, null);
+            }
         }
 
         /// <summary>
@@ -598,16 +659,24 @@ namespace Orc.Toolkit
                 }
             }
 
-            PinnableTooltip toolTip = p as PinnableTooltip ?? ConvertToTooltip(p);
-
             var element = owner as FrameworkElement;
+            PinnableTooltip toolTip = null;
+
+            if (p != null)
+            {
+                toolTip = p as PinnableTooltip ?? ConvertToTooltip(p);
+                toolTip.SetOwner(owner);
+            }
+            
             if (element != null)
             {
                 element.Unloaded += FrameworkElementUnloaded;
-                toolTip.DataContext = element.DataContext;
+                if (toolTip != null)
+                {
+                    toolTip.DataContext = element.DataContext;
+                }
             }
-
-            toolTip.SetOwner(owner);
+            
             owner.MouseEnter += OnElementMouseEnter;
             owner.MouseLeave += OnElementMouseLeave;
 
