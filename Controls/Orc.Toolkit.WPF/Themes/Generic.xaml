@@ -1333,10 +1333,11 @@
     </Style>
 
     <Style TargetType="{x:Type local:ExtendedColorLegend}">
+        <Setter Property="Background" Value="#FFCED4DF" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ExtendedColorLegend}">
-                    <Border Background="#FFCED4DF"
+                    <Border Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
                             BorderBrush="#FF43577B"
                             BorderThickness="1">
                         <Grid>
