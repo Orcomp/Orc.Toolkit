@@ -68,7 +68,7 @@ namespace Orc.Toolkit
             "SelectedColorItems",
             typeof(IEnumerable<IColorProvider>),
             typeof(ExtendedColorLegend),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, OnSelectedItemsChanged));
 
         /// <summary>
         /// Property indicating whether color can be edited or not
@@ -562,6 +562,35 @@ namespace Orc.Toolkit
             return result;
         }
 
+        public void SetSelectedList(IEnumerable<IColorProvider> selectedList)
+        {
+            if (AreCollectionsTheSame(GetSelectedList().ToList(), selectedList.ToList()))
+            {
+                return;
+            }
+
+            this.listBox.SelectedItems.Clear();
+            foreach (var colorProvider in selectedList)
+            {
+                this.listBox.SelectedItems.Add(colorProvider);
+            }
+        }
+
+        private bool AreCollectionsTheSame(List<IColorProvider> list1, List<IColorProvider> list2)
+        {
+            if (list1.Count() != list2.Count())
+            {
+                return false;
+            }
+
+            if (list1.Any(colorProvider => list2.All(cp => cp.Id != colorProvider.Id)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// handler for rebinding ItemsSource property
         /// </summary>
@@ -574,6 +603,21 @@ namespace Orc.Toolkit
             if (extendedColorLegend != null)
             {
                 extendedColorLegend.ItemsSource = (IEnumerable<IColorProvider>)e.NewValue;
+            }
+        }
+
+        /// <summary>
+        /// handler for setting selected items property
+        /// </summary>
+        /// <param name="o">the dependency object</param>
+        /// <param name="e">event params</param>
+        private static void OnSelectedItemsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var extendedColorLegend = o as ExtendedColorLegend;
+
+            if (extendedColorLegend != null)
+            {
+                extendedColorLegend.SetSelectedList((IEnumerable<IColorProvider>)e.NewValue);
             }
         }
 
