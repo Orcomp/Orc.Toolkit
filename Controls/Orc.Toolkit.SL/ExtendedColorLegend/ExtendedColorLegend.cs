@@ -71,7 +71,7 @@ namespace Orc.Toolkit
             "SelectedColorItems",
             typeof(IEnumerable<IColorProvider>),
             typeof(ExtendedColorLegend),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, OnSelectedItemsChanged));
 
         /// <summary>
         /// Property indicating whether color can be edited or not
@@ -499,6 +499,100 @@ namespace Orc.Toolkit
         #endregion
 
         /// <summary>
+        /// handler for rebinding ItemsSource property
+        /// </summary>
+        /// <param name="o">the dependency object</param>
+        /// <param name="e">event params</param>
+        private static void OnItemsSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var extendedColorLegend = o as ExtendedColorLegend;
+
+            if (extendedColorLegend != null)
+            {
+                extendedColorLegend.ItemsSource = (IEnumerable<IColorProvider>)e.NewValue;
+            }
+        }
+
+        /// <summary>
+        /// handler for setting selected items property
+        /// </summary>
+        /// <param name="o">the dependency object</param>
+        /// <param name="e">event params</param>
+        private static void OnSelectedItemsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var extendedColorLegend = o as ExtendedColorLegend;
+
+            if (extendedColorLegend != null)
+            {
+                extendedColorLegend.SetSelectedList((IEnumerable<IColorProvider>)e.NewValue);
+            }
+        }
+
+        /// <summary>
+        /// The show color visibility controls changed.
+        /// </summary>
+        /// <param name="o">
+        /// The o.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnShowColorVisibilityControlsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var extendedColorLegend = o as ExtendedColorLegend;
+            if (extendedColorLegend != null)
+            {
+                extendedColorLegend.UpdateVisibilityControlsVisibility();
+            }
+        }
+
+        /// <summary>
+        /// The on allow color editing changed.
+        /// </summary>
+        /// <param name="o">
+        /// The o.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnAllowColorEditingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var extendedColorLegend = o as ExtendedColorLegend;
+            if (extendedColorLegend != null)
+            {
+                extendedColorLegend.UpdateColorEditingControlsVisibility();
+            }
+        }
+
+        /// <summary>
+        /// Process filter changed event
+        /// </summary>
+        /// <param name="o">Sender dependency object</param>
+        /// <param name="e">shows what has been changed</param>
+        private static void OnFilterChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            ExtendedColorLegend extendedColorLegend = o as ExtendedColorLegend;
+
+            if (extendedColorLegend != null)
+            {
+                extendedColorLegend.OnFilterChanged((string)e.OldValue, (string)e.NewValue);
+            }
+        }
+
+        /// <summary>
+        /// The on is drop down open property changed.
+        /// </summary>
+        /// <param name="d">
+        /// The d.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnIsColorSelectingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        /// <summary>
         /// The on apply template.
         /// </summary>
         public override void OnApplyTemplate()
@@ -672,82 +766,51 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// handler for rebinding ItemsSource property
+        /// The set selected list.
         /// </summary>
-        /// <param name="o">the dependency object</param>
-        /// <param name="e">event params</param>
-        private static void OnItemsSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        /// <param name="selectedList">
+        /// The selected list.
+        /// </param>
+        public void SetSelectedList(IEnumerable<IColorProvider> selectedList)
         {
-            var extendedColorLegend = o as ExtendedColorLegend;
-
-            if (extendedColorLegend != null)
+            var colorProviders = selectedList as IList<IColorProvider> ?? selectedList.ToList();
+            if (this.AreCollectionsTheSame(this.GetSelectedList().ToList(), colorProviders.ToList()))
             {
-                extendedColorLegend.ItemsSource = (IEnumerable<IColorProvider>)e.NewValue;
+                return;
             }
-        }
-        
-        /// <summary>
-        /// The show color visibility controls changed.
-        /// </summary>
-        /// <param name="o">
-        /// The o.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private static void OnShowColorVisibilityControlsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            var extendedColorLegend = o as ExtendedColorLegend;
-            if (extendedColorLegend != null)
+
+            this.listBox.SelectedItems.Clear();
+            foreach (var colorProvider in colorProviders)
             {
-                extendedColorLegend.UpdateVisibilityControlsVisibility();
+                this.listBox.SelectedItems.Add(colorProvider);
             }
         }
 
         /// <summary>
-        /// The on allow color editing changed.
+        /// The are collections the same.
         /// </summary>
-        /// <param name="o">
-        /// The o.
+        /// <param name="list1">
+        /// The list 1.
         /// </param>
-        /// <param name="e">
-        /// The e.
+        /// <param name="list2">
+        /// The list 2.
         /// </param>
-        private static void OnAllowColorEditingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        private bool AreCollectionsTheSame(List<IColorProvider> list1, List<IColorProvider> list2)
         {
-            var extendedColorLegend = o as ExtendedColorLegend;
-            if (extendedColorLegend != null)
+            if (list1.Count() != list2.Count())
             {
-                extendedColorLegend.UpdateColorEditingControlsVisibility();
+                return false;
             }
-        }
 
-        /// <summary>
-        /// Process filter changed event
-        /// </summary>
-        /// <param name="o">Sender dependency object</param>
-        /// <param name="e">shows what has been changed</param>
-        private static void OnFilterChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            ExtendedColorLegend extendedColorLegend = o as ExtendedColorLegend;
-
-            if (extendedColorLegend != null)
+            if (list1.Any(colorProvider => list2.All(cp => cp.Id != colorProvider.Id)))
             {
-                extendedColorLegend.OnFilterChanged((string)e.OldValue, (string)e.NewValue);
+                return false;
             }
-        }
 
-        /// <summary>
-        /// The on is drop down open property changed.
-        /// </summary>
-        /// <param name="d">
-        /// The d.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private static void OnIsColorSelectingPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
+            return true;
         }
 
         /// <summary>
