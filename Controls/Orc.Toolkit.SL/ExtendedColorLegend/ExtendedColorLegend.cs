@@ -773,6 +773,11 @@ namespace Orc.Toolkit
         /// </param>
         public void SetSelectedList(IEnumerable<IColorProvider> selectedList)
         {
+            if (this.listBox == null)
+            {
+                return;
+            }
+
             var colorProviders = selectedList as IList<IColorProvider> ?? selectedList.ToList();
             if (this.AreCollectionsTheSame(this.GetSelectedList().ToList(), colorProviders.ToList()))
             {

@@ -562,8 +562,19 @@ namespace Orc.Toolkit
             return result;
         }
 
+        /// <summary>
+        /// The set selected list.
+        /// </summary>
+        /// <param name="selectedList">
+        /// The selected list.
+        /// </param>
         public void SetSelectedList(IEnumerable<IColorProvider> selectedList)
         {
+            if (this.listBox == null)
+            {
+                return;
+            }
+
             if (AreCollectionsTheSame(GetSelectedList().ToList(), selectedList.ToList()))
             {
                 return;
