@@ -19,6 +19,21 @@ namespace Orc.Toolkit
     [TemplatePart(Name = "PART_PlusButton", Type = typeof(RepeatButton))]
     public class SliderPlusMinus : Slider
     {
+        ///// <summary>
+        ///// The minimum bug fix property.
+        ///// </summary>
+        //public static readonly DependencyProperty MinimumBugFixProperty = DependencyProperty.Register("MinimumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(1, OnUpdateSliderRange));
+        public static readonly DependencyProperty MinimumBugFixProperty = DependencyProperty.RegisterAttached(
+            "MinimumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(OnUpdateSliderRange));
+        
+
+        ///// <summary>
+        ///// The maximum bug fix property.
+        ///// </summary>
+        //public static readonly DependencyProperty MaximumBugFixProperty = DependencyProperty.Register("MaximumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(10, OnUpdateSliderRange));
+        public static readonly DependencyProperty MaximumBugFixProperty = DependencyProperty.RegisterAttached(
+            "MaximumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(OnUpdateSliderRange));
+ 
         #region Fields
 
         /// <summary>
@@ -44,6 +59,18 @@ namespace Orc.Toolkit
         }
 
         #endregion
+
+        public double MinimumBugFix
+        {
+            get { return (double)GetValue(MinimumBugFixProperty); }
+            set { SetValue(MinimumBugFixProperty, value); }
+        }
+
+        public double MaximumBugFix
+        {
+            get { return (double)GetValue(MaximumBugFixProperty); }
+            set { SetValue(MaximumBugFixProperty, value); }
+        }
 
         #region Public Methods and Operators
 
@@ -71,6 +98,23 @@ namespace Orc.Toolkit
         #endregion
 
         #region Methods
+
+        private static void OnUpdateSliderRange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            SliderPlusMinus slider = d as SliderPlusMinus;
+            if (slider != null)
+            {
+                if (slider.Maximum != slider.MaximumBugFix)
+                {
+                    slider.Maximum = slider.MaximumBugFix;
+                }
+
+                if (slider.Minimum != slider.MinimumBugFix)
+                {
+                    slider.Minimum = slider.MinimumBugFix;
+                }
+            }
+        }
 
         /// <summary>
         /// The minus button_ click.
