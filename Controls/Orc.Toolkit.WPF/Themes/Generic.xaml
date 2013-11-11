@@ -1343,14 +1343,14 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
-                                <RowDefinition x:Name="toolsContainerRow" Height="33" />
+                                <RowDefinition x:Name="toolsContainerRow" Height="40" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
                             <TextBlock FontWeight="Bold" Margin="4" TextAlignment="Left"
                                        Text="{Binding Path=OperationColorAttribute, RelativeSource={RelativeSource TemplatedParent}, StringFormat=Legend: {0}}">
                             </TextBlock>
-                            <Grid x:Name="toolsContainer" Grid.Row="1" Margin="4,4,4,4" Background="#FFCED4DF"
+                            <Grid x:Name="toolsContainer" Grid.Row="1" Margin="8" Background="#FFCED4DF"
                                   Visibility="{Binding ShowToolBox, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="75"/>
