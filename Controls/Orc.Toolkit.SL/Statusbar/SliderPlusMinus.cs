@@ -22,7 +22,6 @@ namespace Orc.Toolkit
         ///// <summary>
         ///// The minimum bug fix property.
         ///// </summary>
-        //public static readonly DependencyProperty MinimumBugFixProperty = DependencyProperty.Register("MinimumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(1, OnUpdateSliderRange));
         public static readonly DependencyProperty MinimumBugFixProperty = DependencyProperty.RegisterAttached(
             "MinimumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(OnUpdateSliderRange));
         
@@ -30,7 +29,6 @@ namespace Orc.Toolkit
         ///// <summary>
         ///// The maximum bug fix property.
         ///// </summary>
-        //public static readonly DependencyProperty MaximumBugFixProperty = DependencyProperty.Register("MaximumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(10, OnUpdateSliderRange));
         public static readonly DependencyProperty MaximumBugFixProperty = DependencyProperty.RegisterAttached(
             "MaximumBugFix", typeof(double), typeof(SliderPlusMinus), new PropertyMetadata(OnUpdateSliderRange));
  
