@@ -85,7 +85,14 @@ namespace Orc.Toolkit
         /// </param>
         private void minusButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Value -= this.LargeChange;
+            if (this.IsDirectionReversed)
+            {
+                this.Value += this.LargeChange;
+            }
+            else
+            {
+                this.Value -= this.LargeChange;
+            }
         }
 
         /// <summary>
@@ -99,7 +106,15 @@ namespace Orc.Toolkit
         /// </param>
         private void plusButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Value += this.LargeChange;
+            if (this.IsDirectionReversed)
+            {
+                this.Value -= this.LargeChange;
+            }
+            else
+            {
+                this.Value += this.LargeChange;
+            }
+            
         }
 
         #endregion
