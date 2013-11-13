@@ -100,6 +100,16 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ZoomIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/Zoom.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="UndoIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>

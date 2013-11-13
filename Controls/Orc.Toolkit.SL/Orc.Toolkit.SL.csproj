@@ -183,6 +183,11 @@
   <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\LaunchConditionsEditor_259.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Orc.Toolkit.WPF\Assets\Theme\Default\Images\Zoom.png">
+      <Link>Assets\Theme\Default\Images\Zoom.png</Link>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
