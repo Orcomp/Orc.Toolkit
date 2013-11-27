@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Orc.Toolkit
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
@@ -732,42 +733,50 @@ namespace Orc.Toolkit
         /// </param>
         private static void UnregisterTooltip(UIElement owner)
         {
-            if (owner == null)
+            try
             {
-                return;
-            }
-
-            lock (Locker)
-            {
-                PinnableTooltip toolTip = null;
-                if (ElementsAndToolTips.ContainsKey(owner))
-                {
-                    toolTip = ElementsAndToolTips[owner];
-                }
-                else
+                if (owner == null)
                 {
                     return;
                 }
 
-                var element = owner as FrameworkElement;
-                if (element != null)
+                lock (Locker)
                 {
-                    element.Unloaded -= FrameworkElementUnloaded;
-                    toolTip.DataContext = null;
+                    PinnableTooltip toolTip = null;
+                    if (ElementsAndToolTips.ContainsKey(owner))
+                    {
+                        toolTip = ElementsAndToolTips[owner];
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    var element = owner as FrameworkElement;
+                    if (element != null)
+                    {
+                        element.Unloaded -= FrameworkElementUnloaded;
+                        toolTip.DataContext = null;
+                    }
+
+                    owner.MouseEnter -= OnElementMouseEnter;
+                    owner.MouseLeave -= OnElementMouseLeave;
+
+                    var control = owner as Control;
+                    if (control != null)
+                    {
+                        control.IsEnabledChanged -= OnControlEnabledChanged;
+                    }
+
+                    toolTip.IsOpen = false;
+                    toolTip.SetOwner(null);
+                    ElementsAndToolTips.Remove(owner);
                 }
-
-                owner.MouseEnter -= OnElementMouseEnter;
-                owner.MouseLeave -= OnElementMouseLeave;
-
-                var control = owner as Control;
-                if (control != null)
-                {
-                    control.IsEnabledChanged -= OnControlEnabledChanged;
-                }
-
-                toolTip.IsOpen = false;
-                toolTip.SetOwner(null);
-                ElementsAndToolTips.Remove(owner);
+            }
+            catch (Exception)
+            {
+                
+                
             }
         }
 

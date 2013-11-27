@@ -773,7 +773,7 @@ namespace Orc.Toolkit
         /// </param>
         public void SetSelectedList(IEnumerable<IColorProvider> selectedList)
         {
-            if (this.listBox == null)
+            if (this.listBox == null || selectedList == null)
             {
                 return;
             }
