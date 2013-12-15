@@ -72,6 +72,7 @@
     <Compile Include="Expander\Expander.cs" />
     <Compile Include="ExtendedColorLegend\ExtendedColorLegend.cs" />
     <Compile Include="ExtendedColorLegend\IColorProvider.cs" />
+    <Compile Include="AvailabilityIndicator\AvailabilityIndicator.cs" />
     <Compile Include="Helpers\LayoutTransformer.cs" />
     <Compile Include="Helpers\VisualTreeEnumeration.cs" />
     <Compile Include="PinnableTooltip\LinkTooltipItem.cs" />
@@ -109,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\Expander\ExpanderToLeft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityIndicator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +193,7 @@
       <Link>Assets\Theme\Default\Images\Zoom.png</Link>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

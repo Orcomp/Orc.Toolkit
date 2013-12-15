@@ -1,0 +1,45 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Orc.Toolkit">
+    <Style TargetType="local:AvailabilityIndicator">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:AvailabilityIndicator">
+                    <Grid x:Name="ControlRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="MainStates">
+                                <VisualState x:Name="NotAvailable"/>
+                                <VisualState x:Name="Available">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                         Storyboard.TargetName="AvailableVisual" 
+                                         Storyboard.TargetProperty="Visibility" Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Ellipse x:Name="CoinGraphic"
+                         Fill="GreenYellow"
+                         Width="{TemplateBinding Width}"
+                         Height="{TemplateBinding Height}"
+                       />
+                        <Ellipse x:Name="AvailableVisual"
+                         Visibility="Collapsed"
+                         Stroke="Red"
+                         StrokeThickness="1"
+                         Width="{TemplateBinding FrameworkElement.Width}"
+                         Height="{TemplateBinding FrameworkElement.Height}"
+                       />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
