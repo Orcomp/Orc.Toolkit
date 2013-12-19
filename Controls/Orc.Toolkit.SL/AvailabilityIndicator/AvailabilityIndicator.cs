@@ -13,6 +13,7 @@ namespace Orc.Toolkit
     using System.Reactive.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Input;
 
     /// <summary>
     /// The focus indicator button.
@@ -95,6 +96,7 @@ namespace Orc.Toolkit
 
             set
             {
+                System.Diagnostics.Debug.WriteLine("IsInUse new value = {0}", value);
                 this.SetValue(IsInUseProperty, value);
             }
         }
@@ -129,10 +131,31 @@ namespace Orc.Toolkit
         /// </summary>
         protected virtual void OnIsInUseStarted()
         {
+            System.Diagnostics.Debug.WriteLine("IsInUseStarted event happened");
             EventHandler handler = this.IsInUseStarted;
             if (handler != null)
             {
+                System.Diagnostics.Debug.WriteLine("OnIsInUseStarted handler called");
                 handler(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// The on mouse left button down.
+        /// </summary>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            if (this.Focus())
+            {
+                System.Diagnostics.Debug.WriteLine("Sucessufully set focus");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Failed to setfocus");
             }
         }
 
@@ -219,7 +242,7 @@ namespace Orc.Toolkit
             }
             else
             {
-                VisualStateManager.GoToState(this, this.IsInUse ? "IsInUse" : "Available", false);
+                VisualStateManager.GoToState(this, ((this.IsInUse) && (this.InUsePeriod > 0)) ? "IsInUse" : "Available", false);
             }
         }
     }
