@@ -13,6 +13,7 @@ namespace Orc.Toolkit
     using System.Reactive.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Input;
 
     /// <summary>
@@ -21,7 +22,7 @@ namespace Orc.Toolkit
     [TemplateVisualState(Name = "NotAvailable", GroupName = "MainStates")]
     [TemplateVisualState(Name = "Available", GroupName = "MainStates")]
     [TemplateVisualState(Name = "IsInUse", GroupName = "MainStates")]
-    public class AvailabilityIndicator : Control
+    public class AvailabilityIndicator : ToggleButton
     {
         /// <summary>
         /// The availability property.

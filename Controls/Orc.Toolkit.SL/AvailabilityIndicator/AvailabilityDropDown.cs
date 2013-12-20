@@ -72,6 +72,33 @@ namespace Orc.Toolkit
         #region DP
 
         /// <summary>
+        /// The availability property.
+        /// </summary>
+        public static readonly DependencyProperty IsAvailableProperty = DependencyProperty.Register(
+            "IsAvailable",
+            typeof(bool),
+            typeof(AvailabilityIndicator),
+            new PropertyMetadata(false, new PropertyChangedCallback(OnIsAvailableChanged)));
+
+        /// <summary>
+        /// The is in use property.
+        /// </summary>
+        public static readonly DependencyProperty IsInUseProperty = DependencyProperty.Register(
+            "IsInUse",
+            typeof(bool),
+            typeof(AvailabilityIndicator),
+            new PropertyMetadata(false, new PropertyChangedCallback(OnIsInUseChanged)));
+
+        /// <summary>
+        /// The in use period property.
+        /// </summary>
+        public static readonly DependencyProperty InUsePeriodProperty = DependencyProperty.Register(
+            "InUsePeriod",
+            typeof(double),
+            typeof(AvailabilityIndicator),
+            new PropertyMetadata(0.0, new PropertyChangedCallback(OnInUsePeriodChanged)));
+
+        /// <summary>
         /// The is dragable property.
         /// </summary>
         public static readonly DependencyProperty IsDragableProperty = DependencyProperty.Register(
@@ -105,6 +132,56 @@ namespace Orc.Toolkit
         /// The content layout updated.
         /// </summary>
         public event EventHandler ContentLayoutUpdated;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether service is available.
+        /// </summary>
+        public bool IsAvailable
+        {
+            get
+            {
+                return (bool)this.GetValue(IsAvailableProperty);
+            }
+
+            set
+            {
+                this.SetValue(IsAvailableProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether service is available.
+        /// </summary>
+        public bool IsInUse
+        {
+            get
+            {
+                return (bool)this.GetValue(IsInUseProperty);
+            }
+
+            set
+            {
+                System.Diagnostics.Debug.WriteLine("IsInUse new value = {0}", value);
+                this.SetValue(IsInUseProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the in use period.
+        /// </summary>
+        public double InUsePeriod
+        {
+            get
+            {
+                return (double)this.GetValue(InUsePeriodProperty);
+            }
+
+            set
+            {
+                this.SetValue(InUsePeriodProperty, value);
+            }
+        }
+
 
         /// <summary>
         /// Gets or sets a value indicating whether is pinned.
@@ -261,6 +338,60 @@ namespace Orc.Toolkit
                 }
             }
 #endif
+        }
+
+        /// <summary>
+        /// The on in use period changed.
+        /// </summary>
+        /// <param name="d">
+        /// The d.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnInUsePeriodChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            AvailabilityDropDown availabilityDropDown = d as AvailabilityDropDown;
+            if (availabilityDropDown != null)
+            {
+                availabilityDropDown.indicator.InUsePeriod = (double)e.NewValue;
+            }
+        }
+
+        /// <summary>
+        /// The on is in use changed.
+        /// </summary>
+        /// <param name="d">
+        /// The d.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnIsInUseChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            AvailabilityDropDown availabilityDropDown = d as AvailabilityDropDown;
+            if (availabilityDropDown != null)
+            {
+                availabilityDropDown.indicator.IsInUse = (bool)e.NewValue;
+            }
+        }
+
+        /// <summary>
+        /// The on availability changed.
+        /// </summary>
+        /// <param name="d">
+        /// The d.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnIsAvailableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            AvailabilityDropDown availabilityDropDown = d as AvailabilityDropDown;
+            if (availabilityDropDown != null)
+            {
+                availabilityDropDown.indicator.IsAvailable = (bool) e.NewValue;
+            }
         }
 
         /// <summary>
