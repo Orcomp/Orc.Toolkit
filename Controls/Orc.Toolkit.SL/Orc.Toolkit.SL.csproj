@@ -75,6 +75,7 @@
     <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs" />
     <Compile Include="AttributeConfigurationEditor\AttributeConfigurationButton.cs" />
     <Compile Include="AttributeConfigurationEditor\ExtendedDataGridColumn.cs" />
+    <Compile Include="AvailabilityIndicator\AvailabilityDropDown.cs" />
     <Compile Include="Behaviours\MultiSelectorBehaviour.cs" />
     <Compile Include="ColorPicker\ColorChangedEventArgs.cs" />
     <Compile Include="ColorPicker\PredefinedColor.cs" />
@@ -117,6 +118,10 @@
     <Compile Include="WatermarkTextBox\WatermarkTextBox.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityDropDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -33,6 +33,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\..\packages\Rx-Core.2.2.2\lib\net40\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.2\lib\net40\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\..\packages\Rx-Linq.2.2.2\lib\net40\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.2\lib\net40\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +73,12 @@
     </Compile>
     <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\ExtendedDataGridColumn.cs">
       <Link>AttributeConfigurationEditor\ExtendedDataGridColumn.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AvailabilityIndicator\AvailabilityDropDown.cs">
+      <Link>AvailabilityIndicator\AvailabilityDropDown.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AvailabilityIndicator\AvailabilityIndicator.cs">
+      <Link>AvailabilityIndicator\AvailabilityIndicator.cs</Link>
     </Compile>
     <Compile Include="..\Orc.Toolkit.SL\Behaviours\MultiSelectorBehaviour.cs">
       <Link>Behaviours\MultiSelectorBehaviour.cs</Link>
@@ -136,6 +154,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -259,6 +278,7 @@
   <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\fire-extinguisher-16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
