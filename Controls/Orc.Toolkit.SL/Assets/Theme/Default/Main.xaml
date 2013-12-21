@@ -9,6 +9,7 @@
         <ResourceDictionary Source="Controls/StatusBar/StatusBar.xaml"/>
         <ResourceDictionary Source="Controls/DropDownButton/DropDownButton.xaml"/>
         <ResourceDictionary Source="Controls/AvailabilityIndicator/AvailabilityIndicator.xaml"/>
+        <ResourceDictionary Source="Controls/AvailabilityIndicator/AvailabilityDropDown.xaml"/>
         <ResourceDictionary Source="Controls/ToolBar/ToolBarButton.xaml"/>
         <ResourceDictionary Source="Controls/PinnableTooltip/PinnableTooltip.xaml"/>
         <ResourceDictionary Source="Controls/TabControl/MainTabControl.xaml"/>
