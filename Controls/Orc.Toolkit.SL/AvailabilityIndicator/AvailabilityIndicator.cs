@@ -77,7 +77,6 @@ namespace Orc.Toolkit
 
             set
             {
-                System.Diagnostics.Debug.WriteLine("IsInUse new value = {0}", value);
                 this.SetValue(IsInUseProperty, value);
             }
         }

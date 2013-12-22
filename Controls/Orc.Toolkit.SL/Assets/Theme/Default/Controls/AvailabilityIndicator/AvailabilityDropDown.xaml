@@ -18,7 +18,10 @@
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <local:AvailabilityIndicator IsAvailable="{Binding IsAvailable, RelativeSource={RelativeSource AncestorType=local:AvailabilityDropDown, Mode=FindAncestor}}" x:Name="PART_AvalDropDown"/>
+                    <local:AvailabilityIndicator 
+                        IsAvailable="{Binding IsAvailable, RelativeSource={RelativeSource AncestorType=local:AvailabilityDropDown, Mode=FindAncestor}}"
+                        IsInUse="{Binding IsInUse, RelativeSource={RelativeSource AncestorType=local:AvailabilityDropDown, Mode=FindAncestor}}" 
+                        x:Name="PART_AvalDropDown"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
