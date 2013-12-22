@@ -10,7 +10,6 @@
 namespace Orc.Toolkit
 {
     using System;
-    using System.Reactive.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -43,31 +42,12 @@ namespace Orc.Toolkit
             new PropertyMetadata(false, new PropertyChangedCallback(OnIsInUseChanged)));
 
         /// <summary>
-        /// The in use period property.
-        /// </summary>
-        public static readonly DependencyProperty InUsePeriodProperty = DependencyProperty.Register(
-            "InUsePeriod",
-            typeof(double),
-            typeof(AvailabilityIndicator),
-            new PropertyMetadata(0.0, new PropertyChangedCallback(OnInUsePeriodChanged)));
-
-        /// <summary>
-        /// The in use started subscription.
-        /// </summary>
-        private IDisposable inUseStartedSubscription;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="AvailabilityIndicator"/> class.
         /// </summary>
         public AvailabilityIndicator()
         {
             this.DefaultStyleKey = typeof(AvailabilityIndicator);
         }
-
-        /// <summary>
-        /// The is in use started.
-        /// </summary>
-        private event EventHandler IsInUseStarted;
 
         /// <summary>
         /// Gets or sets a value indicating whether service is available.
@@ -103,42 +83,12 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// Gets or sets the in use period.
-        /// </summary>
-        public double InUsePeriod
-        {
-            get
-            {
-                return (double)this.GetValue(InUsePeriodProperty);
-            }
-
-            set
-            {
-                this.SetValue(InUsePeriodProperty, value);
-            }
-        }
-
-        /// <summary>
         /// The on apply template.
         /// </summary>
         public override void OnApplyTemplate()
         {
             this.SetVisualState();
             base.OnApplyTemplate();
-        }
-
-        /// <summary>
-        /// The on is in use started.
-        /// </summary>
-        protected virtual void OnIsInUseStarted()
-        {
-            System.Diagnostics.Debug.WriteLine("IsInUseStarted event happened");
-            EventHandler handler = this.IsInUseStarted;
-            if (handler != null)
-            {
-                System.Diagnostics.Debug.WriteLine("OnIsInUseStarted handler called");
-                handler(this, EventArgs.Empty);
-            }
         }
 
         /// <summary>
@@ -161,38 +111,6 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// The on in use period changed.
-        /// </summary>
-        /// <param name="d">
-        /// The d.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private static void OnInUsePeriodChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            AvailabilityIndicator availabilityIndicator = d as AvailabilityIndicator;
-            if (availabilityIndicator != null)
-            {
-                if (availabilityIndicator.inUseStartedSubscription != null)
-                {
-                    availabilityIndicator.inUseStartedSubscription.Dispose();
-                }
-
-                if (availabilityIndicator.InUsePeriod > 0)
-                {
-                    availabilityIndicator.inUseStartedSubscription =
-                        Observable.FromEventPattern<EventHandler, EventArgs>(
-                            h => availabilityIndicator.IsInUseStarted += h,
-                            h => availabilityIndicator.IsInUseStarted -= h)
-                                  .Throttle(TimeSpan.FromMilliseconds(500))
-                                  .Delay(TimeSpan.FromMilliseconds(availabilityIndicator.InUsePeriod))
-                                  .Subscribe(pattern => availabilityIndicator.IsInUse = false);
-                }
-            }
-        }
-
-        /// <summary>
         /// The on is in use changed.
         /// </summary>
         /// <param name="d">
@@ -207,10 +125,6 @@ namespace Orc.Toolkit
             if (availabilityIndicator != null)
             {
                 availabilityIndicator.SetVisualState();
-                if (availabilityIndicator.IsInUse)
-                {
-                    availabilityIndicator.OnIsInUseStarted();
-                }
             }
         }
 
@@ -243,7 +157,7 @@ namespace Orc.Toolkit
             }
             else
             {
-                VisualStateManager.GoToState(this, ((this.IsInUse) && (this.InUsePeriod > 0)) ? "IsInUse" : "Available", false);
+                VisualStateManager.GoToState(this, this.IsInUse ? "IsInUse" : "Available", false);
             }
         }
     }

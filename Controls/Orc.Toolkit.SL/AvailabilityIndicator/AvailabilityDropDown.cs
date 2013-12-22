@@ -32,16 +32,6 @@ namespace Orc.Toolkit
             new PropertyMetadata(false));
 
         /// <summary>
-        /// The in use period property.
-        /// </summary>
-        public static readonly DependencyProperty InUsePeriodProperty = DependencyProperty.Register(
-            "InUsePeriod",
-            typeof(double),
-            typeof(AvailabilityDropDown),
-            new PropertyMetadata(0.0));  
-        
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="AvailabilityDropDown"/> class.
         /// </summary>
         public AvailabilityDropDown()
@@ -79,22 +69,6 @@ namespace Orc.Toolkit
             {
                 System.Diagnostics.Debug.WriteLine("IsInUse new value = {0}", value);
                 this.SetValue(IsInUseProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the in use period.
-        /// </summary>
-        public double InUsePeriod
-        {
-            get
-            {
-                return (double)this.GetValue(InUsePeriodProperty);
-            }
-
-            set
-            {
-                this.SetValue(InUsePeriodProperty, value);
             }
         }
     }
