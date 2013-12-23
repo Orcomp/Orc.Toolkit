@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Orc.Toolkit</id>
+    <version>@build.number@</version>
+	<title>Orc.Toolkit</title>
+    <authors>bbbnova,auz34,thcristo,ezavgorodniy,Orcomp</authors>
+    <owners>bbbnova,auz34,thcristo,ezavgorodniy,Orcomp</owners>
+
+	<description>
+	  WPF and Silverlight controls: FolderPicker, PinnableTooltip, StatusBar, CanvasToPrint, ColorPicker.
+	</description>
+	<summary>
+	</summary>
+	
+	<tags>wpf silverlight controls</tags>
+	<language>en-US</language>
+	<projectUrl>https://github.com/Orcomp/Orc.Toolkit</projectUrl>
+  </metadata>
+</package>
