@@ -91,25 +91,6 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
-        /// The on mouse left button down.
-        /// </summary>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            if (this.Focus())
-            {
-                System.Diagnostics.Debug.WriteLine("Sucessufully set focus");
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Failed to setfocus");
-            }
-        }
-
-        /// <summary>
         /// The on is in use changed.
         /// </summary>
         /// <param name="d">
