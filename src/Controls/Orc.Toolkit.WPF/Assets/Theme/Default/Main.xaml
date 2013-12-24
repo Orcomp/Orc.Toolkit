@@ -13,5 +13,7 @@
         <ResourceDictionary Source="Controls/ToolBar/ToolBarButton.xaml"/>
         <ResourceDictionary Source="Controls/PinnableTooltip/PinnableTooltip.xaml"/>
         <ResourceDictionary Source="Controls/DataGrid/ResourceFilterDatarid.xaml"/>
+        <ResourceDictionary Source="Controls/AvailabilityIndicator/AvailabilityIndicator.xaml"/>
+        <ResourceDictionary Source="Controls/AvailabilityIndicator/AvailabilityDropDown.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

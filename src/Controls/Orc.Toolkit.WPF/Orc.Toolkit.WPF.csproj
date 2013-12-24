@@ -66,6 +66,12 @@
     <Compile Include="..\Orc.Toolkit.SL\AttributeConfigurationEditor\ExtendedDataGridColumn.cs">
       <Link>AttributeConfigurationEditor\ExtendedDataGridColumn.cs</Link>
     </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AvailabilityIndicator\AvailabilityDropDown.cs">
+      <Link>AvailabilityIndicator\AvailabilityDropDown.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.SL\AvailabilityIndicator\AvailabilityIndicator.cs">
+      <Link>AvailabilityIndicator\AvailabilityIndicator.cs</Link>
+    </Compile>
     <Compile Include="..\Orc.Toolkit.SL\Behaviours\MultiSelectorBehaviour.cs">
       <Link>Behaviours\MultiSelectorBehaviour.cs</Link>
     </Compile>
@@ -147,6 +153,14 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityDropDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -263,6 +277,7 @@
   <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\fire-extinguisher-16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
