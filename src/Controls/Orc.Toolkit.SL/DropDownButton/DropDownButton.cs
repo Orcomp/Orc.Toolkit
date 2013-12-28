@@ -123,11 +123,7 @@ namespace Orc.Toolkit
             UIElement root = Application.Current.RootVisual;
             if (root != null)
             {
-                root.MouseLeftButtonDown += (s, ee) =>
-                {
-                    if (this.popup.IsOpen && !this.IsPinned)
-                        this.popup.IsOpen = false;
-                };
+                root.AddHandler(UIElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(this.OnRootMouseLeftButtonDown), true);
             }
 #endif
 
@@ -147,7 +143,45 @@ namespace Orc.Toolkit
             Window.GetWindow(this).Activated += window_Activated;
 #endif
         }
-        
+
+        /// <summary>
+        /// The on root mouse left button down.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void OnRootMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!this.popup.IsOpen || this.IsPinned || (this.popup.Child as FrameworkElement) == null)
+            {
+                return;
+            }
+
+            Point p = e.GetPosition(this.popup);
+
+            Point p2 = e.GetPosition(this.popup.Child);
+            if ((p2.Y > 0) && (p2.X > 0))
+            {
+                p = p2;
+            }
+
+            double width = (this.popup.Child as FrameworkElement).ActualWidth;
+            double height = (this.popup.Child as FrameworkElement).ActualHeight;
+
+            if ((width < 5) || (height < 5))
+            {
+                return;
+            }
+
+            if (!new Rect(0, 0, width, height).Contains(p))
+            {
+                this.popup.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region DP
