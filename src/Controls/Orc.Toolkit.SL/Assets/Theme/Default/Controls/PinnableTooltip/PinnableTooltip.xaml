@@ -190,7 +190,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ToolTip">
+    <Style x:Key="TooltipStyle" TargetType="ToolTip">
         <Setter Property="Background" Value="#FFF7F8FA" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0"/>
