@@ -108,6 +108,11 @@ namespace Orc.Toolkit
         private UIElement owner;
 
         /// <summary>
+        /// The adorner.
+        /// </summary>
+        private UIElement userDefinedAdorner;
+
+        /// <summary>
         ///     The timer.
         /// </summary>
         private TooltipTimer timer;
@@ -128,19 +133,28 @@ namespace Orc.Toolkit
         {
             this.DefaultStyleKey = typeof(PinnableTooltip);
             this.SizeChanged += this.OnSizeChanged;
-            this.MouseEnter += PinnableTooltip_MouseEnter;
-            this.MouseLeave += PinnableTooltip_MouseLeave;
+            this.MouseEnter += this.PinnableTooltip_MouseEnter;
+            this.MouseLeave += this.OnPinnableTooltipMouseLeave;
         }
 
-        void PinnableTooltip_MouseLeave(object sender, MouseEventArgs e)
+        /// <summary>
+        /// The pinnable tooltip_ mouse leave.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void OnPinnableTooltipMouseLeave(object sender, MouseEventArgs e)
         {
             if (this.IsOpen && !this.IsPinned)
             {
-                timer.StopAndReset();
+                this.timer.StopAndReset();
             }
         }
 
-        void PinnableTooltip_MouseEnter(object sender, MouseEventArgs e)
+        private void PinnableTooltip_MouseEnter(object sender, MouseEventArgs e)
         {
             if (this.IsTimerEnabled && !this.IsPinned)
                 timer.Stop();
@@ -279,14 +293,23 @@ namespace Orc.Toolkit
             //using this code for non UIElements
             if (this.owner == null)
             {
-                mousePosition = Mouse.GetPosition(null);
+                mousePosition = Mouse.GetPosition(this.userDefinedAdorner);
 #if (SILVERLIGHT)
                 RootVisual = Application.Current.RootVisual as FrameworkElement;
 #else
-                rootVisual = System.Windows.Interop.BrowserInteropHelper.IsBrowserHosted ? null :
-                    (Application.Current.MainWindow.Content as FrameworkElement) != null ?
-                    Application.Current.MainWindow.Content as FrameworkElement : Application.Current.MainWindow;
-                
+                if ((this.userDefinedAdorner as FrameworkElement) == null)
+                {
+                    rootVisual = System.Windows.Interop.BrowserInteropHelper.IsBrowserHosted
+                                     ? null
+                                     : (Application.Current.MainWindow.Content as FrameworkElement) != null
+                                           ? Application.Current.MainWindow.Content as FrameworkElement
+                                           : Application.Current.MainWindow;
+                }
+                else
+                {
+                    rootVisual = this.userDefinedAdorner as FrameworkElement;
+                }
+
                 if (rootVisual == null)
                 {
                     if (this.isPositionCalculated)
@@ -306,8 +329,6 @@ namespace Orc.Toolkit
                     position = this.lastPosition;
                     return position;
                 }
-
-                
 
                 double offsetX = mousePosition.X + horizontalOffset;
                 double offsetY = mousePosition.Y + verticalOffset;
@@ -347,19 +368,17 @@ namespace Orc.Toolkit
                 position.Y = offsetY;
                 position.X = offsetX;
 
-                
-                if(this.isPositionCalculated = this.DesiredSize.Height > 0)
+                this.isPositionCalculated = this.DesiredSize.Height > 0;
+                if (this.isPositionCalculated)
+                {
                     this.lastPosition = position;
+                }
+                
                 return position;
             }
 
-            
-
             PlacementMode placementMode = PinnableTooltipService.GetPlacement(this.owner);
             UIElement placementTarget = PinnableTooltipService.GetPlacementTarget(this.owner) ?? this.owner;
-
-            
-            
 
             switch (placementMode)
             {
@@ -488,9 +507,20 @@ namespace Orc.Toolkit
         /// <param name="element">
         /// The element.
         /// </param>
-        internal void SetOwner(UIElement element)
+        public void SetOwner(UIElement element)
         {
             this.owner = element;
+        }
+
+        /// <summary>
+        /// The set user defined adorner.
+        /// </summary>
+        /// <param name="element">
+        /// The element.
+        /// </param>
+        public void SetUserDefinedAdorner(UIElement element)
+        {
+            this.userDefinedAdorner = element;
         }
 
         /// <summary>
@@ -1003,12 +1033,12 @@ namespace Orc.Toolkit
         /// </summary>
         private void CreateAdorner()
         {
-            if (this.adorner != null || Application.Current.MainWindow == null)
+            if (this.adorner != null || (Application.Current.MainWindow == null && this.userDefinedAdorner == null))
             {
                 return;
             }
 
-            var adornedElement = Application.Current.MainWindow.Content as UIElement;
+            var adornedElement = this.userDefinedAdorner != null ? this.userDefinedAdorner : Application.Current.MainWindow.Content as UIElement;
             if (adornedElement == null)
             {
                 return;
