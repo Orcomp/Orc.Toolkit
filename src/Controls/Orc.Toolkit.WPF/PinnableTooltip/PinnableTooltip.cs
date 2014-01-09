@@ -133,31 +133,8 @@ namespace Orc.Toolkit
         {
             this.DefaultStyleKey = typeof(PinnableTooltip);
             this.SizeChanged += this.OnSizeChanged;
-            this.MouseEnter += this.PinnableTooltip_MouseEnter;
+            this.MouseEnter += this.OnPinnableTooltipMouseEnter;
             this.MouseLeave += this.OnPinnableTooltipMouseLeave;
-        }
-
-        /// <summary>
-        /// The pinnable tooltip_ mouse leave.
-        /// </summary>
-        /// <param name="sender">
-        /// The sender.
-        /// </param>
-        /// <param name="e">
-        /// The e.
-        /// </param>
-        private void OnPinnableTooltipMouseLeave(object sender, MouseEventArgs e)
-        {
-            if (this.IsOpen && !this.IsPinned)
-            {
-                this.timer.StopAndReset();
-            }
-        }
-
-        private void PinnableTooltip_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (this.IsTimerEnabled && !this.IsPinned)
-                timer.Stop();
         }
 
         #endregion
@@ -467,111 +444,13 @@ namespace Orc.Toolkit
             this.dragGrip = (FrameworkElement)this.GetTemplateChild("DragGrip");
             if (this.dragGrip != null)
             {
-                this.dragGrip.PreviewMouseLeftButtonDown += dragGrip_PreviewMouseLeftButtonDown;
+                this.dragGrip.PreviewMouseLeftButtonDown += this.OnDragGripPreviewMouseLeftButtonDown;
             }
         }
             
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Pin and start dragging
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void dragGrip_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (!this.IsPinned)
-            {
-                this.IsPinned = true;
-            }
-        }
-
-        /// <summary>
-        ///     The perform placement.
-        /// </summary>
-        internal void PerformPlacement()
-        {
-            if (this.adornerLayer == null)
-            {
-                return;
-            }
-
-            this.adornerLayer.Update();
-        }
-
-        /// <summary>
-        /// The set owner.
-        /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
-        public void SetOwner(UIElement element)
-        {
-            this.owner = element;
-        }
-
-        /// <summary>
-        /// The set user defined adorner.
-        /// </summary>
-        /// <param name="element">
-        /// The element.
-        /// </param>
-        public void SetUserDefinedAdorner(UIElement element)
-        {
-            this.userDefinedAdorner = element;
-        }
-
-        /// <summary>
-        /// The setup timer.
-        /// </summary>
-        /// <param name="initialShowDelay">
-        /// The initial show delay.
-        /// </param>
-        /// <param name="showDuration">
-        /// The show duration.
-        /// </param>
-        public void SetupTimer(int initialShowDelay, int showDuration)
-        {
-            if (this.timer != null)
-            {
-                if (this.timer.IsEnabled)
-                {
-                    this.timer.StopAndReset();
-                }
-
-                this.timer.Tick -= this.OnTimerTick;
-                this.timer.Stopped -= this.OnTimerStopped;
-            }
-
-            this.timer = new TooltipTimer(
-                TimeSpan.FromMilliseconds(showDuration), TimeSpan.FromMilliseconds(initialShowDelay));
-            this.timer.Tick += this.OnTimerTick;
-            this.timer.Stopped += this.OnTimerStopped;
-        }
-
-        /// <summary>
-        ///     The start timer.
-        /// </summary>
-        public void StartTimer()
-        {
-            if (this.timer != null)
-            {
-                this.timer.StartAndReset();
-            }
-        }
-
-        /// <summary>
-        ///     The stop timer.
-        /// </summary>
-        public void StopTimer()
-        {
-            if (this.timer != null && this.IsTimerEnabled)
-            {
-                this.timer.StopAndReset();
-            }
-        }
 
         /// <summary>
         /// The calculate point.
@@ -604,13 +483,13 @@ namespace Orc.Toolkit
         /// The <see cref="Point"/>.
         /// </returns>
         private static Point CalculatePoint(
-            IList<Point> target, 
-            PlacementMode placement, 
-            Rect plugin, 
-            double width, 
-            double height, 
-            IList<Point> pointArray, 
-            int index, 
+            IList<Point> target,
+            PlacementMode placement,
+            Rect plugin,
+            double width,
+            double height,
+            IList<Point> pointArray,
+            int index,
             Rect bounds)
         {
             double x = pointArray[index].X;
@@ -635,8 +514,8 @@ namespace Orc.Toolkit
                     }
                 }
                 else if (((placement == PlacementMode.Top) || (placement == PlacementMode.Bottom))
-                         && (((x != target[0].X) && (x != target[1].X))
-                             && (((x + width) != target[0].X) && ((x + width) != target[1].X))))
+                         && (((Math.Abs(x - target[0].X) > 0.0001) && (Math.Abs(x - target[1].X) > 0.0001))
+                             && ((Math.Abs((x + width) - target[0].X) > 0.0001) && (Math.Abs((x + width) - target[1].X) > 0.0001))))
                 {
                     double num19 = bounds.Left + (bounds.Width / 2.0);
                     if ((num19 > 0.0) && ((num19 - 0.0) > (plugin.Width - num19)))
@@ -767,7 +646,7 @@ namespace Orc.Toolkit
         /// The height.
         /// </param>
         /// <returns>
-        /// The <see cref="Point[]"/>.
+        /// The <see><cref>Point[]</cref></see>.
         /// </returns>
         private static Point[] GetPointArray(
             IList<Point> target, PlacementMode placement, Rect plugin, double width, double height)
@@ -828,7 +707,7 @@ namespace Orc.Toolkit
         /// The framework element.
         /// </param>
         /// <returns>
-        /// The <see cref="Point[]"/>.
+        /// The <see><cref>Point[]</cref></see>.
         /// </returns>
         private static Point[] GetTranslatedPoints(FrameworkElement frameworkElement)
         {
@@ -888,7 +767,7 @@ namespace Orc.Toolkit
             if ((bool)e.NewValue)
             {
                 if (tooltip.adornerDragDrop == null && tooltip.adorner != null)
-                {                    
+                {
                     tooltip.adornerDragDrop = ControlAdornerDragDrop.Attach(tooltip.adorner);
                 }
 
@@ -1029,6 +908,142 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
+        /// Pin and start dragging.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void OnDragGripPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!this.IsPinned)
+            {
+                this.IsPinned = true;
+            }
+        }
+
+        /// <summary>
+        /// The pinnable tooltip_ mouse leave.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void OnPinnableTooltipMouseLeave(object sender, MouseEventArgs e)
+        {
+            if (this.IsOpen && !this.IsPinned)
+            {
+                this.timer.StopAndReset();
+            }
+        }
+
+        /// <summary>
+        /// The pinnable tooltip_ mouse enter.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void OnPinnableTooltipMouseEnter(object sender, MouseEventArgs e)
+        {
+            if (this.IsTimerEnabled && !this.IsPinned)
+            {
+                this.timer.Stop();
+            }
+        }
+
+        /// <summary>
+        ///     The perform placement.
+        /// </summary>
+        internal void PerformPlacement()
+        {
+            if (this.adornerLayer == null)
+            {
+                return;
+            }
+
+            this.adornerLayer.Update();
+        }
+
+        /// <summary>
+        /// The set owner.
+        /// </summary>
+        /// <param name="element">
+        /// The element.
+        /// </param>
+        public void SetOwner(UIElement element)
+        {
+            this.owner = element;
+        }
+
+        /// <summary>
+        /// The set user defined adorner.
+        /// </summary>
+        /// <param name="element">
+        /// The element.
+        /// </param>
+        public void SetUserDefinedAdorner(UIElement element)
+        {
+            this.userDefinedAdorner = element;
+        }
+
+        /// <summary>
+        /// The setup timer.
+        /// </summary>
+        /// <param name="initialShowDelay">
+        /// The initial show delay.
+        /// </param>
+        /// <param name="showDuration">
+        /// The show duration.
+        /// </param>
+        public void SetupTimer(int initialShowDelay, int showDuration)
+        {
+            if (this.timer != null)
+            {
+                if (this.timer.IsEnabled)
+                {
+                    this.timer.StopAndReset();
+                }
+
+                this.timer.Tick -= this.OnTimerTick;
+                this.timer.Stopped -= this.OnTimerStopped;
+            }
+
+            this.timer = new TooltipTimer(
+                TimeSpan.FromMilliseconds(showDuration), TimeSpan.FromMilliseconds(initialShowDelay));
+            this.timer.Tick += this.OnTimerTick;
+            this.timer.Stopped += this.OnTimerStopped;
+        }
+
+        /// <summary>
+        ///     The start timer.
+        /// </summary>
+        public void StartTimer()
+        {
+            if (this.timer != null)
+            {
+                this.timer.StartAndReset();
+            }
+        }
+
+        /// <summary>
+        ///     The stop timer.
+        /// </summary>
+        public void StopTimer()
+        {
+            if (this.timer != null && this.IsTimerEnabled)
+            {
+                this.timer.StopAndReset();
+            }
+        }
+
+        /// <summary>
         ///     The create adorner.
         /// </summary>
         private void CreateAdorner()
@@ -1061,8 +1076,6 @@ namespace Orc.Toolkit
             {
                 this.adornerDragDrop = ControlAdornerDragDrop.Attach(this.adorner);
             }
-
-
         }
 
         /// <summary>
@@ -1090,10 +1103,10 @@ namespace Orc.Toolkit
         /// </param>
         private void OnTimerStopped(object sender, EventArgs e)
         {
-            if (!this.IsPinned && !IsMouseOver)
+            if (!this.IsPinned && !this.IsMouseOver)
             {
                 this.IsOpen = false;
-                lastPosition = new Point(0, 0);
+                this.lastPosition = new Point(0, 0);
             }
         }
 
@@ -1117,31 +1130,6 @@ namespace Orc.Toolkit
                 && this.timer.CurrentTick >= this.timer.InitialDelay.TotalMilliseconds)
             {
                 this.IsOpen = true;
-            }
-        }
-
-        /// <summary>
-        /// The perform clipping.
-        /// </summary>
-        /// <param name="size">
-        /// The size.
-        /// </param>
-        private void PerformClipping(Size size)
-        {
-            var child = VisualTreeHelper.GetChild(this, 0) as Border;
-            if (child == null)
-            {
-                return;
-            }
-
-            if (size.Width < child.ActualWidth)
-            {
-                child.Width = size.Width;
-            }
-
-            if (size.Height < child.ActualHeight)
-            {
-                child.Height = size.Height;
             }
         }
 
