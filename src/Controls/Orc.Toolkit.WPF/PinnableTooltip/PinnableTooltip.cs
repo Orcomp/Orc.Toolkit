@@ -994,6 +994,31 @@ namespace Orc.Toolkit
         }
 
         /// <summary>
+        /// Brings pinned toooltip to front.
+        /// </summary>
+        public void BringToFront()
+        {
+            if (this.IsPinned && this.adorner != null)
+            {
+                this.adornerLayer.Remove(this.adorner);
+
+                var adornedElement = this.userDefinedAdorner != null ? this.userDefinedAdorner : Application.Current.MainWindow.Content as UIElement;
+                if (adornedElement == null)
+                {
+                    return;
+                }
+
+                this.adornerLayer = AdornerLayer.GetAdornerLayer(adornedElement);
+                if (this.adornerLayer == null)
+                {
+                    return;
+                }
+
+                this.adornerLayer.Add(this.adorner);
+            }
+        }
+
+        /// <summary>
         /// The setup timer.
         /// </summary>
         /// <param name="initialShowDelay">
