@@ -191,7 +191,7 @@
                                                             <RectangleGeometry Rect="1 1 3 3"/>
                                                         </GeometryDrawing.Geometry>
                                                     </GeometryDrawing>
-                                                    <GeometryDrawing Brush="#ccc">
+                                                    <GeometryDrawing x:Name="GripDrawing" Brush="#ccc">
                                                         <GeometryDrawing.Geometry>
                                                             <RectangleGeometry Rect="0 0 2 2"/>
                                                         </GeometryDrawing.Geometry>

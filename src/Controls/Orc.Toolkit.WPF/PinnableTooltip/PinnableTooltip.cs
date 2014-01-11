@@ -25,6 +25,7 @@ namespace Orc.Toolkit
     /// </summary>
     [TemplatePart(Name = "PinButton", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "DragGrip", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "GripDrawing", Type = typeof(GeometryDrawing))]
     public class PinnableTooltip : ContentControl, IControlAdornerChild
     {
         #region Constants
@@ -47,7 +48,7 @@ namespace Orc.Toolkit
                 typeof(double), 
                 typeof(PinnableTooltip), 
                 new PropertyMetadata(OnHorizontalOffsetPropertyChanged));
-
+        
         /// <summary>
         ///     The is pinned property.
         /// </summary>
@@ -63,6 +64,16 @@ namespace Orc.Toolkit
             typeof(PinnableTooltip), 
             new PropertyMetadata(OnVerticalOffsetPropertyChanged));
 
+        /// <summary>
+        /// The grip brush property.
+        /// </summary>
+        public static readonly DependencyProperty GripColorProperty = DependencyProperty.Register(
+            "GripColor",
+            typeof(Color),
+            typeof(PinnableTooltip),
+            new PropertyMetadata(Color.FromRgb(204, 204, 204), OnGripColorChanged));
+
+        //Color.FromRgb(204, 204, 204)
         #endregion
 
         #region Fields
@@ -71,6 +82,11 @@ namespace Orc.Toolkit
         ///     The drag grip.
         /// </summary>
         private FrameworkElement dragGrip;
+
+        /// <summary>
+        /// The grip drawing.
+        /// </summary>
+        private GeometryDrawing gripDrawing;
 
         /// <summary>
         ///     The adorner.
@@ -197,6 +213,22 @@ namespace Orc.Toolkit
             set
             {
                 this.SetValue(IsPinnedProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the grip brush.
+        /// </summary>
+        public Color GripColor
+        {
+            get
+            {
+                return (Color)this.GetValue(GripColorProperty);
+            }
+
+            set
+            {
+                this.SetValue(GripColorProperty, value);
             }
         }
 
@@ -446,6 +478,8 @@ namespace Orc.Toolkit
             {
                 this.dragGrip.PreviewMouseLeftButtonDown += this.OnDragGripPreviewMouseLeftButtonDown;
             }
+
+            this.gripDrawing = (GeometryDrawing)this.GetTemplateChild("GripDrawing");
         }
             
         #endregion
@@ -803,6 +837,24 @@ namespace Orc.Toolkit
             if (tooltip.IsOpen)
             {
                 tooltip.PerformPlacement();
+            }
+        }
+
+        /// <summary>
+        /// The on grip color changed.
+        /// </summary>
+        /// <param name="d">
+        /// The d.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private static void OnGripColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var tooltip = (PinnableTooltip)d;
+            if (tooltip.gripDrawing != null)
+            {
+                tooltip.gripDrawing.Brush = new SolidColorBrush(tooltip.GripColor);
             }
         }
 
