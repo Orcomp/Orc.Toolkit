@@ -151,6 +151,7 @@ namespace Orc.Toolkit
             this.SizeChanged += this.OnSizeChanged;
             this.MouseEnter += this.OnPinnableTooltipMouseEnter;
             this.MouseLeave += this.OnPinnableTooltipMouseLeave;
+            this.MouseDown += this.OnPinnableTooltipMouseDown;
         }
 
         #endregion
@@ -974,6 +975,21 @@ namespace Orc.Toolkit
             {
                 this.IsPinned = true;
             }
+            this.BringToFront();
+        }
+
+        /// <summary>
+        /// The on pinnable tooltip mouse down.
+        /// </summary>
+        /// <param name="sender">
+        /// The sender.
+        /// </param>
+        /// <param name="e">
+        /// The e.
+        /// </param>
+        private void OnPinnableTooltipMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.BringToFront();
         }
 
         /// <summary>
