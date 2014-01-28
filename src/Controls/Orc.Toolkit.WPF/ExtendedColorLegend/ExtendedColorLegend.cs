@@ -570,25 +570,38 @@ namespace Orc.Toolkit
         /// </param>
         public void SetSelectedList(IEnumerable<IColorProvider> selectedList)
         {
-            if (this.listBox == null)
+            if (this.listBox == null || selectedList == null)
             {
                 return;
             }
 
-            if (AreCollectionsTheSame(GetSelectedList().ToList(), selectedList.ToList()))
+            var colorProviders = selectedList as IList<IColorProvider> ?? selectedList.ToList();
+            if (this.AreCollectionsTheSame(GetSelectedList(), colorProviders))
             {
                 return;
             }
+
 
             this.listBox.SelectedItems.Clear();
-            foreach (var colorProvider in selectedList)
+            if (colorProviders != null)
             {
-                this.listBox.SelectedItems.Add(colorProvider);
+                foreach (var colorProvider in selectedList)
+                {
+                    this.listBox.SelectedItems.Add(colorProvider);
+                }
             }
         }
 
-        private bool AreCollectionsTheSame(List<IColorProvider> list1, List<IColorProvider> list2)
+        private bool AreCollectionsTheSame(IEnumerable<IColorProvider> collection1, IEnumerable<IColorProvider> collection2)
         {
+            if ((collection1 == null) || (collection2 == null))
+            {
+                return collection1 == collection2;
+            }
+
+            var list1 = collection1.ToList();
+            var list2 = collection2.ToList();
+
             if (list1.Count() != list2.Count())
             {
                 return false;
