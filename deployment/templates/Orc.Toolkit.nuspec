@@ -16,5 +16,6 @@
 	<tags>wpf silverlight controls</tags>
 	<language>en-US</language>
 	<projectUrl>https://github.com/Orcomp/Orc.Toolkit</projectUrl>
+	@dependencies@
   </metadata>
 </package>
