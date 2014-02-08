@@ -801,6 +801,7 @@ namespace Orc.Toolkit
 
             if ((bool)e.NewValue)
             {
+                System.Diagnostics.Debug.WriteLine("ORC-PINNABLE-TOOLTIP: Attach adorner");
                 if (tooltip.adornerDragDrop == null && tooltip.adorner != null)
                 {
                     tooltip.adornerDragDrop = ControlAdornerDragDrop.Attach(tooltip.adorner);
@@ -813,6 +814,7 @@ namespace Orc.Toolkit
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("ORC-PINNABLE-TOOLTIP: Detach adorner");
                 if (tooltip.adornerDragDrop != null)
                 {
                     ControlAdornerDragDrop.Detach(tooltip.adornerDragDrop);
@@ -975,6 +977,7 @@ namespace Orc.Toolkit
             {
                 this.IsPinned = true;
             }
+
             this.BringToFront();
         }
 
@@ -1068,9 +1071,15 @@ namespace Orc.Toolkit
         {
             if (this.IsPinned && this.adorner != null)
             {
+                if (this.adornerDragDrop != null)
+                {
+                    ControlAdornerDragDrop.Detach(this.adornerDragDrop);
+                    this.adornerDragDrop = null;
+                }
+
                 this.adornerLayer.Remove(this.adorner);
 
-                var adornedElement = this.userDefinedAdorner != null ? this.userDefinedAdorner : Application.Current.MainWindow.Content as UIElement;
+                var adornedElement = this.userDefinedAdorner ?? Application.Current.MainWindow.Content as UIElement;
                 if (adornedElement == null)
                 {
                     return;
@@ -1083,6 +1092,11 @@ namespace Orc.Toolkit
                 }
 
                 this.adornerLayer.Add(this.adorner);
+
+                if (this.IsPinned && this.adornerDragDrop == null)
+                {
+                    this.adornerDragDrop = ControlAdornerDragDrop.Attach(this.adorner);
+                }
             }
         }
 

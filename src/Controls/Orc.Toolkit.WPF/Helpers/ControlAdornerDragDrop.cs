@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Orc.Toolkit.Helpers
 {
+    using System;
     using System.Windows;
     using System.Windows.Input;
 
@@ -109,6 +110,7 @@ namespace Orc.Toolkit.Helpers
         /// </param>
         private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Drag and Drop MouseLeftButtonDown");
             this.adorner.Child.CaptureMouse();
             this.mouseCaptured = true;
             this.mouseY = e.GetPosition(null).Y;
