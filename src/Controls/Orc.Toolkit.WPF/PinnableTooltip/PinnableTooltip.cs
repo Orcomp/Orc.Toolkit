@@ -9,7 +9,9 @@
 namespace Orc.Toolkit
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -38,6 +40,16 @@ namespace Orc.Toolkit
         #endregion
 
         #region Static Fields
+
+        /// <summary>
+        /// The counter.
+        /// </summary>
+        private static int counter = 0;
+
+        /// <summary>
+        /// The on front dictionary.
+        /// </summary>
+        private static readonly ConcurrentDictionary<UIElement, List<int>> OnFrontIdDictionary = new ConcurrentDictionary<UIElement, List<int>>();
 
         /// <summary>
         ///     The horizontal offset property.
@@ -77,6 +89,11 @@ namespace Orc.Toolkit
         #endregion
 
         #region Fields
+
+        /// <summary>
+        /// The id.
+        /// </summary>
+        private int id;
 
         /// <summary>
         ///     The drag grip.
@@ -148,6 +165,8 @@ namespace Orc.Toolkit
         public PinnableTooltip()
         {
             this.DefaultStyleKey = typeof(PinnableTooltip);
+            this.id = System.Threading.Interlocked.Increment(ref counter);
+
             this.SizeChanged += this.OnSizeChanged;
             this.MouseEnter += this.OnPinnableTooltipMouseEnter;
             this.MouseLeave += this.OnPinnableTooltipMouseLeave;
@@ -322,10 +341,7 @@ namespace Orc.Toolkit
 
                 if (rootVisual == null)
                 {
-                    if (this.isPositionCalculated)
-                        position = this.lastPosition;
-                    else
-                        position = mousePosition;
+                    position = this.isPositionCalculated ? this.lastPosition : mousePosition;
                     return position;
                 }
 #endif
@@ -333,9 +349,15 @@ namespace Orc.Toolkit
                 if (this.isPositionCalculated)
                 {
                     if (lastPosition.Y + this.DesiredSize.Height > rootVisual.ActualHeight)
+                    {
                         this.lastPosition.Y = rootVisual.ActualHeight - this.DesiredSize.Height;
+                    }
+
                     if (lastPosition.X + this.DesiredSize.Width > rootVisual.ActualWidth)
+                    {
                         this.lastPosition.X = rootVisual.ActualWidth - this.DesiredSize.Width;
+                    }
+
                     position = this.lastPosition;
                     return position;
                 }
@@ -975,6 +997,7 @@ namespace Orc.Toolkit
             {
                 this.IsPinned = true;
             }
+
             this.BringToFront();
         }
 
@@ -1066,11 +1089,22 @@ namespace Orc.Toolkit
         /// </summary>
         public void BringToFront()
         {
+            if (this.IsInFront())
+            {
+                return;
+            }
+
             if (this.IsPinned && this.adorner != null)
             {
+                if (this.adornerDragDrop != null)
+                {
+                    ControlAdornerDragDrop.Detach(this.adornerDragDrop);
+                    this.adornerDragDrop = null;
+                }
+
                 this.adornerLayer.Remove(this.adorner);
 
-                var adornedElement = this.userDefinedAdorner != null ? this.userDefinedAdorner : Application.Current.MainWindow.Content as UIElement;
+                var adornedElement = this.GetAdornerElement();
                 if (adornedElement == null)
                 {
                     return;
@@ -1083,6 +1117,13 @@ namespace Orc.Toolkit
                 }
 
                 this.adornerLayer.Add(this.adorner);
+
+                if (this.IsPinned && this.adornerDragDrop == null)
+                {
+                    this.adornerDragDrop = ControlAdornerDragDrop.Attach(this.adorner);
+                }
+
+                this.RegisterBeingInFront();
             }
         }
 
@@ -1146,7 +1187,7 @@ namespace Orc.Toolkit
                 return;
             }
 
-            var adornedElement = this.userDefinedAdorner != null ? this.userDefinedAdorner : Application.Current.MainWindow.Content as UIElement;
+            var adornedElement = this.GetAdornerElement();
             if (adornedElement == null)
             {
                 return;
@@ -1169,6 +1210,8 @@ namespace Orc.Toolkit
             {
                 this.adornerDragDrop = ControlAdornerDragDrop.Attach(this.adorner);
             }
+
+            this.RegisterBeingInFront();
         }
 
         /// <summary>
@@ -1246,6 +1289,81 @@ namespace Orc.Toolkit
             this.adorner.Child = null;
             this.adorner = null;
             this.adornerLayer = null;
+
+            this.RegisterBeingMovedOut();
+        }
+
+        /// <summary>
+        /// The get adorner element.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="UIElement"/>.
+        /// </returns>
+        private UIElement GetAdornerElement()
+        {
+            return this.userDefinedAdorner ?? Application.Current.MainWindow.Content as UIElement;
+        }
+
+        /// <summary>
+        /// The get current adorners layers.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="ConcurrentBag"/>.
+        /// </returns>
+        private List<int> GetCurrentAdornersLayers()
+        {
+            return OnFrontIdDictionary.GetOrAdd(this.GetAdornerElement(), new List<int>());
+        }
+
+        /// <summary>
+        /// The register being in front.
+        /// </summary>
+        private void RegisterBeingInFront()
+        {
+            List<int> layers = this.GetCurrentAdornersLayers();
+            lock (layers)
+            {
+                layers.Remove(this.id);
+                layers.Add(this.id);
+            }
+        }
+
+        /// <summary>
+        /// The register being moved out.
+        /// </summary>
+        private void RegisterBeingMovedOut()
+        {
+            List<int> layers = this.GetCurrentAdornersLayers();
+            lock (layers)
+            {
+                layers.Remove(this.id);
+            }
+        }
+
+        /// <summary>
+        /// The get in front id.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        private int GetInFrontId()
+        {
+            List<int> layers = this.GetCurrentAdornersLayers();
+            lock (layers)
+            {
+                return layers.LastOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// The is in front.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        private bool IsInFront()
+        {
+            return this.GetInFrontId() == this.id;
         }
 
         #endregion

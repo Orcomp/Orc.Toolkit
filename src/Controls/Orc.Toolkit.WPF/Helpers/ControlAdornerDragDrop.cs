@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Orc.Toolkit.Helpers
 {
+    using System;
     using System.Windows;
     using System.Windows.Input;
 
@@ -170,15 +171,20 @@ namespace Orc.Toolkit.Helpers
                 offset.X = -this.adorner.ChildPosition.X;
             }
 
-            Size windowSize = ScreenUtils.GetWindowSize();
+            Size boundariesSize = ScreenUtils.GetWindowSize();
+            var adornedElement = this.adorner.AdornedElement as FrameworkElement;
+            if (adornedElement != null)
+            {
+                boundariesSize = new Size(adornedElement.ActualWidth, adornedElement.ActualHeight);
+            }
 
-            double maxY = windowSize.Height - frameworkElement.ActualHeight;
+            double maxY = boundariesSize.Height - frameworkElement.ActualHeight;
             if (this.adorner.ChildPosition.Y + offset.Y > maxY)
             {
                 offset.Y = maxY - this.adorner.ChildPosition.Y;
             }
 
-            double maxX = windowSize.Width - frameworkElement.ActualWidth;
+            double maxX = boundariesSize.Width - frameworkElement.ActualWidth;
             if (this.adorner.ChildPosition.X + offset.X > maxX)
             {
                 offset.X = maxX - this.adorner.ChildPosition.X;
