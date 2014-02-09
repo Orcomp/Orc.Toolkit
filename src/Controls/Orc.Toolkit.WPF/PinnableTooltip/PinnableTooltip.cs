@@ -823,7 +823,6 @@ namespace Orc.Toolkit
 
             if ((bool)e.NewValue)
             {
-                System.Diagnostics.Debug.WriteLine("ORC-PINNABLE-TOOLTIP: Attach adorner");
                 if (tooltip.adornerDragDrop == null && tooltip.adorner != null)
                 {
                     tooltip.adornerDragDrop = ControlAdornerDragDrop.Attach(tooltip.adorner);
@@ -836,7 +835,6 @@ namespace Orc.Toolkit
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("ORC-PINNABLE-TOOLTIP: Detach adorner");
                 if (tooltip.adornerDragDrop != null)
                 {
                     ControlAdornerDragDrop.Detach(tooltip.adornerDragDrop);

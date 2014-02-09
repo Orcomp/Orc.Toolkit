@@ -45,7 +45,6 @@ namespace Orc.Toolkit.Helpers
             : base(adornedElement)
         {
             this.ChildPosition = new Point();
-            this.AdornedElement = adornedElement;
         }
 
         #endregion
@@ -103,11 +102,6 @@ namespace Orc.Toolkit.Helpers
                 this.InvalidateArrange();
             }
         }
-
-        /// <summary>
-        /// Gets the adorned element.
-        /// </summary>
-        public UIElement AdornedElement { get; private set; }
 
         #endregion
 
