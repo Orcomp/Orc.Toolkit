@@ -1,63 +1,60 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Orc.Toolkit">
-
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../../Shared/Colors.xaml"/>
         <ResourceDictionary Source="../../Shared/Controls.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="ExpanderToLeft" TargetType="local:Expander">
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    <Style x:Key="ExpanderToLeft" TargetType="Expander">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:Expander">
+                <ControlTemplate TargetType="Expander">
                     <Grid>
-                        <Grid.Resources>
-                            <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-                        </Grid.Resources>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition  Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <Grid x:Name="ContentPresenterGrid" Visibility="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Border x:Name="HeaderBorder" Background="{DynamicResource Brush_Control_1}" Grid.Column="1">
+                            <ToggleButton VerticalAlignment="Top" Margin="1" Content="{TemplateBinding Header}"
+                                          Style="{StaticResource Header_ToggleButton}" MinWidth="20" MinHeight="20"
+                                      IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.LayoutTransform>
+                                    <RotateTransform Angle="-90"/>
+                                </ToggleButton.LayoutTransform>
+                            </ToggleButton>
+                        </Border>
+
+                        <Grid x:Name="ContentPresenterGrid" Visibility="Collapsed">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition  Width="auto"/>
                             </Grid.ColumnDefinitions>
 
                             <Border Margin="0 0 0 1" Grid.ColumnSpan="2" Background="{StaticResource Brush_Control_1}"/>
-                            <ContentControl Content="{TemplateBinding Header}" FontWeight="Bold" Margin="2"
-                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                            <ToggleButton Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
+                            <ContentControl Content="{TemplateBinding Header}" Margin="2" FontWeight="Bold"
+                                            HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                            <ToggleButton Content="x" Grid.Column="1" Style="{StaticResource Pin_ToggleButton}" Margin="1"
                                           IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                            
-                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                              Content="{TemplateBinding Content}"  Grid.Row="1" Grid.ColumnSpan="2"/>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Row="1" Grid.ColumnSpan="2"/>
                         </Grid>
 
-                        <Border x:Name="HeaderBorder" Background="{StaticResource Brush_Control_1}" Grid.Column="1" Visibility="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=1}">
-                            <ToggleButton VerticalAlignment="Top" Margin="1" 
-                                          Style="{StaticResource Header_ToggleButton}"
-                                      IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
-                                <ToggleButton.Content>
-                                    <ContentControl Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                </ToggleButton.Content>
-                            </ToggleButton>
-                        </Border>
-
-                        
                     </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Trigger.Setters>
+                                <Setter TargetName="ContentPresenterGrid" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="HeaderBorder" Property="Visibility" Value="Collapsed"/>
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -201,6 +201,12 @@
     <Resource Include="Assets\manifest_16xLG.png" />
     <Resource Include="Assets\note_16xLG.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Orc.Toolkit\Orc.Toolkit.SL5\Orc.Toolkit.SL5.csproj">
+      <Project>{71d43758-fd29-45ef-a614-0255fdcec10b}</Project>
+      <Name>Orc.Toolkit.SL5</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

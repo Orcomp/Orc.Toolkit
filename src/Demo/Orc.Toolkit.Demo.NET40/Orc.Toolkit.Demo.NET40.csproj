@@ -192,6 +192,12 @@
     <Resource Include="Assets\LuggageTag_16xLG.png" />
     <Resource Include="Assets\note_16xLG.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Orc.Toolkit\Orc.Toolkit.NET40\Orc.Toolkit.NET40.csproj">
+      <Project>{307f767d-a6f7-45bb-bad0-38755a0af524}</Project>
+      <Name>Orc.Toolkit.NET40</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

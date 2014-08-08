@@ -1,21 +1,23 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../../Shared/Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-    <Style x:Key="ToolBarButton" TargetType="Button">
+    
+    <Style x:Key="ToolBarButton" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Width" Value="24"/>
         <Setter Property="Height" Value="24"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="BorderBrush" Value="{StaticResource Brush_Control_2}"/>
+        <Setter Property="Focusable" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Grid Background="Transparent">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -30,7 +32,7 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Disableborder" Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -48,6 +50,7 @@
 
                         </VisualStateManager.VisualStateGroups>
 
+                        
                         <Border x:Name="Border" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center" 
                                             Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -60,17 +63,67 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SaveIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+    <Style x:Key="NoteIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/note_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NewIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/projectNew_16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SupportIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/fire-extinguisher-16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="OpenPrjIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/projectOpen_16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="UpdateToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/DataRefresh16.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SaveIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Image UseLayoutRounding="True" Source="/Orc.Toolkit;component/Assets/Theme/Default/Images/save_16xLG.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </DataTemplate>                
+                </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style x:Key="OpenIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+
+    <Style x:Key="OpenIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -80,7 +133,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SaveToPngIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+    <Style x:Key="SaveToPngIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -90,7 +143,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="PrintIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+    <Style x:Key="PrintIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -100,7 +153,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ZoomIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+
+    <Style x:Key="ZoomIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -110,7 +164,7 @@
         </Setter>
     </Style>
     
-    <Style x:Key="UndoIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+    <Style x:Key="UndoIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -120,7 +174,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="RedoIconToolbarButton" TargetType="Button" BasedOn="{StaticResource ToolBarButton}">
+    <Style x:Key="RedoIconToolbarButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ToolBarButton}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>

@@ -92,8 +92,8 @@
     <SolidColorBrush x:Key="Brush_ComboBoxBorder_Normal" Color="{StaticResource Color_ComboBoxBorder_Normal}" />
 
     <LinearGradientBrush x:Key="Brush_StatusBarBackground" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="{StaticResource Color_StatusBarBackground_Light}" Offset="0" />
-        <GradientStop Color="{StaticResource Color_StatusBarBackground_Dark}" Offset="1" />
+        <GradientStop Color="{DynamicResource Color_StatusBarBackground_Light}" Offset="0" />
+        <GradientStop Color="{DynamicResource Color_StatusBarBackground_Dark}" Offset="1" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="Brush_StatusBarBckgroundTopDarkLine"
 	                 Color="{StaticResource Color_StatusBarBackground_TopDark}" />
@@ -101,18 +101,18 @@
 	                 Color="{StaticResource Color_StatusBarBackground_TopLight}" />
 
     <LinearGradientBrush x:Key="Brush_Separator_Center" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="{StaticResource Color_Separator_Light}" Offset="0" />
-        <GradientStop Color="{StaticResource Color_Separator_Dark}" Offset="0.5" />
-        <GradientStop Color="{StaticResource Color_Separator_Light}" Offset="1" />
+        <GradientStop Color="{DynamicResource Color_Separator_Light}" Offset="0" />
+        <GradientStop Color="{DynamicResource Color_Separator_Dark}" Offset="0.5" />
+        <GradientStop Color="{DynamicResource Color_Separator_Light}" Offset="1" />
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="Brush_Separator_Side" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="{StaticResource Color_Separator_SideLight}" Offset="0" />
-        <GradientStop Color="{StaticResource Color_Separator_SideDark}" Offset="0.5" />
-        <GradientStop Color="{StaticResource Color_Separator_SideLight}" Offset="1" />
+        <GradientStop Color="{DynamicResource Color_Separator_SideLight}" Offset="0" />
+        <GradientStop Color="{DynamicResource Color_Separator_SideDark}" Offset="0.5" />
+        <GradientStop Color="{DynamicResource Color_Separator_SideLight}" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="Brush_ComboBoxArrow" StartPoint="1,1" EndPoint="0,0">
-        <GradientStop Color="{StaticResource Color_ComboBoxArrow_Dark}" Offset="0" />
-        <GradientStop Color="{StaticResource Color_ComboBoxArrow_Light}" Offset="1" />
+        <GradientStop Color="{DynamicResource Color_ComboBoxArrow_Dark}" Offset="0" />
+        <GradientStop Color="{DynamicResource Color_ComboBoxArrow_Light}" Offset="1" />
     </LinearGradientBrush>
 </ResourceDictionary>

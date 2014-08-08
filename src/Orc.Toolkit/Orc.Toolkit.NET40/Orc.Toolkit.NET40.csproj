@@ -125,80 +125,80 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityDropDown.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityIndicator.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\PinnableTooltip\PinnableTooltip.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\StatusBar\ComboBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\StatusBar\SliderPlusMinus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\StatusBar\StatusBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\StatusBar\StatusBarSeparator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\StatusBar\ToggleButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Controls\ToolBar\ToolBarButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\ColorPicker\ColorPicker.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\Expander\ExpanderToLeft.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\PinnableTooltip\PinnableTooltip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\StatusBar\ItemsPanelTemplate.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\SliderPlusMinus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\StatusBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\StatusBarSeparator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Controls\TabControl\MainTabControl.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\ToolBar\ToolBarButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Main.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Theme\Default\Shared\Colors.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Theme\Default\Shared\Controls.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Theme\Default\Shared\ContentTemplates.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Theme\Default\Shared\Controls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -208,37 +208,22 @@
   <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\Arrow_RedoRetry_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\Arrow_UndoRevertRestore_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\Bubble_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\Camera_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\DataRefresh16.png" />
+    <Resource Include="Assets\Theme\Default\Images\fire-extinguisher-16.png" />
     <Resource Include="Assets\Theme\Default\Images\folder_Open_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\gear_16xLG.png" />
-    <Resource Include="Assets\Theme\Default\Images\printer_16xLG.png" />
-    <Resource Include="Assets\Theme\Default\Images\save_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Theme\Default\Images\LaunchConditionsEditor_259.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Theme\Default\Images\Bubble_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\manifest_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\note_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Theme\Default\Images\WindowsForm_817_16x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Theme\Default\Images\DataRefresh16.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\printer_16xLG.png" />
     <Resource Include="Assets\Theme\Default\Images\projectNew_16.png" />
     <Resource Include="Assets\Theme\Default\Images\projectOpen_16.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\save_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\WindowsForm_817_16x.png" />
     <Resource Include="Assets\Theme\Default\Images\Zoom.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Theme\Default\Images\fire-extinguisher-16.png" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Themes\Images\ClearFilter16.png" />
     <Resource Include="Themes\Images\pin.png" />

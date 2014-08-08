@@ -13,11 +13,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Orc.Toolkit.SL")]
+[assembly: AssemblyTitle("Orc.Toolkit")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ORC")]
-[assembly: AssemblyProduct("Orc.Toolkit.SL")]
+[assembly: AssemblyProduct("Orc.Toolkit")]
 [assembly: AssemblyCopyright("Copyright © ORC 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
