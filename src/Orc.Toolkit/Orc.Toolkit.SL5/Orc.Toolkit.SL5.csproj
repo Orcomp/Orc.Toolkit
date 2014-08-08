@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71D43758-FD29-45EF-A614-0255FDCEC10B}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orc.Toolkit</RootNamespace>
+    <AssemblyName>Orc.Toolkit</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\output\debug\SL5\Orc.Toolkit\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\output\release\SL5\Orc.Toolkit\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\output\release\SL5\Orc.Toolkit\Orc.Toolkit.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core">
+      <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Assets\Converters\BoolToVisibilityConverter.cs">
+      <Link>Assets\Converters\BoolToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AttributeConfigurationEditor\AttributeConfigurationButton.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AttributeConfigurationEditor\AttributeConfigurationEditor.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditor.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs">
+      <Link>AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AttributeConfigurationEditor\ExtendedDataGridColumn.cs">
+      <Link>AttributeConfigurationEditor\ExtendedDataGridColumn.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AvailabilityIndicator\AvailabilityDropDown.cs">
+      <Link>AvailabilityIndicator\AvailabilityDropDown.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\AvailabilityIndicator\AvailabilityIndicator.cs">
+      <Link>AvailabilityIndicator\AvailabilityIndicator.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Behaviours\MultiSelectorBehaviour.cs">
+      <Link>Behaviours\MultiSelectorBehaviour.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\ColorBoard.cs">
+      <Link>ColorPicker\ColorBoard.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\ColorChangedEventArgs.cs">
+      <Link>ColorPicker\ColorChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\ColorHelper.cs">
+      <Link>ColorPicker\ColorHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\ColorPicker.cs">
+      <Link>ColorPicker\ColorPicker.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\PredefinedColor.cs">
+      <Link>ColorPicker\PredefinedColor.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\PredefinedColorItem.cs">
+      <Link>ColorPicker\PredefinedColorItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ColorPicker\WrapPanel.cs">
+      <Link>ColorPicker\WrapPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ComboBoxEx\ComboBoxEx.cs">
+      <Link>ComboBoxEx\ComboBoxEx.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Commands\DelegateCommand.cs">
+      <Link>Commands\DelegateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\DropDownButton\DropDownButton.cs">
+      <Link>DropDownButton\DropDownButton.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\DropDownButton\HeaderedContentControl.cs">
+      <Link>DropDownButton\HeaderedContentControl.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Expander\Expander.cs">
+      <Link>Expander\Expander.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ExtendedColorLegend\Commands\ExtendedColorLegendCommands.cs">
+      <Link>ExtendedColorLegend\Commands\ExtendedColorLegendCommands.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ExtendedColorLegend\ExtendedColorLegend.cs">
+      <Link>ExtendedColorLegend\ExtendedColorLegend.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\ExtendedColorLegend\IColorProvider.cs">
+      <Link>ExtendedColorLegend\IColorProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\FolderPicker\BrowseForFolderDialog.cs">
+      <Link>FolderPicker\BrowseForFolderDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\FolderPicker\FolderPicker.cs">
+      <Link>FolderPicker\FolderPicker.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\FolderPicker\IFolderBrowserDialogService.cs">
+      <Link>FolderPicker\IFolderBrowserDialogService.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\ControlAdorner.cs">
+      <Link>Helpers\ControlAdorner.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\ControlAdornerDragDrop.cs">
+      <Link>Helpers\ControlAdornerDragDrop.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\IControlAdornerChild.cs">
+      <Link>Helpers\IControlAdornerChild.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\LayoutTransformer.cs">
+      <Link>Helpers\LayoutTransformer.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\PopupDragDrop.cs">
+      <Link>Helpers\PopupDragDrop.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\ScreenUtils.cs">
+      <Link>Helpers\ScreenUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Helpers\VisualTreeEnumeration.cs">
+      <Link>Helpers\VisualTreeEnumeration.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PinnableTooltip\LinkTooltipItem.cs">
+      <Link>PinnableTooltip\LinkTooltipItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PinnableTooltip\OrdinalTooltipItem.cs">
+      <Link>PinnableTooltip\OrdinalTooltipItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PinnableTooltip\PinnableItemTemplateSelector.cs">
+      <Link>PinnableTooltip\PinnableItemTemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PinnableTooltip\PinnableTooltip.cs">
+      <Link>PinnableTooltip\PinnableTooltip.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PinnableTooltip\PinnableTooltipService.cs">
+      <Link>PinnableTooltip\PinnableTooltipService.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PinnableTooltip\TooltipTimer.cs">
+      <Link>PinnableTooltip\TooltipTimer.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PrintingCanvas\CanvasToPrint.cs">
+      <Link>PrintingCanvas\CanvasToPrint.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PrintingCanvas\CopyUtilities.cs">
+      <Link>PrintingCanvas\CopyUtilities.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PrintingCanvas\Crc32.cs">
+      <Link>PrintingCanvas\Crc32.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PrintingCanvas\NetworkOrderBitConverter.cs">
+      <Link>PrintingCanvas\NetworkOrderBitConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PrintingCanvas\PngChunk.cs">
+      <Link>PrintingCanvas\PngChunk.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\PrintingCanvas\PngGenerator.cs">
+      <Link>PrintingCanvas\PngGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\SearchableListBox\SearchableListBox.cs">
+      <Link>SearchableListBox\SearchableListBox.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Statusbar\Separator.cs">
+      <Link>Statusbar\Separator.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Statusbar\SliderPlusMinus.cs">
+      <Link>Statusbar\SliderPlusMinus.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Statusbar\StatusBar.cs">
+      <Link>Statusbar\StatusBar.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\Statusbar\StatusBarItem.cs">
+      <Link>Statusbar\StatusBarItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Orc.Toolkit.NET40\WatermarkTextBox\WatermarkTextBox.cs">
+      <Link>WatermarkTextBox\WatermarkTextBox.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityDropDown.xaml">
+      <Link>Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityDropDown.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityIndicator.xaml">
+      <Link>Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityIndicator.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\ColorPicker\ColorPicker.xaml">
+      <Link>Assets\Theme\Default\Controls\ColorPicker\ColorPicker.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml">
+      <Link>Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml">
+      <Link>Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\Expander\ExpanderToLeft.xaml">
+      <Link>Assets\Theme\Default\Controls\Expander\ExpanderToLeft.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\PinnableTooltip\PinnableTooltip.xaml">
+      <Link>Assets\Theme\Default\Controls\PinnableTooltip\PinnableTooltip.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\StatusBar\ComboBox.xaml">
+      <Link>Assets\Theme\Default\Controls\StatusBar\ComboBox.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\StatusBar\ItemsPanelTemplate.xaml">
+      <Link>Assets\Theme\Default\Controls\StatusBar\ItemsPanelTemplate.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\StatusBar\SliderPlusMinus.xaml">
+      <Link>Assets\Theme\Default\Controls\StatusBar\SliderPlusMinus.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\StatusBar\StatusBar.xaml">
+      <Link>Assets\Theme\Default\Controls\StatusBar\StatusBar.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\StatusBar\StatusBarSeparator.xaml">
+      <Link>Assets\Theme\Default\Controls\StatusBar\StatusBarSeparator.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\StatusBar\ToggleButton.xaml">
+      <Link>Assets\Theme\Default\Controls\StatusBar\ToggleButton.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\TabControl\MainTabControl.xaml">
+      <Link>Assets\Theme\Default\Controls\TabControl\MainTabControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Controls\ToolBar\ToolBarButton.xaml">
+      <Link>Assets\Theme\Default\Controls\ToolBar\ToolBarButton.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Main.xaml">
+      <Link>Assets\Theme\Default\Main.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Shared\Colors.xaml">
+      <Link>Assets\Theme\Default\Shared\Colors.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Shared\ContentTemplates.xaml">
+      <Link>Assets\Theme\Default\Shared\ContentTemplates.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Shared\Controls.xaml">
+      <Link>Assets\Theme\Default\Shared\Controls.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Orc.Toolkit.NET40\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\Arrow_RedoRetry_16xLG.png">
+      <Link>Assets\Theme\Default\Images\Arrow_RedoRetry_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\Arrow_UndoRevertRestore_16xLG.png">
+      <Link>Assets\Theme\Default\Images\Arrow_UndoRevertRestore_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\Bubble_16xLG.png">
+      <Link>Assets\Theme\Default\Images\Bubble_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\Camera_16xLG.png">
+      <Link>Assets\Theme\Default\Images\Camera_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\DataRefresh16.png">
+      <Link>Assets\Theme\Default\Images\DataRefresh16.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\fire-extinguisher-16.png">
+      <Link>Assets\Theme\Default\Images\fire-extinguisher-16.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\folder_Open_16xLG.png">
+      <Link>Assets\Theme\Default\Images\folder_Open_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\gear_16xLG.png">
+      <Link>Assets\Theme\Default\Images\gear_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\LaunchConditionsEditor_259.png">
+      <Link>Assets\Theme\Default\Images\LaunchConditionsEditor_259.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\manifest_16xLG.png">
+      <Link>Assets\Theme\Default\Images\manifest_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\note_16xLG.png">
+      <Link>Assets\Theme\Default\Images\note_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\printer_16xLG.png">
+      <Link>Assets\Theme\Default\Images\printer_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\projectNew_16.png">
+      <Link>Assets\Theme\Default\Images\projectNew_16.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\projectOpen_16.png">
+      <Link>Assets\Theme\Default\Images\projectOpen_16.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\save_16xLG.png">
+      <Link>Assets\Theme\Default\Images\save_16xLG.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\WindowsForm_817_16x.png">
+      <Link>Assets\Theme\Default\Images\WindowsForm_817_16x.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Assets\Theme\Default\Images\Zoom.png">
+      <Link>Assets\Theme\Default\Images\Zoom.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Orc.Toolkit.NET40\Themes\Images\ClearFilter16.png">
+      <Link>Themes\Images\ClearFilter16.png</Link>
+    </Resource>
+    <Resource Include="..\Orc.Toolkit.NET40\Themes\Images\pin.png">
+      <Link>Themes\Images\pin.png</Link>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

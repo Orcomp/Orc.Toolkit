@@ -1,22 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{285AA48F-B1F5-4FAD-AE45-775454F39E6E}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{285AA48F-B1F5-4FAD-AE45-775454F39E6E}"
 	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+		Orc.Toolkit.sln.DotSettings = Orc.Toolkit.sln.DotSettings
 		README.md = README.md
+		SolutionAssemblyInfo.cs = SolutionAssemblyInfo.cs
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{49443148-5D59-40B3-A51E-B0F9172E178D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49443148-5D59-40B3-A51E-B0F9172E178D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.Demo.SL", "Demo\Orc.Toolkit.Demo.SL\Orc.Toolkit.Demo.SL.csproj", "{9201BC27-B1E2-4F10-BFFD-064FC85B5B10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.Demo.SL5", "Demo\Orc.Toolkit.Demo.SL5\Orc.Toolkit.Demo.SL5.csproj", "{9201BC27-B1E2-4F10-BFFD-064FC85B5B10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.SL", "Controls\Orc.Toolkit.SL\Orc.Toolkit.SL.csproj", "{71D43758-FD29-45EF-A614-0255FDCEC10B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.Demo.NET40", "Demo\Orc.Toolkit.Demo.NET40\Orc.Toolkit.Demo.NET40.csproj", "{D1D45BAB-1FDA-463E-92E0-AEB1C615727E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{106BED1A-4B82-41C1-BDF1-942734E2002B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{C2A6DA6E-5192-43ED-A37D-8198325111A2}"
+	ProjectSection(SolutionItems) = preProject
+		..\lib\repositories.config = ..\lib\repositories.config
+		..\lib\RestorePackages.bat = ..\lib\RestorePackages.bat
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.WPF", "Controls\Orc.Toolkit.WPF\Orc.Toolkit.WPF.csproj", "{307F767D-A6F7-45BB-BAD0-38755A0AF524}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{1095977C-1D35-4258-8939-C79FC58C4007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.Demo.WPF", "Demo\Orc.Toolkit.Demo.WPF\Orc.Toolkit.Demo.WPF.csproj", "{D1D45BAB-1FDA-463E-92E0-AEB1C615727E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.NET40", "Orc.Toolkit\Orc.Toolkit.NET40\Orc.Toolkit.NET40.csproj", "{307F767D-A6F7-45BB-BAD0-38755A0AF524}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.SL5", "Orc.Toolkit\Orc.Toolkit.SL5\Orc.Toolkit.SL5.csproj", "{71D43758-FD29-45EF-A614-0255FDCEC10B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,26 +39,27 @@ Global
 		{9201BC27-B1E2-4F10-BFFD-064FC85B5B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9201BC27-B1E2-4F10-BFFD-064FC85B5B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9201BC27-B1E2-4F10-BFFD-064FC85B5B10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307F767D-A6F7-45BB-BAD0-38755A0AF524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D43758-FD29-45EF-A614-0255FDCEC10B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9201BC27-B1E2-4F10-BFFD-064FC85B5B10} = {49443148-5D59-40B3-A51E-B0F9172E178D}
-		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E} = {49443148-5D59-40B3-A51E-B0F9172E178D}
-		{71D43758-FD29-45EF-A614-0255FDCEC10B} = {106BED1A-4B82-41C1-BDF1-942734E2002B}
-		{307F767D-A6F7-45BB-BAD0-38755A0AF524} = {106BED1A-4B82-41C1-BDF1-942734E2002B}
+		{9201BC27-B1E2-4F10-BFFD-064FC85B5B10} = {1095977C-1D35-4258-8939-C79FC58C4007}
+		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E} = {1095977C-1D35-4258-8939-C79FC58C4007}
+		{1095977C-1D35-4258-8939-C79FC58C4007} = {49443148-5D59-40B3-A51E-B0F9172E178D}
+		{307F767D-A6F7-45BB-BAD0-38755A0AF524} = {49443148-5D59-40B3-A51E-B0F9172E178D}
+		{71D43758-FD29-45EF-A614-0255FDCEC10B} = {49443148-5D59-40B3-A51E-B0F9172E178D}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{307F767D-A6F7-45BB-BAD0-38755A0AF524}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orc.Toolkit</RootNamespace>
+    <AssemblyName>Orc.Toolkit</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\output\debug\NET40\Orc.Toolkit\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\output\release\NET40\Orc.Toolkit\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\output\release\NET40\Orc.Toolkit\Orc.Toolkit.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SolutionAssemblyInfo.cs">
+      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Assets\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationButton.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditor.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs" />
+    <Compile Include="AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs" />
+    <Compile Include="AttributeConfigurationEditor\ExtendedDataGridColumn.cs" />
+    <Compile Include="AvailabilityIndicator\AvailabilityDropDown.cs" />
+    <Compile Include="AvailabilityIndicator\AvailabilityIndicator.cs" />
+    <Compile Include="Behaviours\MultiSelectorBehaviour.cs" />
+    <Compile Include="ColorPicker\ColorChangedEventArgs.cs" />
+    <Compile Include="ColorPicker\PredefinedColor.cs" />
+    <Compile Include="ComboBoxEx\ComboBoxEx.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="DropDownButton\DropDownButton.cs" />
+    <Compile Include="DropDownButton\HeaderedContentControl.cs" />
+    <Compile Include="Expander\Expander.cs" />
+    <Compile Include="ExtendedColorLegend\Commands\ExtendedColorLegendCommands.cs" />
+    <Compile Include="ExtendedColorLegend\ExtendedColorLegend.cs" />
+    <Compile Include="ExtendedColorLegend\IColorProvider.cs" />
+    <Compile Include="FolderPicker\BrowseForFolderDialog.cs" />
+    <Compile Include="FolderPicker\FolderPicker.cs" />
+    <Compile Include="FolderPicker\IFolderBrowserDialogService.cs" />
+    <Compile Include="Helpers\LayoutTransformer.cs" />
+    <Compile Include="Helpers\PopupDragDrop.cs" />
+    <Compile Include="Helpers\ScreenUtils.cs" />
+    <Compile Include="Helpers\VisualTreeEnumeration.cs" />
+    <Compile Include="PinnableTooltip\LinkTooltipItem.cs" />
+    <Compile Include="PinnableTooltip\OrdinalTooltipItem.cs" />
+    <Compile Include="PinnableTooltip\PinnableItemTemplateSelector.cs" />
+    <Compile Include="PinnableTooltip\PinnableTooltipService.cs" />
+    <Compile Include="PinnableTooltip\TooltipTimer.cs" />
+    <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
+    <Compile Include="ColorPicker\ColorBoard.cs" />
+    <Compile Include="ColorPicker\ColorHelper.cs" />
+    <Compile Include="ColorPicker\ColorPicker.cs" />
+    <Compile Include="ColorPicker\PredefinedColorItem.cs" />
+    <Compile Include="ColorPicker\WrapPanel.cs" />
+    <Compile Include="Helpers\ControlAdorner.cs" />
+    <Compile Include="Helpers\ControlAdornerDragDrop.cs" />
+    <Compile Include="Helpers\IControlAdornerChild.cs" />
+    <Compile Include="PinnableTooltip\PinnableTooltip.cs" />
+    <Compile Include="PrintingCanvas\CopyUtilities.cs" />
+    <Compile Include="PrintingCanvas\Crc32.cs" />
+    <Compile Include="PrintingCanvas\NetworkOrderBitConverter.cs" />
+    <Compile Include="PrintingCanvas\PngChunk.cs" />
+    <Compile Include="PrintingCanvas\PngGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SearchableListBox\SearchableListBox.cs" />
+    <Compile Include="Statusbar\Separator.cs" />
+    <Compile Include="Statusbar\SliderPlusMinus.cs" />
+    <Compile Include="Statusbar\StatusBar.cs" />
+    <Compile Include="Statusbar\StatusBarItem.cs" />
+    <Compile Include="WatermarkTextBox\WatermarkTextBox.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityDropDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\AvailabilityIndicator\AvailabilityIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\DataGrid\ResourceFilterDatarid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\PinnableTooltip\PinnableTooltip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\SliderPlusMinus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\StatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\StatusBarSeparator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\ToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\ToolBar\ToolBarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\ColorPicker\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\DropDownButton\DropDownButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\Expander\ExpanderToLeft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\StatusBar\ItemsPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Controls\TabControl\MainTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Shared\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Shared\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Theme\Default\Shared\ContentTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\Arrow_RedoRetry_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\Arrow_UndoRevertRestore_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\Camera_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\folder_Open_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\gear_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\printer_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\save_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\LaunchConditionsEditor_259.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\Bubble_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\manifest_16xLG.png" />
+    <Resource Include="Assets\Theme\Default\Images\note_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\WindowsForm_817_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\DataRefresh16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\projectNew_16.png" />
+    <Resource Include="Assets\Theme\Default\Images\projectOpen_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\Zoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Theme\Default\Images\fire-extinguisher-16.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Themes\Images\ClearFilter16.png" />
+    <Resource Include="Themes\Images\pin.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
