@@ -756,7 +756,10 @@ namespace Orc.Toolkit
                     if (element != null)
                     {
                         element.Unloaded -= FrameworkElementUnloaded;
-                        toolTip.DataContext = null;
+                        if (toolTip != null)
+                        {
+                            toolTip.DataContext = null;
+                        }
                     }
 
                     owner.MouseEnter -= OnElementMouseEnter;
@@ -768,15 +771,17 @@ namespace Orc.Toolkit
                         control.IsEnabledChanged -= OnControlEnabledChanged;
                     }
 
-                    toolTip.IsOpen = false;
-                    toolTip.SetOwner(null);
+                    if (toolTip != null)
+                    {
+                        toolTip.IsOpen = false;
+                        toolTip.SetOwner(null);
+                    }
+
                     ElementsAndToolTips.Remove(owner);
                 }
             }
             catch (Exception)
             {
-                
-                
             }
         }
 
