@@ -7,13 +7,13 @@
 
 namespace Orc.Toolkit.Test
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
 
-    [TestClass]
+    [TestFixture]
     public class DummyFacts
     {
         #region Methods
-        [TestMethod]
+        [TestCase()]
         public void DummyTest()
         {
         }
