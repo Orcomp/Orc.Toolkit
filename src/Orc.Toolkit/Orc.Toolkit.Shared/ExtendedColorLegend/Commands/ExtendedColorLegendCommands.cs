@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+#if NET
+
 namespace Orc.Toolkit.Commands
 {
     using System.Windows.Input;
@@ -33,3 +35,5 @@ namespace Orc.Toolkit.Commands
         }
     }
 }
+
+#endif

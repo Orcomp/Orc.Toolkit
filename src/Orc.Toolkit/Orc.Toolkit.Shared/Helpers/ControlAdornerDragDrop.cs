@@ -6,6 +6,9 @@
 //   A class that makes ControlAdorner moveable.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+#if NET
+
 namespace Orc.Toolkit.Helpers
 {
     using System;
@@ -199,3 +202,5 @@ namespace Orc.Toolkit.Helpers
         #endregion
     }
 }
+
+#endif

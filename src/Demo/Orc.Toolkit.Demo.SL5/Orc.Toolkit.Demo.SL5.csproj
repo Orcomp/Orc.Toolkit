@@ -45,7 +45,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\output\debug\SL5\Orc.Toolkit.Demo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;SL5</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -55,7 +55,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\output\release\SL5\Orc.Toolkit.Demo\</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;SL5</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -83,13 +83,9 @@
     <Reference Include="System.Windows.Controls.Navigation" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\SolutionAssemblyInfo.cs">
-      <Link>Properties\SolutionAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\AttributeConfigurationEditorTest\AttributeConfigurations.cs" />
     <Compile Include="Views\AttributeConfigurationEditor.xaml.cs">
       <DependentUpon>AttributeConfigurationEditor.xaml</DependentUpon>
     </Compile>
@@ -117,17 +113,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Resource Include="Assets\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
     <Page Include="Assets\Office2010\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,6 +136,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Office2010\ToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -193,20 +188,19 @@
     <None Include="Properties\InBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\samp.png" />
+    <ProjectReference Include="..\..\Orc.Toolkit\Orc.Toolkit.SL5\Orc.Toolkit.SL5.csproj">
+      <Project>{71d43758-fd29-45ef-a614-0255fdcec10b}</Project>
+      <Name>Orc.Toolkit.SL5</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Bubble_16xLG.png" />
     <Resource Include="Assets\LuggageTag_16xLG.png" />
     <Resource Include="Assets\manifest_16xLG.png" />
     <Resource Include="Assets\note_16xLG.png" />
+    <Resource Include="Assets\samp.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Orc.Toolkit\Orc.Toolkit.SL5\Orc.Toolkit.SL5.csproj">
-      <Project>{71d43758-fd29-45ef-a614-0255fdcec10b}</Project>
-      <Name>Orc.Toolkit.SL5</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="..\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems" Label="Shared" Condition="Exists('..\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

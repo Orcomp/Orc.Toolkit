@@ -6,6 +6,9 @@
 //   The ControlAdornerChild interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+#if NET
+
 namespace Orc.Toolkit.Helpers
 {
     using System.Windows;
@@ -28,3 +31,5 @@ namespace Orc.Toolkit.Helpers
         #endregion
     }
 }
+
+#endif

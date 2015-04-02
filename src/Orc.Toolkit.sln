@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{285AA48F-B1F5-4FAD-AE45-775454F39E6E}"
 	ProjectSection(SolutionItems) = preProject
@@ -29,11 +29,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.NET40", "Orc.To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.SL5", "Orc.Toolkit\Orc.Toolkit.SL5\Orc.Toolkit.SL5.csproj", "{71D43758-FD29-45EF-A614-0255FDCEC10B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A52BC269-2BA4-4BB0-8BE3-5D82E1E6D01B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A52BC269-2BA4-4BB0-8BE3-5D82E1E6D01B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.Toolkit.Tests", "Orc.Toolkit.Tests\Orc.Toolkit.Tests.csproj", "{A84AB4DD-85D1-489E-93D9-79D77E40A0FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{769F48A0-23A7-494D-AED7-EA710C3C576B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.Toolkit.Shared", "Orc.Toolkit\Orc.Toolkit.Shared\Orc.Toolkit.Shared.shproj", "{96987DED-AF3C-4478-A649-31BE9B1BD603}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.Toolkit.Demo.Shared", "Demo\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.shproj", "{41D4F70C-C98D-4F9E-8E08-44FDF2E35D24}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Orc.Toolkit\Orc.Toolkit.Shared\Orc.Toolkit.Shared.projitems*{71d43758-fd29-45ef-a614-0255fdcec10b}*SharedItemsImports = 4
+		Orc.Toolkit\Orc.Toolkit.Shared\Orc.Toolkit.Shared.projitems*{307f767d-a6f7-45bb-bad0-38755a0af524}*SharedItemsImports = 4
+		Demo\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems*{41d4f70c-c98d-4f9e-8e08-44fdf2e35d24}*SharedItemsImports = 13
+		Orc.Toolkit\Orc.Toolkit.Shared\Orc.Toolkit.Shared.projitems*{96987ded-af3c-4478-a649-31be9b1bd603}*SharedItemsImports = 13
+		Demo\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems*{9201bc27-b1e2-4f10-bffd-064fc85b5b10}*SharedItemsImports = 4
+		Demo\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems*{d1d45bab-1fda-463e-92e0-aeb1c615727e}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -67,9 +81,12 @@ Global
 		{9201BC27-B1E2-4F10-BFFD-064FC85B5B10} = {1095977C-1D35-4258-8939-C79FC58C4007}
 		{D1D45BAB-1FDA-463E-92E0-AEB1C615727E} = {1095977C-1D35-4258-8939-C79FC58C4007}
 		{1095977C-1D35-4258-8939-C79FC58C4007} = {49443148-5D59-40B3-A51E-B0F9172E178D}
-		{307F767D-A6F7-45BB-BAD0-38755A0AF524} = {49443148-5D59-40B3-A51E-B0F9172E178D}
-		{71D43758-FD29-45EF-A614-0255FDCEC10B} = {49443148-5D59-40B3-A51E-B0F9172E178D}
+		{307F767D-A6F7-45BB-BAD0-38755A0AF524} = {769F48A0-23A7-494D-AED7-EA710C3C576B}
+		{71D43758-FD29-45EF-A614-0255FDCEC10B} = {769F48A0-23A7-494D-AED7-EA710C3C576B}
 		{A52BC269-2BA4-4BB0-8BE3-5D82E1E6D01B} = {49443148-5D59-40B3-A51E-B0F9172E178D}
 		{A84AB4DD-85D1-489E-93D9-79D77E40A0FD} = {A52BC269-2BA4-4BB0-8BE3-5D82E1E6D01B}
+		{769F48A0-23A7-494D-AED7-EA710C3C576B} = {49443148-5D59-40B3-A51E-B0F9172E178D}
+		{96987DED-AF3C-4478-A649-31BE9B1BD603} = {769F48A0-23A7-494D-AED7-EA710C3C576B}
+		{41D4F70C-C98D-4F9E-8E08-44FDF2E35D24} = {1095977C-1D35-4258-8939-C79FC58C4007}
 	EndGlobalSection
 EndGlobal

@@ -13,7 +13,7 @@ namespace Orc.Toolkit.Test
     public class DummyFacts
     {
         #region Methods
-        [TestCase()]
+        [TestCase]
         public void DummyTest()
         {
         }

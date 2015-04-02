@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>96987ded-af3c-4478-a649-31be9b1bd603</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Orc.Toolkit.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\SolutionAssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeConfigurationEditor\AttributeConfigurationButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeConfigurationEditor\AttributeConfigurationEditor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeConfigurationEditor\AttributeConfigurationEditorProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeConfigurationEditor\AttributeConfigurationEditorSection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeConfigurationEditor\ExtendedDataGridColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AvailabilityIndicator\AvailabilityDropDown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AvailabilityIndicator\AvailabilityIndicator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\MultiSelectorBehaviour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\ColorBoard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\ColorChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\ColorHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\ColorPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\PredefinedColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\PredefinedColorItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ColorPicker\WrapPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ComboBoxEx\ComboBoxEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\DelegateCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DropDownButton\DropDownButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DropDownButton\HeaderedContentControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Expander\Expander.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedColorLegend\Commands\ExtendedColorLegendCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedColorLegend\ExtendedColorLegend.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedColorLegend\IColorProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FolderPicker\BrowseForFolderDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FolderPicker\FolderPicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FolderPicker\IFolderBrowserDialogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ControlAdorner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ControlAdornerDragDrop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\IControlAdornerChild.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\LayoutTransformer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PopupDragDrop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ScreenUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeEnumeration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\LinkTooltipItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\OrdinalTooltipItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\PinnableItemTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\PinnableTooltip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\PinnableTooltipService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\TooltipTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrintingCanvas\CopyUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrintingCanvas\Crc32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrintingCanvas\NetworkOrderBitConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrintingCanvas\PngChunk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PrintingCanvas\PngGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SearchableListBox\SearchableListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statusbar\Separator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statusbar\SliderPlusMinus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statusbar\StatusBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Statusbar\StatusBarItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WatermarkTextBox\WatermarkTextBox.cs" />
+  </ItemGroup>
+</Project>

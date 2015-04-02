@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+
+#if NET
 namespace Orc.Toolkit
 {
     using System.Windows;
@@ -47,3 +49,4 @@ namespace Orc.Toolkit
         }
     }
 }
+#endif

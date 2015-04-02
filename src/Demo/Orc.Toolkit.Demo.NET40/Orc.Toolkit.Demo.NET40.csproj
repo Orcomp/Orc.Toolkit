@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\output\debug\NET40\Orc.Toolkit.Demo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -29,7 +29,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\output\release\NET40\Orc.Toolkit.Demo\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\output\release\NET40\Orc.Toolkit.Demo\Orc.Toolkit.Demo.XML</DocumentationFile>
@@ -54,18 +54,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\..\SolutionAssemblyInfo.cs">
-      <Link>Properties\SolutionAssemblyInfo.cs</Link>
+    <Compile Include="Views\AttributeConfigurationEditor.xaml.cs">
+      <DependentUpon>AttributeConfigurationEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\AttributeConfigurationEditorTest\AttributeConfiguration.cs" />
     <Compile Include="Views\ColorLegend.xaml.cs">
       <DependentUpon>ColorLegend.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AttributeConfigurationEditor.xaml.cs">
-      <DependentUpon>AttributeConfigurationEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DropDownButton.xaml.cs">
       <DependentUpon>DropDownButton.xaml</DependentUpon>
@@ -122,75 +118,41 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ColorLegend.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\AttributeConfigurationEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ColorLegend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ColorPicker.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AttributeConfigurationEditor.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DropDownButton.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Printing.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SearchableList.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Statusbar.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tooltips.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\samp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Bubble_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\manifest_16xLG.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\LuggageTag_16xLG.png" />
-    <Resource Include="Assets\note_16xLG.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Orc.Toolkit\Orc.Toolkit.NET40\Orc.Toolkit.NET40.csproj">
@@ -198,6 +160,25 @@
       <Name>Orc.Toolkit.NET40</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Bubble_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\LuggageTag_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\manifest_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\note_16xLG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\samp.png" />
+  </ItemGroup>
+  <Import Project="..\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems" Label="Shared" Condition="Exists('..\Orc.Toolkit.Demo.Shared\Orc.Toolkit.Demo.Shared.projitems')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

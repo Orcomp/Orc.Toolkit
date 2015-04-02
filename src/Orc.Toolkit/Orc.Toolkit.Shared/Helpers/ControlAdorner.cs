@@ -6,6 +6,9 @@
 //   An adorner class that contains a control as only child.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+#if NET
+
 namespace Orc.Toolkit.Helpers
 {
     using System;
@@ -197,3 +200,5 @@ namespace Orc.Toolkit.Helpers
         #endregion
     }
 }
+
+#endif
