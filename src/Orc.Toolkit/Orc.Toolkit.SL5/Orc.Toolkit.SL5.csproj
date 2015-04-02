@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PinnableTooltip\PinnableTooltip.cs" />
     <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
   </ItemGroup>
   <ItemGroup>

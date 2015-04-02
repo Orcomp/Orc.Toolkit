@@ -45,6 +45,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PinnableTooltip\PinnableTooltip.cs" />
     <Compile Include="PrintingCanvas\CanvasToPrint.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>

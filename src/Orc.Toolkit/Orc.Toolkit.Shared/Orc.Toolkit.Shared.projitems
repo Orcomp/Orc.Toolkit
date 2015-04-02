@@ -47,7 +47,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\LinkTooltipItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\OrdinalTooltipItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\PinnableItemTemplateSelector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\PinnableTooltip.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\PinnableTooltipService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PinnableTooltip\TooltipTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrintingCanvas\CopyUtilities.cs" />
