@@ -185,6 +185,11 @@ namespace Orc.Toolkit
 
         #region Public properties
         /// <summary>
+        /// Selection changed event
+        /// </summary>
+        public event EventHandler<EventArgs> SelectionChanged;
+
+        /// <summary>
         /// Gets or sets the operation color attribute.
         /// </summary>
         public string OperationColorAttribute
@@ -668,7 +673,15 @@ namespace Orc.Toolkit
 
             if (this.listBox != null)
             {
-                this.listBox.SelectionChanged += (sender, args) => { this.SelectedColorItems = this.GetSelectedList(); };
+                this.listBox.SelectionChanged += (sender, args) =>
+                    {
+                        this.SelectedColorItems = this.GetSelectedList();
+                        var handler = this.SelectionChanged;
+                        if (handler != null)
+                        {
+                            handler(sender, args);
+                        }
+                    };
                 this.listBox.SelectionMode = SelectionMode.Extended;
                 
                 this.listBox.LayoutUpdated += (sender, args) =>
